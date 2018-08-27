@@ -1,6 +1,16 @@
 # Python Modules
 
 
+## SciPy
+
+[SciPy](https://www.scipy.org/) is a Python-based ecosystem of open-source software for mathematics, science, and engineering.
+
+### Action Items
+
+* __Peruse__: [About SciPy](https://www.scipy.org/about.html).
+* __Peruse__: [Getting Started](https://www.scipy.org/getting-started.html).
+
+
 ## NumPy
 
 [NumPy](http://www.numpy.org/) is a  package for scientific computing with Python.
@@ -11,7 +21,7 @@ NumPy can be integrated with a wide variety of databases.
 
 ### Action Items
 
-* __Peruse__: The [NumPy User Guide](https://docs.scipy.org/doc/numpy/user/index.html)
+* __Peruse__: The [NumPy User Guide](https://docs.scipy.org/doc/numpy/user/index.html).
 * __Read__: The [Numpy Quickstart Tutorial](https://docs.scipy.org/doc/numpy/user/quickstart.html).
 * __Download and Install__: NumPy (if needed).
 
