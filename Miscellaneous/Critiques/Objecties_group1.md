@@ -19,3 +19,10 @@ In addition, emphasis is put on team work, presentation skills, time management,
 * Promote creativity and critical thinking.
 * Refine presentation skills and the ability to conduct and manage projects.
 
+## Additional Objectives
+
+* Techniques to manage data for creating reproducable experiments. _e.g._ You have output data from an experiment, and need to store it in a shareable way that can be coupled with your code to make the experiment reproducable
+* Working with and analyzing big data sets (don't fit in your computer's memory)
+* Solving optimization problems in Python
+* Database management: design, implementation, using SQL or Hardoop, etc.
+* Machine/deep learning techniques
