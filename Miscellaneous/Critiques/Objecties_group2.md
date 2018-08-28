@@ -19,3 +19,11 @@ In addition, emphasis is put on team work, presentation skills, time management,
 * Promote creativity and critical thinking.
 * Refine presentation skills and the ability to conduct and manage projects.
 
+## Critique:
+1. Data sets relevant to various fields could be provided.
+
+2. Mathematical foundations of machine learning along with heuristic algorithms could be discussed.
+
+3. Introduction to data bases and querying using SQL would be a nice addition.
+
+4. Discussion of Unsupervised learning, clustering is helpful.
