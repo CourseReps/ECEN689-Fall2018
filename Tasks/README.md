@@ -29,4 +29,5 @@ These tasks consist of installing pertinent software and mastering relevant prog
 * [SciPy](https://www.scipy.org/)
 * [NumPy](http://www.numpy.org/)
 * [Pandas](http://pandas.pydata.org/)
+* [SciKit-Learn](http://scikit-learn.org/)
 
