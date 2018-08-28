@@ -39,3 +39,15 @@ It aims to be the fundamental high-level building block for doing practical, rea
 * __Peruse__: The [Pandas Tutorials](https://pandas.pydata.org/pandas-docs/stable/tutorials.html).
 * __Download and Install__: Pandas (if needed).
 
+
+## SciKit-Learn
+
+[SciKit Learn](http://scikit-learn.org/) is a collection of tools aimed at data analysis and, in particular, classification and regression tasks.
+It integrates well with [SciPy](https://www.scipy.org/), [NumPy](http://www.numpy.org/), [Pandas](http://pandas.pydata.org/), and [MatPlotLib](https://matplotlib.org).
+
+
+### Action Items
+
+* __Complete__: [Basic Tutorial](http://scikit-learn.org/stable/tutorial/basic/tutorial.html).
+* __Peruse__: [Additional Tutorials](http://scikit-learn.org/stable/tutorial/index.html).
+
