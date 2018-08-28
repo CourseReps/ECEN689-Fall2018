@@ -21,4 +21,7 @@ In addition, emphasis is put on team work, presentation skills, time management,
 * Promote creativity and critical thinking.
 * Refine presentation skills and the ability to conduct and manage projects.
 * Apply skills to data sets harvested from projects completed in our coursework, research, or side projects, such as:
-  + 
+  + Data sets collected from a quantum computing project, which compares
+    pure adiabatic quantum computing solution with a hybrid adiabatic quantum
+    computing and classical QUBO (quadratic unconstrained binary optimization)
+    solver to solve the quadratic travelling salesperson (QTSP) problem.
