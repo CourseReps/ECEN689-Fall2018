@@ -24,4 +24,10 @@ In addition, emphasis is put on team work, presentation skills, time management,
   + Data sets collected from a quantum computing project, which compares
     pure adiabatic quantum computing solution with a hybrid adiabatic quantum
     computing and classical QUBO (quadratic unconstrained binary optimization)
-    solver to solve the quadratic travelling salesperson (QTSP) problem.
+    solver to solve the quadratic traveling salesperson (QTSP) problem.
+    - We need to process results from the quantum computer simulator, the
+      actual quantum computer, and the hybrid solution to the QUBO-based QTSP
+      formulation.
+      * How to visualize the simulation and experimental data sets
+      * How to process the data to improve our QUBO encoding for the QTSP
+        problem
