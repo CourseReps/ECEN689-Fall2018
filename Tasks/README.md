@@ -14,7 +14,7 @@ These tasks consist of installing pertinent software and mastering relevant prog
 ## [Task 2](./2task.md): Python and Anaconda
 
 * [Python](https://www.python.org/)
-* [Anaconda](https://www.continuum.io/anaconda-overview)
+* [Anaconda](https://www.anaconda.com/)
 
 
 ## [Task 3](./3task.md): Jupyter and PyCharm
