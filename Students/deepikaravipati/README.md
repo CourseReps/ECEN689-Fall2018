@@ -1,3 +1,5 @@
-Deepika Ravipati
-deepikaravipati
-deepikaravipati
+# Identity
+
+* Name: <Deepika Ravipati>
+* GitHubID: <deepikaravipati>
+* NetID: <deepikaravipati>
