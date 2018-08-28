@@ -19,3 +19,8 @@ In addition, emphasis is put on team work, presentation skills, time management,
 * Promote creativity and critical thinking.
 * Refine presentation skills and the ability to conduct and manage projects.
 
+## Additional objectives
+
+* Our interests include analyzing specific types of data example, supply-chain data, network traffic data.
+* Try to identify which algorithms works the best for our specific interest and possibly analyze the fundamental limit of our model.
+* For example, we could try neural nets or specific decision tree algorithms.
