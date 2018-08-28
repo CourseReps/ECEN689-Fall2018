@@ -3,7 +3,7 @@
 
 ## Students
 * Mason Rumuly, [mason-rumuly](https://github.com/mason-rumuly)
-
+* Jessica Wert, [jwert413](https://github.com/jwert413)
 
 ## Teaching Team
 
