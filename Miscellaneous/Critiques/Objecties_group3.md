@@ -19,3 +19,14 @@ In addition, emphasis is put on team work, presentation skills, time management,
 * Promote creativity and critical thinking.
 * Refine presentation skills and the ability to conduct and manage projects.
 
+## Further Goals to Consider
+
+* Data mocking (generating realistic face data)
+* Making decisions (actions) from data
+* Web scraping (finding sources, calling APIs, etc.)
+* Information presentation: most effective, digestible way of visualizing data for different uses
+* Project estimation
+
+## Further tools to consider
+
+* Trello
