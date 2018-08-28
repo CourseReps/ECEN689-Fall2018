@@ -7,7 +7,7 @@
 * Mike Chen
 * Sambandh Bhusan Dhal
 * Jatin Kamnani
-* Ashish Kumar
+* Ashish Kumar, [ashishtamuedu](https://github.com/ashishtamuedu)
 * Aditya Lahiri
 * Ki Yeob Lee
 * Ashmitha Mahadevan
