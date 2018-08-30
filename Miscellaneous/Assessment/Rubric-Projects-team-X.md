@@ -10,3 +10,5 @@
 ## Critique
 
 + Quality and quantity of documentation.
++ Quality and coverage of validation suite
++ Extent of applying concepts learned in class.
