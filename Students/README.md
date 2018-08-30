@@ -29,6 +29,7 @@
 * Jessica Wert, [jwert413](https://github.com/jwert413)
 * Neehar Yalamarti, [yneehar](https://github.com/yneehar)
 * Devarsh Jhaveri, [devarshjhaveri](https://github.com/devarshjhaveri)
+* Kanchan Satpute, [KanchanSatpute](https://github.com/KanchanSatpute)
 
 ## Teaching Team
 
