@@ -6,7 +6,7 @@
 * Fazia Batool
 * Mike Chen
 * Sambandh Bhusan Dhal
-* Jatin Kamnani
+* Jatin Kamnani, [jatinKamnani](https://github.com/jatinKamnani)
 * Ashish Kumar, [ashishtamuedu](https://github.com/ashishtamuedu)
 * Aditya Lahiri
 * Ki Yeob Lee
