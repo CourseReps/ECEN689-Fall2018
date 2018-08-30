@@ -18,3 +18,5 @@ In addition, emphasis is put on team work, presentation skills, time management,
 * Improve transferable engineering skills and the ability to integrate different concepts.
 * Promote creativity and critical thinking.
 * Refine presentation skills and the ability to conduct and manage projects.
+
+## Additional Ideas
