@@ -11,7 +11,7 @@
 * Aditya Lahiri
 * Ki Yeob Lee
 * Ashmitha Mahadevan
-* Vedant Jayeshlal Mehta
+* Vedant Mehta, [vedantmehta2808](https://www.github.com/vedantmehta2808)
 * Samarth Shaileshkumar Mistry
 * Khaled Nakhleh
 * Zhiyang Ong, [eda-ricercatore](https://github.com/eda-ricercatore)
