@@ -11,11 +11,11 @@ Teams:
   - Vedant Mehta
   - Meng-Yen Tsai
 + Team CS1.0
- - Drupad Khublani
- - Shirish 
- - Rishi
- - Divyank
- - Venkat
+  - Drupad Khublani
+  - Shirish 
+  - Rishi
+  - Divyank
+  - Venkata
 + Team 4
 + Team 5
 + Team 6
