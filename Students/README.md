@@ -27,7 +27,7 @@
 * Meng-Yen Tsai
 * Amrita Sundari Veerabagu
 * Jessica Wert, [jwert413](https://github.com/jwert413)
-
+* Neehar Yalamarti, [yneehar](https://github.com/yneehar)
 
 ## Teaching Team
 
