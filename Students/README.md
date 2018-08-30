@@ -14,7 +14,7 @@
 * Vedant Jayeshlal Mehta
 * Samarth Shaileshkumar Mistry
 * Khaled Nakhleh
-* Zhiyang Ong
+* Zhiyang Ong, [eda-ricercatore](https://github.com/eda-ricercatore)
 * Venkata Koustubha Krishna Pydimarri
 * Swati Ramachandran
 * Deepika Ravipati, [deepikaravipati](https://github.com/deepikaravipati)
