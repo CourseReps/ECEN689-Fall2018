@@ -23,10 +23,12 @@ Completed all action items, except *Introduction to Python in PyCharm* (in
 
 ## Comments on Task \#4
 
-+ Installation of *SciPy*, *NumPy*, *Pandas*: Done.
++ Installation of *SciPy*, *NumPy*, and *Pandas*: Done.
 + Yet to complete *Basic Tutorial* on *scikit-learn*.
 
-To install
+To install the *Python* packages *SciPy*, *NumPy*, and *Pandas*, I used the tool
+  *pip* to do so. From \cite{MOhamed2017}, I used the command
+  **pip install <python-package.whl>** to install them.
 
 
 #	References
