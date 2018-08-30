@@ -8,10 +8,31 @@
 
 
 
-## Comments on Task \#1
+## Comments on Task \#2
 
 
++ Installation of *Python* and *Anaconda*: Done
++ *Python* repositories are available at: [Zhiyang Ong's GitHub profile](https://github.com/eda-ricercatore)
 
+
+## Comments on Task \#3
+
+Completed all action items, except *Introduction to Python in PyCharm* (in
+  progress)
+
+
+## Comments on Task \#4
+
++ Installation of *SciPy*, *NumPy*, *Pandas*: Done.
++ Yet to complete *Basic Tutorial* on *scikit-learn*.
+
+To install
+
+
+#	References
+
+Citations/References that use the *LaTeX/BibTeX* notation are taken
+	from my *BibTeX* database (set of *BibTeX* entries).
 
 
 #	Author Information
