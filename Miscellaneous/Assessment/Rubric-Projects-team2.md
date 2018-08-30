@@ -8,4 +8,6 @@
 
 # Critiques
 
-* Accuracy and efficiency of the performance
+* Accuracy and efficiency of the performance.
+
+* We agreed with what ever mentioned. We did not feel anything need to be added.
