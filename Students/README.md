@@ -4,7 +4,7 @@
 ## Students
 * Michael Bass
 * Fazia Batool
-* Mike Chen
+* Mike Chen, [mole410123024](https://github.com/mike410123024)
 * Sambandh Bhusan Dhal
 * Jatin Kamnani
 * Ashish Kumar, [ashishtamuedu](https://github.com/ashishtamuedu)
