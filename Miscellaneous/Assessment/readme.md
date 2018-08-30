@@ -19,5 +19,11 @@ Teams:
   - Venkata
 + Team 4
 + Team 5
+
+- Khaled Nakhleh
+- Samarth Mistry
+- Kishan Shah
+- Zeyu Wang
+
 + Team 6
 + ...
