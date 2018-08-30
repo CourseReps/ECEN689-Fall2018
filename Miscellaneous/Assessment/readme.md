@@ -5,6 +5,7 @@ Teams:
   - Zhiyang Ong
   - Devarsh Jhaveri
   - Neehar Yalamarti
+  - Anirudh Shaktawat
 + Team 2
   - Mike Chen
   - Kanchan Satpute 
