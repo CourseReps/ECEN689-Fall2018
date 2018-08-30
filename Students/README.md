@@ -4,9 +4,9 @@
 ## Students
 * Michael Bass
 * Fazia Batool
-* Mike Chen
+* Mike Chen, [mole410123024](https://github.com/mike410123024)
 * Sambandh Bhusan Dhal
-* Jatin Kamnani
+* Jatin Kamnani, [jatinKamnani](https://github.com/jatinKamnani)
 * Ashish Kumar, [ashishtamuedu](https://github.com/ashishtamuedu)
 * Aditya Lahiri
 * Ki Yeob Lee
@@ -22,9 +22,9 @@
 * Samyuktha Sankaran
 * Anirudh Singh Shaktawat
 * Mahalakshmi Sridharan, [mahalakshmisridharan7](https://github.com/mahalakshmisridharan7)
-* Ranjith Tamil Selvan
+* Ranjith Tamil Selvan, [ranjithtam](https://github.com/ranjithtam)
 * Brandon Thayer, [blthayer](https://github.com/blthayer)
-* Meng-Yen Tsai
+* Meng-Yen Tsai, [mengyen](https://github.com/kkoo1122)
 * Amrita Sundari Veerabagu
 * Jessica Wert, [jwert413](https://github.com/jwert413)
 * Neehar Yalamarti, [yneehar](https://github.com/yneehar)
