@@ -18,7 +18,9 @@
 ## Comments on Task \#3
 
 Completed all action items, except *Introduction to Python in PyCharm* (in
-  progress)
+  progress).
+
+My *Python* notes are available on *GitHub*: [Zhiyang Ong's *Python* notes](https://github.com/eda-ricercatore/gulyas-scripts/blob/master/notes/python.md).
 
 
 ## Comments on Task \#4
