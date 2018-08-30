@@ -19,3 +19,14 @@ In addition, emphasis is put on team work, presentation skills, time management,
 * Promote creativity and critical thinking.
 * Refine presentation skills and the ability to conduct and manage projects.
 
+# Critiques:
+
+* The learning outcomes seem to be perfectly in place and we hope to learn a lot from it if all the fundamentals prescribed in the syllabus are implemeted in detail.
+* Parsing data is a technique that would benefit the class. We believe it should be added to the course's syllabus.
+* Incorporate other programming languages. Comparing them to Python, and its modules. 
+
+
+
+
+
+
