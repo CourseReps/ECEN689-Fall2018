@@ -10,7 +10,12 @@ Teams:
   - Kanchan Satpute 
   - Vedant Mehta
   - Meng-Yen Tsai
-+ Team 3
++ Team CS1.0
+ - Drupad Khublani
+ - Shirish 
+ - Rishi
+ - Divyank
+ - Venkat
 + Team 4
 + Team 5
 + Team 6
