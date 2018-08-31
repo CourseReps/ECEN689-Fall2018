@@ -2,7 +2,7 @@
 
 
 ## Students
-* Michael Bass
+* Michael Bass, [SuperMB](https://github.com/SuperMB)
 * Fazia Batool
 * Mike Chen, [mole410123024](https://github.com/mike410123024)
 * Sambandh Bhusan Dhal
