@@ -30,6 +30,7 @@
 * Neehar Yalamarti, [yneehar](https://github.com/yneehar)
 * Devarsh Jhaveri, [devarshjhaveri](https://github.com/devarshjhaveri)
 * Kanchan Satpute, [KanchanSatpute](https://github.com/KanchanSatpute)
+* Kishan Shah, [kishan3111](https://github.com/kishan3111)
 
 ## Teaching Team
 
