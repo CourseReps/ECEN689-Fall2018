@@ -1,5 +1,5 @@
 ##Identity
 
-*Name: Harish Chigurupati
-*GITHUBID: harishchigurupati
-*NETID: chharish775
+Name: Harish Chigurupati
+GITHUBID: harishchigurupati
+NETID: chharish775
