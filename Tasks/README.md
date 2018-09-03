@@ -31,3 +31,16 @@ These tasks consist of installing pertinent software and mastering relevant prog
 * [Pandas](http://pandas.pydata.org/)
 * [SciKit-Learn](http://scikit-learn.org/)
 
+
+## [Task 5](./5task.md): Kaggle
+
+* Courses
+* Data sets
+* Competitions
+
+
+## [Task 6](./6task.md): Computational Cloud Resources
+
+* [TensorFlow](https://www.tensorflow.org/)
+* [Colaboratory](https://colab.research.google.com)
+
