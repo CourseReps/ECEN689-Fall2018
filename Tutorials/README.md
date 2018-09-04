@@ -12,7 +12,6 @@
 * Anirudh Shaktawat and Kanchan Satpute: Feature Engineering
 * Sayeed Alvi and Samarth Mistry: Introduction to L1 & L2 regularization
 * Kiyeob Lee and Devarsh Jhaveri: SGD and Backpropagation
-* Jatin Kamnani and Venkata Pydimarri: Introduction to Kmeans Clustering
+* Jatin Kamnani and Venkata Pydimarri: Introduction to logistic regression
 * Prabhneet Arora and Sambandh Dhal: Competing in Kaggle
 * Aliakbar Shafi and Rishi Laddha: How to write a production-level code in Data Science?
-* Mahalakshmi Sridharan and Fazia Batool: Educational Data Mining
