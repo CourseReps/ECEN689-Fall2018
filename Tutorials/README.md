@@ -8,3 +8,4 @@
 * Zhiyang Ong and Abishalini Sivaraman: Linear regression and multiple linear regression.
 * Ashish Kumar and Shabarish Prasad : Introduction to tensorflow
 * [Naive Bayes Estimator](tutorial_naivebayes.md)
+* Ali akbar shafi and Rishi Laddha: How to write production-level code in Data Science 
