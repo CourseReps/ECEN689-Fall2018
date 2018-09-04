@@ -12,7 +12,7 @@
 * Ki Yeob Lee
 * Ashmitha Mahadevan
 * Vedant Mehta, [vedantmehta2808](https://www.github.com/vedantmehta2808)
-* Samarth Shaileshkumar Mistry
+* Samarth Mistry, [samarthmistry](https://github.com/samarthmistry)
 * Khaled Nakhleh
 * Zhiyang Ong, [eda-ricercatore](https://github.com/eda-ricercatore)
 * Venkata Koustubha Krishna Pydimarri
