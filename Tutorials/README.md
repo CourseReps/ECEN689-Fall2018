@@ -2,6 +2,4 @@
 
 * [Git and GitHub](tutorial_github.md): An Introduction.
 * Brandon Thayer and Harish Chigurupati: [Kmeans clustering](http://scikit-learn.org/stable/modules/clustering.html) in scikit-learn
-* Vedant Mehta and Neehar Yalamarti: Introduction to Convolutional Neural Network
-* Amrita Veerabagu and Divyank Garg: Introduction to Neural Networks
-* Ranjith Tamil Selvan and Drupad Khublani: Getting Familiar with KERAS
+* Ali akbar shafi and Rishi Laddha: How to write production-level code in Data Science 
