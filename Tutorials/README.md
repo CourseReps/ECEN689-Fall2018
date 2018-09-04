@@ -5,3 +5,4 @@
 * Vedant Mehta and Neehar Yalamarti: Introduction to Convolutional Neural Network
 * Amrita Veerabagu and Divyank Garg: Introduction to Neural Networks
 * Ranjith Tamil Selvan and Drupad Khublani: Getting Familiar with KERAS
+* Zhiyang Ong and Abishalini Sivaraman: Linear regression and multiple linear regression.
