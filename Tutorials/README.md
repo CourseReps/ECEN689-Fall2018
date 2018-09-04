@@ -15,3 +15,4 @@
 * Jatin Kamnani and Venkata Pydimarri: Introduction to Kmeans Clustering
 * Prabhneet Arora and Sambandh Dhal: Competing in Kaggle
 * Aliakbar Shafi and Rishi Laddha: How to write a production-level code in Data Science?
+* Mahalakshmi Sridharan and Fazia Batool: Educational Data Mining
