@@ -12,3 +12,4 @@
 * Anirudh Shaktawat and Kanchan Satpute: Feature Engineering
 * Sayeed Alvi and Samarth Mistry: Introduction to L1 & L2 regularization
 * Kiyeob Lee and Devarsh Jhaveri: SGD and Backpropagation
+* AliAkbar Shafi and Rishi Laddha: How to write a production-level code in Data Science?
