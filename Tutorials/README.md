@@ -12,4 +12,4 @@
 * Anirudh Shaktawat and Kanchan Satpute: Feature Engineering
 * Sayeed Alvi and Samarth Mistry: Introduction to L1 & L2 regularization
 * Kiyeob Lee and Devarsh Jhaveri: SGD and Backpropagation
-* Jatin Kamnani: Introduction to Kmeans Clustering
+* Jatin Kamnani and Venkata Pydimarri: Introduction to Kmeans Clustering
