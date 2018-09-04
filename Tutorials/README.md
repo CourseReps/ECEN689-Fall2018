@@ -11,4 +11,4 @@
 * [Naive Bayes Estimator](tutorial_naivebayes.md)
 * Anirudh Shaktawat and Kanchan Satpute: Feature Engineering
 * Sayeed Alvi and Samarth Mistry: Introduction to L1 & L2 regularization
-* Kiyeob Lee and Devarsh Jhaveri: SGB and Backpropagation
+* Kiyeob Lee and Devarsh Jhaveri: SGD and Backpropagation
