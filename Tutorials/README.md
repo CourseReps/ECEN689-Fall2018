@@ -8,8 +8,13 @@
 * Zhiyang Ong and Abishalini Sivaraman: Support vector machines.
 * Ashish Kumar and Shabarish Prasad : Introduction to tensorflow
 * Khaled Nakhleh and Kishan Shah: Introduction to [Bokeh](http://bokeh.pydata.org/en/0.13.0/)
-* [Naive Bayes Estimator](tutorial_naivebayes.md)
+* Samyuktha Sankaran and PRS Harinath: [Naive Bayes Estimator](tutorial_naivebayes.md)
 * Anirudh Shaktawat and Kanchan Satpute: Feature Engineering
 * Sayeed Alvi and Samarth Mistry: Introduction to L1 & L2 regularization
 * Kiyeob Lee and Devarsh Jhaveri: SGD and Backpropagation
-* Jatin Kamnani: Introduction to Kmeans Clustering
+* Jatin Kamnani and Venkata Pydimarri: Introduction to logistic regression
+* Prabhneet Arora and Sambandh Dhal: Competing in Kaggle
+* Aliakbar Shafi and Rishi Laddha: How to write a production-level code in Data Science?
+* Aditya Lahiri and Shirish Pandagare: PCA in Python
+* Mahalakshmi Sridharan and Fazia Batool: Educational data mining
+* Mason Rumuly and Siddharth Ajit: Thompson Sampling
