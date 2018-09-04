@@ -7,5 +7,5 @@
 * Ranjith Tamil Selvan and Drupad Khublani: Getting Familiar with KERAS
 * Zhiyang Ong and Abishalini Sivaraman: Linear regression and multiple linear regression.
 * Ashish Kumar and Shabarish Prasad : Introduction to tensorflow
-* Khaled Nakhleh and Kishan Shah: Introduction to [Bokeh] (http://bokeh.pydata.org/en/0.13.0/)
+* Khaled Nakhleh and Kishan Shah: Introduction to [Bokeh](http://bokeh.pydata.org/en/0.13.0/)
 * [Naive Bayes Estimator](tutorial_naivebayes.md)
