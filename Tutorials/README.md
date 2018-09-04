@@ -14,4 +14,4 @@
 * Kiyeob Lee and Devarsh Jhaveri: SGD and Backpropagation
 * Jatin Kamnani and Venkata Pydimarri: Introduction to Kmeans Clustering
 * Prabhneet Arora and Sambandh Dhal: Competing in Kaggle
-* Mason Rumuly and Siddharth Ajit: Thompson Sampling and the Multi-Arm Bandit
+* Aliakbar Shafi and Rishi Laddha: How to write a production-level code in Data Science?
