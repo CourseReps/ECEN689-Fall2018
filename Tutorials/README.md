@@ -9,3 +9,4 @@
 * Sayeed Alvi and Samarth Mistry: Introduction to L1 & L2 regularization
 * Ashish Kumar and Shabarish Prasad : Introduction to tensorflow
 * [Naive Bayes Estimator](tutorial_naivebayes.md)
+* Ali akbar shafi and Rishi Laddha: How to write production-level code in Data Science 
