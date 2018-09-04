@@ -9,3 +9,4 @@
 * Ashish Kumar and Shabarish Prasad : Introduction to tensorflow
 * Khaled Nakhleh and Kishan Shah: Introduction to [Bokeh](http://bokeh.pydata.org/en/0.13.0/)
 * [Naive Bayes Estimator](tutorial_naivebayes.md)
+* Anirudh Shaktawat and Kanchan Satpute: Feature Engineering
