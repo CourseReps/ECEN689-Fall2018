@@ -8,7 +8,7 @@
 * Sambandh Bhusan Dhal
 * Jatin Kamnani, [jatinKamnani](https://github.com/jatinKamnani)
 * Ashish Kumar, [ashishtamuedu](https://github.com/ashishtamuedu)
-* Aditya Lahiri[adilahiri](https://github.com/adilahiri)
+* Aditya Lahiri,[adilahiri](https://github.com/adilahiri)
 * Ki Yeob Lee
 * Ashmitha Mahadevan
 * Vedant Mehta, [vedantmehta2808](https://www.github.com/vedantmehta2808)
