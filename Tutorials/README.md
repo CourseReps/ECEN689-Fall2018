@@ -9,6 +9,7 @@
 * Ashish Kumar and Shabarish Prasad : Introduction to tensorflow
 =======
 * Zhiyang Ong and Abishalini Sivaraman: Linear regression and multiple linear regression.
+* Sayeed Alvi and Samarth Mistry: Introduction to L1 & L2 regularization
 * Ashish Kumar and Shabarish Prasad : Introduction to tensorflow
 * [Naive Bayes Estimator](tutorial_naivebayes.md)
 >>>>>>> 1cd0172bf9d4f4c092375d942b6fdb19a9a253f0
