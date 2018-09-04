@@ -6,5 +6,6 @@
 * Amrita Veerabagu and Divyank Garg: Introduction to Neural Networks
 * Ranjith Tamil Selvan and Drupad Khublani: Getting Familiar with KERAS
 * Zhiyang Ong and Abishalini Sivaraman: Linear regression and multiple linear regression.
+* Sayeed Alvi and Samarth Mistry: Introduction to L1 & L2 regularization
 * Ashish Kumar and Shabarish Prasad : Introduction to tensorflow
 * [Naive Bayes Estimator](tutorial_naivebayes.md)
