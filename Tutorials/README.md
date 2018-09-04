@@ -17,3 +17,4 @@
 * Aliakbar Shafi and Rishi Laddha: How to write a production-level code in Data Science?
 * Aditya Lahiri and Shirish Pandagare: PCA in Python
 * Mahalakshmi Sridharan and Fazia Batool: Educational data mining
+* Mason Rumuly and Siddharth Ajit: Thompson Sampling
