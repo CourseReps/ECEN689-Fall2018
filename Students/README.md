@@ -15,7 +15,7 @@
 * Samarth Mistry, [samarthmistry](https://github.com/samarthmistry)
 * Khaled Nakhleh
 * Zhiyang Ong, [eda-ricercatore](https://github.com/eda-ricercatore)
-* Venkata Koustubha Krishna Pydimarri
+* Venkata Koustubha Krishna Pydimarri, [koustubha26](https://github.com/koustubha26)
 * Swati Ramachandran
 * Deepika Ravipati, [deepikaravipati](https://github.com/deepikaravipati)
 * Mason Rumuly, [mason-rumuly](https://github.com/mason-rumuly)
