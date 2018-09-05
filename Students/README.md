@@ -32,6 +32,7 @@
 * Kanchan Satpute, [KanchanSatpute](https://github.com/KanchanSatpute)
 * Kishan Shah, [kishan3111](https://github.com/kishan3111)
 * Sayeed Alvi, [sayeed-alvi](https://github.com/sayeed-alvi)
+* AliAkbar Shafi, [albros123](https://github.com/albros123)
 
 ## Teaching Team
 
