@@ -34,6 +34,7 @@
 * Sayeed Alvi, [sayeed-alvi](https://github.com/sayeed-alvi)
 * AliAkbar Shafi, [albros123](https://github.com/albros123)
 * Shirish Pandagare, [shirishpandagare](https://github.com/shirishpandagare)
+* Rishi Laddha
 
 ## Teaching Team
 
