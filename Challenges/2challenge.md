@@ -1,6 +1,17 @@
 # Challenge 2
 Due: Sep 13, 2018
 
+
+## MNIST
+
+The Modified National Institute of Standards and Technology database, [MNIST](http://yann.lecun.com/exdb/mnist/), database of handwritten digits has a training set of 60,000 examples, and a test set of 10,000 examples.
+The digits have been size-normalized and centered in a fixed-size image.
+
+* __Task__: The task is to classify each image accoding to the digit it represents.
+* __Criterion__: Minimize the empirical probability of misclassification.
+
+
+
 ## Teams
 
 * __Team 1__: Jatin Kamnani, Kishan Shah, Brandon Thayer
@@ -15,8 +26,3 @@ Due: Sep 13, 2018
 * __Team 10__: Khaled Nakhleh, Ashish Kumar, Shabarish Rajendra
 * __Team 11__: Devarsh Jhaveri, Ki Yeob Lee, Michael Bass
 
-
-## MNIST
-
-The Modified National Institute of Standards and Technology database, [MNIST](http://yann.lecun.com/exdb/mnist/), database of handwritten digits has a training set of 60,000 examples, and a test set of 10,000 examples.
-The digits have been size-normalized and centered in a fixed-size image.
