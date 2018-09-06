@@ -12,4 +12,4 @@
 * __Team 8__: Anirudh Shaktawat, Samarth Mistry, Prabhneet Arora
 * __Team 9__: Divyank Garg, Amrita Veerabagu, Ranjith Tamil Selvan
 * __Team 10__: Khaled Nakhleh, Ashish Kumar, Shabarish Rajendra
-* __Team 11__: Others.
+* __Team 11__: Devarsh Jhaveri, Ki Yeob Lee, Michael Bass
