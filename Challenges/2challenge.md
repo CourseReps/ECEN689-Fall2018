@@ -1,4 +1,5 @@
 # Challenge 2
+Due: Sep 13, 2018
 
 ## Teams
 
@@ -13,3 +14,9 @@
 * __Team 9__: Divyank Garg, Amrita Veerabagu, Ranjith Tamil Selvan
 * __Team 10__: Khaled Nakhleh, Ashish Kumar, Shabarish Rajendra
 * __Team 11__: Devarsh Jhaveri, Ki Yeob Lee, Michael Bass
+
+
+## MNIST
+
+The Modified National Institute of Standards and Technology database, [MNIST](http://yann.lecun.com/exdb/mnist/), database of handwritten digits has a training set of 60,000 examples, and a test set of 10,000 examples.
+The digits have been size-normalized and centered in a fixed-size image.
