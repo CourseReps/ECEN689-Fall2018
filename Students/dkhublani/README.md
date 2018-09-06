@@ -1,5 +1,5 @@
 # Identity
 
-* Name: Drupad Kumar Khublani   
+* Name: Drupad Khublani   
 * GitHubID: dkhublani  
 * NetID: dkhublani
