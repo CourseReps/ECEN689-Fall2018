@@ -1,9 +1,9 @@
 # Tutorials and Teams
 
-* [Git and GitHub](tutorial_github.md): An Introduction; Sep 11, 2018
 * [Competing in Kaggle](tutorial_kaggle.md): Prabhneet Arora and Sambandh Dhal; Sep 11, 2018
-* [Logistic Regression](tutorial_logistic_regression.md): Jatin Kamnani and Venkata Pydimarri; Sep 18, 2018
-* [Naive Bayes Estimator](tutorial_naivebayes.md): Samyuktha Sankaran and PRS Harinath; Sep 18, 2018
+* [Logistic Regression](tutorial_logistic_regression.md): Jatin Kamnani and Venkata Pydimarri; Sep 11, 2018
+* [Git and GitHub](tutorial_github.md): An Introduction; Sep 13, 2018
+* [Naive Bayes Estimator](tutorial_naivebayes.md): Samyuktha Sankaran and PRS Harinath; Sep 13, 2018
 * [Bokeh](tutorial_bokeh.md): Khaled Nakhleh and Kishan Shah; Sep 20, 2018
 * [Production Code](tutorial_code.md): Aliakbar Shafi and Rishi Laddha, Sep 20, 2018
 * [Support vector machines](tutorial_svm.md): Zhiyang Ong and Abishalini Sivaraman; Sep 25, 2018
