@@ -36,7 +36,7 @@
 * AliAkbar Shafi, [albros123](https://github.com/albros123)
 * Shirish Pandagare, [shirishpandagare](https://github.com/shirishpandagare)
 * Rishi Laddha
-
+* Prabhneet Arora, [prabh93](https://github.com/prabh93)
 ## Teaching Team
 
 * Jean-Francois Chamberland, [chmbrlnd](https://github.com/chmbrlnd)
