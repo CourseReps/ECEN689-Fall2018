@@ -15,7 +15,7 @@
 * Samarth Mistry, [samarthmistry](https://github.com/samarthmistry)
 * Khaled Nakhleh
 * Zhiyang Ong, [eda-ricercatore](https://github.com/eda-ricercatore)
-* Venkata Koustubha Krishna Pydimarri
+* Venkata Koustubha Krishna Pydimarri, [koustubha26](https://github.com/koustubha26)
 * Swati Ramachandran
 * Deepika Ravipati, [deepikaravipati](https://github.com/deepikaravipati)
 * Mason Rumuly, [mason-rumuly](https://github.com/mason-rumuly)
@@ -31,6 +31,11 @@
 * Devarsh Jhaveri, [devarshjhaveri](https://github.com/devarshjhaveri)
 * Kanchan Satpute, [KanchanSatpute](https://github.com/KanchanSatpute)
 * Kishan Shah, [kishan3111](https://github.com/kishan3111)
+* Sayeed Alvi, [sayeed-alvi](https://github.com/sayeed-alvi)
+* Siddharth Ajit, [siddharthajit](https://github.com/siddharthajit)
+* AliAkbar Shafi, [albros123](https://github.com/albros123)
+* Shirish Pandagare, [shirishpandagare](https://github.com/shirishpandagare)
+* Rishi Laddha
 
 ## Teaching Team
 
