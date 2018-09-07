@@ -25,4 +25,5 @@ The digits have been size-normalized and centered in a fixed-size image.
 * __Team 9__: Divyank Garg, Amrita Veerabagu, Ranjith Tamil Selvan
 * __Team 10__: Khaled Nakhleh, Ashish Kumar, Shabarish Rajendra
 * __Team 11__: Devarsh Jhaveri, Ki Yeob Lee, Michael Bass
+* __Team 12__: Aditya Lahiri, Kanchan Satpute, Rishi Laddha
 
