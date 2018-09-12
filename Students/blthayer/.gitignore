@@ -1,3 +1,6 @@
+# Ignore venv
+venv/**
+
 # Ignore mnist.
 mnist/**
 
