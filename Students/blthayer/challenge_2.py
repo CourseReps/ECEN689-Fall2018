@@ -62,55 +62,7 @@ def read_labels(labels_file):
 
     return labels
 
-
-if __name__ == '__main__':
-    # Track total program run-time.
-    t0 = time.time()
-    # Seed for random number generator.
-    seed = 42
-
-    ####################################################################################################################
-    # READ DATA
-    t_read_0 = time.time()
-    # Read training images and labels from MNIST
-    '''
-    train_images = read_images(os.path.join(MNIST_DIR, TRAIN_IMAGES_FILE))
-    train_labels = read_labels(os.path.join(MNIST_DIR, TRAIN_LABELS_FILE))
-
-    # Read test data and labels.
-    test_images = read_images(os.path.join(MNIST_DIR, TEST_IMAGES_FILE))
-    '''
-    test_labels = read_labels(os.path.join(MNIST_DIR, TEST_LABELS_FILE))
-
-    # Read files from Prof. Chamberland
-    train_images = pd.read_csv(os.path.join(MNIST_DIR, 'mnist_train.csv'))
-    test_images = pd.read_csv(os.path.join(MNIST_DIR, 'mnist_test.csv'))
-
-    t_read_1 = time.time()
-    print('Data read in {:.2f} seconds.'.format(t_read_1 - t_read_0))
-
-    # Extract data and labels for training set.
-    train_data = train_images.drop(['Id', 'Category'], axis=1)
-    train_labels = train_images['Category']
-
-    # Extract data from testing set.
-    test_data = test_images.drop(['Id'], axis=1)
-
-    # Get the number of labels.
-    num_labels = len(train_labels.unique())
-
-    ####################################################################
-    # SPARSITY
-    # Exclude columns which are all 0 to reduce training time. Note that
-    # there are not any other columns which have all values equal to
-    # each other.
-    all_zero = (train_data == 0).all()
-    s = ('In the training data, there are {} columns which '
-         + 'are all 0').format(np.count_nonzero(all_zero))
-    print(s)
-
-    reduced_data = train_data.loc[:, ~all_zero]
-
+def do_lr(reduced_data, all_zero, train_labels, test_data):
     ####################################################################
     # LOGISTIC REGRESSION
 
@@ -164,6 +116,59 @@ if __name__ == '__main__':
     predictions.to_csv(prediction_file, header=True,
                        index=True, index_label='Id')
     print('Predictions saved to {}'.format(prediction_file))
+
+
+if __name__ == '__main__':
+    # Track total program run-time.
+    t0 = time.time()
+    # Seed for random number generator.
+    seed = 42
+
+    ####################################################################################################################
+    # READ DATA
+    t_read_0 = time.time()
+    # Read training images and labels from MNIST
+    '''
+    train_images = read_images(os.path.join(MNIST_DIR, TRAIN_IMAGES_FILE))
+    train_labels = read_labels(os.path.join(MNIST_DIR, TRAIN_LABELS_FILE))
+
+    # Read test data and labels.
+    test_images = read_images(os.path.join(MNIST_DIR, TEST_IMAGES_FILE))
+    '''
+    test_labels = read_labels(os.path.join(MNIST_DIR, TEST_LABELS_FILE))
+
+    # Read files from Prof. Chamberland
+    train_images = pd.read_csv(os.path.join(MNIST_DIR, 'mnist_train.csv'))
+    test_images = pd.read_csv(os.path.join(MNIST_DIR, 'mnist_test.csv'))
+
+    t_read_1 = time.time()
+    print('Data read in {:.2f} seconds.'.format(t_read_1 - t_read_0))
+
+    # Extract data and labels for training set.
+    train_data = train_images.drop(['Id', 'Category'], axis=1)
+    train_labels = train_images['Category']
+
+    # Extract data from testing set.
+    test_data = test_images.drop(['Id'], axis=1)
+
+    # Get the number of labels.
+    num_labels = len(train_labels.unique())
+
+    ####################################################################
+    # SPARSITY
+    # Exclude columns which are all 0 to reduce training time. Note that
+    # there are not any other columns which have all values equal to
+    # each other.
+    all_zero = (train_data == 0).all()
+    s = ('In the training data, there are {} columns which '
+         + 'are all 0').format(np.count_nonzero(all_zero))
+    print(s)
+
+    reduced_data = train_data.loc[:, ~all_zero]
+
+    ####################################################################
+    # LOGISTIC REGRESSION
+    do_lr(reduced_data, all_zero, train_labels, test_data)
 
     t1 = time.time()
     print('Total program runtime: {:.2f} seconds.'.format(t1 - t0))
