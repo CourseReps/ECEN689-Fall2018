@@ -159,12 +159,8 @@ def map_coeff(data, labels, coeff):
     return coeff_map
 
 
-def main():
-    # Track total program run-time.
-    t0 = time.time()
-
-    ###########################################################################
-    # READ DATA
+def read_data():
+    """Simple helper to read and return the data we need."""
     t_read_0 = time.time()
     # Read training images and labels from MNIST
     '''
@@ -192,18 +188,26 @@ def main():
     # Extract data from testing set.
     test_data = test_images.drop(['Id'], axis=1)
 
+    return train_data, train_labels, test_data, test_labels
+
+
+def main(train_data, train_labels, test_data, test_labels, min_max_tol=0,
+         write_outputs=True):
+    """Perform linear regression and k-nearest neighbors for given data."""
+    # Time program runtime.
+    t0 = time.time()
+
     # Get the number of labels.
     num_labels = len(train_labels.unique())
-
     ####################################################################
     # FEATURE REDUCTION
     #
     # Exclude columns which have identical minimums and maximums. We
     # could take this further by using some tolerance for the delta
     # between mins and maxes.
-    no_info = (train_data.max() - train_data.min()) == 0
-    s = ('In the training data, there are {} columns which '
-         + 'are all 0').format(np.count_nonzero(no_info))
+    no_info = (train_data.max() - train_data.min()) <= min_max_tol
+    s = ('In the training data, there are {} columns which do not contain '
+         + 'useful information').format(np.count_nonzero(no_info))
     print(s)
 
     # Reduce the training and testing data.
@@ -231,18 +235,26 @@ def main():
     # Just in case, sort.
     coeff.sort_values(by=['Category'], inplace=True)
 
-    # Write coefficients to file.
-    coeff.to_csv(LR_COEFF_FILE, index=False)
-    s = 'Logistic Regression coefficients saved to {}.'.format(LR_COEFF_FILE)
-    print(s)
+    # Sort by column so that Category shows up first.
+    cols = list(coeff.columns)
+    sorted_cols = [cols[-1]] + cols[0:-1]
+    coeff = coeff[sorted_cols]
 
-    # Write predictions to file
-    lr_predictions = pd.Series(lr.predict(test_data.loc[:, ~no_info]),
-                               index=np.arange(1, test_data.shape[0] + 1),
-                               name='Category')
-    lr_predictions.to_csv(LR_PRED_FILE, header=True,
-                          index=True, index_label='Id')
-    print('Predictions saved to {}'.format(LR_PRED_FILE))
+    # Write coefficients to file.
+    if write_outputs:
+        coeff.to_csv(LR_COEFF_FILE, index=False)
+        s = 'Logistic Regression coefficients saved to {}.'.format(
+            LR_COEFF_FILE)
+
+        print(s)
+
+        # Write predictions to file
+        lr_predictions = pd.Series(lr.predict(test_data.loc[:, ~no_info]),
+                                   index=np.arange(1, test_data.shape[0] + 1),
+                                   name='Category')
+        lr_predictions.to_csv(LR_PRED_FILE, header=True,
+                              index=True, index_label='Id')
+        print('Predictions saved to {}'.format(LR_PRED_FILE))
 
     ####################################################################
     # K NEAREST NEIGHBORS
@@ -251,12 +263,11 @@ def main():
     knn = KNeighborsClassifier(n_neighbors=k, n_jobs=-1)
 
     # Fit with the reduced training data.
-    knn.fit(train_data.loc[:, ~no_info], train_labels)
+    knn.fit(train_data_r, train_labels)
 
     t_knn_0 = time.time()
     # Predict.
-    knn_predictions = pd.Series(knn.predict(test_data.loc[:, ~no_info]),
-                                name='Category',
+    knn_predictions = pd.Series(knn.predict(test_data_r), name='Category',
                                 index=np.arange(1, test_data.shape[0] + 1))
 
     t_knn_1 = time.time()
@@ -267,11 +278,13 @@ def main():
     knn_accuracy = accuracy_score(test_labels, knn_predictions)
     print('KNN prediction accuracy: {:.2f}'.format(knn_accuracy))
 
-    # Write predictions to file.
-    knn_predictions.to_csv(KNN_PRED_FILE, header=True, index=True,
-                           index_label='Id')
-    print('KNN predictions written to {}'.format(KNN_PRED_FILE))
+    if write_outputs:
+        # Write predictions to file.
+        knn_predictions.to_csv(KNN_PRED_FILE, header=True, index=True,
+                               index_label='Id')
+        print('KNN predictions written to {}'.format(KNN_PRED_FILE))
 
+    # Report overall run time.
     t1 = time.time()
     print('Total program runtime: {:.2f} seconds.'.format(t1 - t0))
 
@@ -287,4 +300,16 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    # Read data.
+    train_data, train_labels, test_data, test_labels = read_data()
+
+    # Looks like a tolerance of 40 does best for KNN. Could test around
+    # 35-45 to see what's best, but probably not worth the effort.
+    main(train_data, train_labels, test_data, test_labels,
+         min_max_tol=0, write_outputs=True)
+    # # Loop over main with different minimum/maximum tolerances.
+    # for i in range(35, 50, 5):
+    #     print('*' * 79)
+    #     print('min_max_tol: {}'.format(i))
+    #     main(train_data, train_labels, test_data, test_labels,
+    #          min_max_tol=i, write_outputs=False)
