@@ -6,6 +6,7 @@ import time
 # Installed packages.
 import numpy as np
 from sklearn.linear_model import LogisticRegression as LR
+from sklearn.neighbors import KNeighborsClassifier as KNN
 import pandas as pd
 
 # Define mnist files. These were decompressed with 'gzip -d <file>'
@@ -124,7 +125,7 @@ if __name__ == '__main__':
     # Seed for random number generator.
     seed = 42
 
-    ####################################################################################################################
+    ###########################################################################
     # READ DATA
     t_read_0 = time.time()
     # Read training images and labels from MNIST
@@ -169,6 +170,31 @@ if __name__ == '__main__':
     ####################################################################
     # LOGISTIC REGRESSION
     do_lr(reduced_data, all_zero, train_labels, test_data)
+
+    ####################################################################
+    # K NEAREST NEIGHBORS
+    # Initialize KNN object.
+    k = 5
+    knn = KNN(n_neighbors=k, n_jobs=-1)
+
+    # Fit with the reduced training data.
+    knn.fit(train_data.loc[:, ~all_zero], train_labels)
+
+    t_knn_0 = time.time()
+    # Predict and score.
+    predictions = pd.Series(knn.predict(test_data.loc[:, ~all_zero]),
+                            name='Category',
+                            index=np.arange(1, test_data.shape[0] + 1)
+                            )
+
+    t_knn_1 = time.time()
+
+    print('KNN prediction time: {:.2f}'.format(t_knn_1 - t_knn_0))
+
+    # Write predictions to file.
+    knn_file = '2challenge_knn.csv'
+    predictions.to_csv(knn_file, header=True, index=True, index_label='Id')
+    print('KNN predictions written to {}'.format(knn_file))
 
     t1 = time.time()
     print('Total program runtime: {:.2f} seconds.'.format(t1 - t0))
