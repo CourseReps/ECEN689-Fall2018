@@ -198,17 +198,17 @@ def main():
     ####################################################################
     # FEATURE REDUCTION
     #
-    # Exclude columns which are all 0 to reduce training time. Note that
-    # there are not any other columns which have all values equal to
-    # each other.
-    all_zero = (train_data == 0).all()
+    # Exclude columns which have identical minimums and maximums. We
+    # could take this further by using some tolerance for the delta
+    # between mins and maxes.
+    no_info = (train_data.max() - train_data.min()) == 0
     s = ('In the training data, there are {} columns which '
-         + 'are all 0').format(np.count_nonzero(all_zero))
+         + 'are all 0').format(np.count_nonzero(no_info))
     print(s)
 
     # Reduce the training and testing data.
-    train_data_r = train_data.loc[:, ~all_zero]
-    test_data_r = test_data.loc[:, ~all_zero]
+    train_data_r = train_data.loc[:, ~no_info]
+    test_data_r = test_data.loc[:, ~no_info]
 
     ####################################################################
     # LOGISTIC REGRESSION
@@ -220,7 +220,7 @@ def main():
 
     # Place training coefficients in the coeff DataFrame.
     # NOTE: These coefficients will need to be sorted.
-    coeff.loc[:, ~all_zero] = lr.coef_
+    coeff.loc[:, ~no_info] = lr.coef_
 
     # Map coefficients (get them in the right order).
     coeff_map = map_coeff(train_data, train_labels, coeff)
@@ -233,10 +233,11 @@ def main():
 
     # Write coefficients to file.
     coeff.to_csv(LR_COEFF_FILE, index=False)
-    print('Logistic Regression coefficients saved to {}.'.format(LR_COEFF_FILE))
+    s = 'Logistic Regression coefficients saved to {}.'.format(LR_COEFF_FILE)
+    print(s)
 
     # Write predictions to file
-    lr_predictions = pd.Series(lr.predict(test_data.loc[:, ~all_zero]),
+    lr_predictions = pd.Series(lr.predict(test_data.loc[:, ~no_info]),
                                index=np.arange(1, test_data.shape[0] + 1),
                                name='Category')
     lr_predictions.to_csv(LR_PRED_FILE, header=True,
@@ -250,11 +251,11 @@ def main():
     knn = KNeighborsClassifier(n_neighbors=k, n_jobs=-1)
 
     # Fit with the reduced training data.
-    knn.fit(train_data.loc[:, ~all_zero], train_labels)
+    knn.fit(train_data.loc[:, ~no_info], train_labels)
 
     t_knn_0 = time.time()
     # Predict.
-    knn_predictions = pd.Series(knn.predict(test_data.loc[:, ~all_zero]),
+    knn_predictions = pd.Series(knn.predict(test_data.loc[:, ~no_info]),
                                 name='Category',
                                 index=np.arange(1, test_data.shape[0] + 1))
 
