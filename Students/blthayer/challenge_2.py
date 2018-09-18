@@ -10,6 +10,9 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score
 import pandas as pd
 
+########################################################################
+# FILES
+
 # Define mnist files. These were decompressed with 'gzip -d <file>'
 MNIST_DIR = 'mnist'
 TRAIN_IMAGES_FILE = osp(MNIST_DIR, 'train-images-idx3-ubyte')
@@ -21,12 +24,13 @@ TRAIN_FILE_CHAMBERLAND = osp(MNIST_DIR, 'mnist_train.csv')
 TEST_FILE_CHAMBERLAND = osp(MNIST_DIR, 'mnist_test.csv')
 
 # Output directory.
-OUT_DIR = '.'
+OUT_DIR = osp('..', '..', 'Challenges', '2Submissions', 'team1')
 
 # Define output files.
 LR_PRED_FILE = osp(OUT_DIR, '2challenge_logreg.csv')
 LR_COEFF_FILE = osp(OUT_DIR, '2challenge_logreg_vectors.csv')
 KNN_PRED_FILE = osp(OUT_DIR, '2challenge_knn.csv')
+########################################################################
 
 # This article helped read the MNIST data:
 # https://medium.com/@mannasiladittya/converting-mnist-data-in-idx-format-to-python-numpy-array-5cb9126f99f1
@@ -82,10 +86,14 @@ def do_lr(train_data, train_labels, test_data, test_labels, seed=42):
     get this code out of the 'main' section.
     """
 
-    # Initialize logistic regression object. Note: newton-cg solver
-    # failed to converge within 100 iterations (the default).
-    lr = LogisticRegression(solver='saga', multi_class='multinomial',
-                            max_iter=200, tol=0.1, random_state=seed)
+    # Initialize logistic regression object.
+    #
+    # Note: newton-cg solver failed to converge within 100 iterations,
+    # and is slow.
+    #
+    # Note: 'saga' is pretty fast, but 'sag' uses l2 norm for penalty.
+    lr = LogisticRegression(solver='sag', multi_class='multinomial',
+                            max_iter=200, tol=0.01, random_state=seed)
 
     # Time training.
     time_train_0 = time.time()
@@ -108,7 +116,7 @@ def do_lr(train_data, train_labels, test_data, test_labels, seed=42):
     accuracy = lr.score(test_data, test_labels)
 
     # Inform.
-    print('Accuracy: {:.2f}'.format(accuracy))
+    print('Accuracy: {:.4f}'.format(accuracy))
 
     # Return the trained logistic regression object.
     return lr
@@ -259,6 +267,7 @@ def main(train_data, train_labels, test_data, test_labels, min_max_tol=0,
     ####################################################################
     # K NEAREST NEIGHBORS
     # Initialize KNN object.
+    '''
     k = 5
     knn = KNeighborsClassifier(n_neighbors=k, n_jobs=-1)
 
@@ -276,13 +285,14 @@ def main(train_data, train_labels, test_data, test_labels, min_max_tol=0,
 
     # Score the KNN predictions.
     knn_accuracy = accuracy_score(test_labels, knn_predictions)
-    print('KNN prediction accuracy: {:.2f}'.format(knn_accuracy))
+    print('KNN prediction accuracy: {:.4f}'.format(knn_accuracy))
 
     if write_outputs:
         # Write predictions to file.
         knn_predictions.to_csv(KNN_PRED_FILE, header=True, index=True,
                                index_label='Id')
         print('KNN predictions written to {}'.format(KNN_PRED_FILE))
+    '''
 
     # Report overall run time.
     t1 = time.time()
@@ -303,13 +313,14 @@ if __name__ == '__main__':
     # Read data.
     train_data, train_labels, test_data, test_labels = read_data()
 
-    # Looks like a tolerance of 40 does best for KNN. Could test around
-    # 35-45 to see what's best, but probably not worth the effort.
     main(train_data, train_labels, test_data, test_labels,
-         min_max_tol=0, write_outputs=True)
-    # # Loop over main with different minimum/maximum tolerances.
-    # for i in range(35, 50, 5):
-    #     print('*' * 79)
-    #     print('min_max_tol: {}'.format(i))
-    #     main(train_data, train_labels, test_data, test_labels,
-    #          min_max_tol=i, write_outputs=False)
+         min_max_tol=240, write_outputs=True)
+
+    '''
+    # Loop over main with different minimum/maximum tolerances.
+    for i in range(250, 256, 1):
+        print('*' * 79)
+        print('min_max_tol: {}'.format(i))
+        main(train_data, train_labels, test_data, test_labels,
+             min_max_tol=i, write_outputs=False)
+    '''
