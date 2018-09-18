@@ -32,10 +32,11 @@
 * Kanchan Satpute, [KanchanSatpute](https://github.com/KanchanSatpute)
 * Kishan Shah, [kishan3111](https://github.com/kishan3111)
 * Sayeed Alvi, [sayeed-alvi](https://github.com/sayeed-alvi)
+* Siddharth Ajit, [siddharthajit](https://github.com/siddharthajit)
 * AliAkbar Shafi, [albros123](https://github.com/albros123)
 * Shirish Pandagare, [shirishpandagare](https://github.com/shirishpandagare)
 * Rishi Laddha
-
+* Prabhneet Arora, [prabh93](https://github.com/prabh93)
 ## Teaching Team
 
 * Jean-Francois Chamberland, [chmbrlnd](https://github.com/chmbrlnd)
