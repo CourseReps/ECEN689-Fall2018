@@ -16,3 +16,4 @@
   - NOTE: Adjust paths in the `# FILES` portion of the code. Data should be downloaded from class Kaggle challenge.
 - K-Nearest Neighbors with PCA:
   - Code should be found at `../../../Students/kishan3111/2challenge.ipynb`
+  - automated version for a range of features `../../../Students/jatinKamnani`
