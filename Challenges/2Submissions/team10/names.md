@@ -1,4 +1,4 @@
-* Team 10 members:
+# Team 10 members:
 
 - Khaled Nakhleh
 - Shabarish Kumar Rajendra Prasad
