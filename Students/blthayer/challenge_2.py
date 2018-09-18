@@ -1,28 +1,43 @@
 # Standard library
 import struct as st
-import os
+from os.path import join as osp
 import time
 
 # Installed packages.
 import numpy as np
-from sklearn.linear_model import LogisticRegression as LR
+from sklearn.linear_model import LogisticRegression
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score
 import pandas as pd
+
+########################################################################
+# FILES
 
 # Define mnist files. These were decompressed with 'gzip -d <file>'
 MNIST_DIR = 'mnist'
-TRAIN_IMAGES_FILE = 'train-images-idx3-ubyte'
-TRAIN_LABELS_FILE = 'train-labels-idx1-ubyte'
-TEST_IMAGES_FILE = 't10k-images-idx3-ubyte'
-TEST_LABELS_FILE = 't10k-labels-idx1-ubyte'
+TRAIN_IMAGES_FILE = osp(MNIST_DIR, 'train-images-idx3-ubyte')
+TRAIN_LABELS_FILE = osp(MNIST_DIR, 'train-labels-idx1-ubyte')
+TEST_IMAGES_FILE = osp(MNIST_DIR, 't10k-images-idx3-ubyte')
+TEST_LABELS_FILE = osp(MNIST_DIR, 't10k-labels-idx1-ubyte')
+
+TRAIN_FILE_CHAMBERLAND = osp(MNIST_DIR, 'mnist_train.csv')
+TEST_FILE_CHAMBERLAND = osp(MNIST_DIR, 'mnist_test.csv')
 
 # Output directory.
-OUT_DIR = './'
+OUT_DIR = osp('..', '..', 'Challenges', '2Submissions', 'team1')
 
-# This article helped read the data:
+# Define output files.
+LR_PRED_FILE = osp(OUT_DIR, '2challenge_logreg.csv')
+LR_COEFF_FILE = osp(OUT_DIR, '2challenge_logreg_vectors.csv')
+KNN_PRED_FILE = osp(OUT_DIR, '2challenge_knn.csv')
+########################################################################
+
+# This article helped read the MNIST data:
 # https://medium.com/@mannasiladittya/converting-mnist-data-in-idx-format-to-python-numpy-array-5cb9126f99f1
 
 
 def read_images(images_file):
+    """Helper to read MNIST images files."""
     # Open file.
     with open(images_file, 'rb') as f:
 
@@ -47,6 +62,7 @@ def read_images(images_file):
 
 
 def read_labels(labels_file):
+    """Helper to read MNIST labels files."""
     # Open file.
     with open(labels_file, 'rb') as f:
 
@@ -63,28 +79,112 @@ def read_labels(labels_file):
     return labels
 
 
-if __name__ == '__main__':
-    # Track total program run-time.
-    t0 = time.time()
-    # Seed for random number generator.
-    seed = 42
+def do_lr(train_data, train_labels, test_data, test_labels, seed=42):
+    """Helper function to perform logistic regression.
 
-    ####################################################################################################################
-    # READ DATA
+    This isn't optimally reformatted, but rather copy + pasted simply to
+    get this code out of the 'main' section.
+    """
+
+    # Initialize logistic regression object.
+    #
+    # Note: newton-cg solver failed to converge within 100 iterations,
+    # and is slow.
+    #
+    # Note: 'saga' is pretty fast, but 'sag' uses l2 norm for penalty.
+    lr = LogisticRegression(solver='sag', multi_class='multinomial',
+                            max_iter=200, tol=0.01, random_state=seed)
+
+    # Time training.
+    time_train_0 = time.time()
+
+    # Fit to the reduced data.
+    lr.fit(train_data, train_labels)
+
+    # Report timing.
+    time_train_1 = time.time()
+    s = ('Logistic Regression model trained in '
+         + '{:.2f} seconds.').format(time_train_1 - time_train_0)
+    print(s)
+    it = np.sum(lr.n_iter_)
+    print('Logistic Regression training took {} iterations.'.format(it))
+
+    # Predict from the test data, and score it.
+    # NOTE: We're assuming Prof. Chamberland's test data isn't
+    # scrambled.
+
+    accuracy = lr.score(test_data, test_labels)
+
+    # Inform.
+    print('Accuracy: {:.4f}'.format(accuracy))
+
+    # Return the trained logistic regression object.
+    return lr
+
+
+def map_coeff(data, labels, coeff):
+    """Map coefficients from logistic regression.
+
+    The .coef_ call doesn't give them in order, so we need to discover
+    the order by checking vector performance across images."""
+
+    # Get unique labels.
+    u_labels = np.unique(labels)
+
+    # Initialize pandas Series for tracking which coefficient vector
+    # does best for each label.
+    coeff_map = pd.Series(0, index=u_labels)
+
+    # Loop over unique labels.
+    for label in u_labels:
+        # Extract data where this label matches.
+        label_bool = labels == label
+
+        # Extract data for this label.
+        this_data = data.loc[label_bool, :]
+
+        # Compute the dot product (via matrix multiplication) of each
+        # coefficient vector with each image.
+        scores = this_data.dot(coeff.transpose())
+
+        # Run each through a pseudo objective function. Lower is better.
+        scores = np.log(1 + np.exp(-scores))
+
+        # Sum each column of scores (for each vector coefficient.
+        score_sum = scores.sum()
+
+        # Our best vector should be the minimum
+        best_coeff = score_sum.idxmin()
+
+        # Put the best coefficient in the mapping.
+        coeff_map[label] = best_coeff
+
+    # We're done. If the unique set of the coeff_map doesn't match our
+    # unique labels, this failed.
+    if u_labels.shape[0] != coeff_map.unique().shape[0]:
+        raise UserWarning('Our coefficient mapping failed!')
+
+    return coeff_map
+
+
+def read_data():
+    """Simple helper to read and return the data we need."""
     t_read_0 = time.time()
     # Read training images and labels from MNIST
     '''
-    train_images = read_images(os.path.join(MNIST_DIR, TRAIN_IMAGES_FILE))
-    train_labels = read_labels(os.path.join(MNIST_DIR, TRAIN_LABELS_FILE))
+    train_images = read_images(TRAIN_IMAGES_FILE)
+    train_labels = read_labels(TRAIN_LABELS_FILE)
 
     # Read test data and labels.
-    test_images = read_images(os.path.join(MNIST_DIR, TEST_IMAGES_FILE))
+    test_images = read_images(TEST_IMAGES_FILE)
     '''
-    test_labels = read_labels(os.path.join(MNIST_DIR, TEST_LABELS_FILE))
+    # Assume Prof. Chamberland didn't scramble the test data (turns out
+    # he didn't), and read test labels directly from MNIST file.
+    test_labels = read_labels(TEST_LABELS_FILE)
 
     # Read files from Prof. Chamberland
-    train_images = pd.read_csv(os.path.join(MNIST_DIR, 'mnist_train.csv'))
-    test_images = pd.read_csv(os.path.join(MNIST_DIR, 'mnist_test.csv'))
+    train_images = pd.read_csv(TRAIN_FILE_CHAMBERLAND)
+    test_images = pd.read_csv(TEST_FILE_CHAMBERLAND)
 
     t_read_1 = time.time()
     print('Data read in {:.2f} seconds.'.format(t_read_1 - t_read_0))
@@ -96,82 +196,131 @@ if __name__ == '__main__':
     # Extract data from testing set.
     test_data = test_images.drop(['Id'], axis=1)
 
+    return train_data, train_labels, test_data, test_labels
+
+
+def main(train_data, train_labels, test_data, test_labels, min_max_tol=0,
+         write_outputs=True):
+    """Perform linear regression and k-nearest neighbors for given data."""
+    # Time program runtime.
+    t0 = time.time()
+
     # Get the number of labels.
     num_labels = len(train_labels.unique())
-
     ####################################################################
-    # SPARSITY
-    # Exclude columns which are all 0 to reduce training time. Note that
-    # there are not any other columns which have all values equal to
-    # each other.
-    all_zero = (train_data == 0).all()
-    s = ('In the training data, there are {} columns which '
-         + 'are all 0').format(np.count_nonzero(all_zero))
+    # FEATURE REDUCTION
+    #
+    # Exclude columns which have identical minimums and maximums. We
+    # could take this further by using some tolerance for the delta
+    # between mins and maxes.
+    no_info = (train_data.max() - train_data.min()) <= min_max_tol
+    s = ('In the training data, there are {} columns which do not contain '
+         + 'useful information').format(np.count_nonzero(no_info))
     print(s)
 
-    reduced_data = train_data.loc[:, ~all_zero]
+    # Reduce the training and testing data.
+    train_data_r = train_data.loc[:, ~no_info]
+    test_data_r = test_data.loc[:, ~no_info]
 
     ####################################################################
     # LOGISTIC REGRESSION
+    lr = do_lr(train_data_r, train_labels, test_data_r, test_labels)
 
-    # Initialize logistic regression object. Note: newton-cg solver failed to
-    # converge within 100 iterations (the default).
-    lr = LR(solver='saga', multi_class='multinomial', max_iter=200, tol=0.1)
-
-    # Time training.
-    time_train_0 = time.time()
-
-    # Fit to the reduced data.
-    lr.fit(reduced_data, train_labels)
-
-    # Report timing.
-    time_train_1 = time.time()
-    s = ('Logistic Regression model trained in '
-         + '{:.2f} seconds.').format(time_train_1 - time_train_0)
-    print(s)
-    it = np.sum(lr.n_iter_)
-    print('Logistic Regression training took {} iterations.'.format(it))
-
-    # Get the coefficients.
-    train_coeff = lr.coef_
-
-    # Initialize DataFrame to hold coefficients.
+    # Initialize DataFrame to hold full set of coefficients.
     coeff = pd.DataFrame(np.zeros((num_labels, train_data.shape[1])),
                          columns=train_data.columns)
 
     # Place training coefficients in the coeff DataFrame.
-    # TODO: Are we sure that row 0 maps to images labeled 0?
-    coeff.loc[:, ~all_zero] = train_coeff
+    # NOTE: These coefficients will need to be sorted.
+    coeff.loc[:, ~no_info] = lr.coef_
 
-    coeff_file = OUT_DIR + '2challenge_logreg_vectors.csv'
-    coeff.to_csv(coeff_file)
-    print('Logistic Regression coefficients saved to {}.'.format(coeff_file))
+    # Map coefficients (get them in the right order).
+    coeff_map = map_coeff(train_data, train_labels, coeff)
 
-    # Predict from the test data, and score it.
-    # NOTE: We're assuming Prof. Chamberland's test data isn't
-    # scrambled.
+    # Assign the categories.
+    coeff['Category'] = coeff_map
 
-    accuracy = lr.score(test_data.loc[:, ~all_zero], test_labels)
+    # Just in case, sort.
+    coeff.sort_values(by=['Category'], inplace=True)
 
-    # Inform.
-    print('Accuracy: {:.2f}'.format(accuracy))
+    # Sort by column so that Category shows up first.
+    cols = list(coeff.columns)
+    sorted_cols = [cols[-1]] + cols[0:-1]
+    coeff = coeff[sorted_cols]
 
-    # Write predictions to file
-    prediction_file = OUT_DIR + '2challenge_logreg.csv'
-    predictions = pd.Series(lr.predict(test_data.loc[:, ~all_zero]),
-                            index=np.arange(1, test_data.shape[0] + 1),
-                            name='Category')
-    predictions.to_csv(prediction_file, header=True,
-                       index=True, index_label='Id')
-    print('Predictions saved to {}'.format(prediction_file))
+    # Write coefficients to file.
+    if write_outputs:
+        coeff.to_csv(LR_COEFF_FILE, index=False)
+        s = 'Logistic Regression coefficients saved to {}.'.format(
+            LR_COEFF_FILE)
 
+        print(s)
+
+        # Write predictions to file
+        lr_predictions = pd.Series(lr.predict(test_data.loc[:, ~no_info]),
+                                   index=np.arange(1, test_data.shape[0] + 1),
+                                   name='Category')
+        lr_predictions.to_csv(LR_PRED_FILE, header=True,
+                              index=True, index_label='Id')
+        print('Predictions saved to {}'.format(LR_PRED_FILE))
+
+    ####################################################################
+    # K NEAREST NEIGHBORS
+    # Initialize KNN object.
+    '''
+    k = 5
+    knn = KNeighborsClassifier(n_neighbors=k, n_jobs=-1)
+
+    # Fit with the reduced training data.
+    knn.fit(train_data_r, train_labels)
+
+    t_knn_0 = time.time()
+    # Predict.
+    knn_predictions = pd.Series(knn.predict(test_data_r), name='Category',
+                                index=np.arange(1, test_data.shape[0] + 1))
+
+    t_knn_1 = time.time()
+
+    print('KNN prediction time: {:.2f}'.format(t_knn_1 - t_knn_0))
+
+    # Score the KNN predictions.
+    knn_accuracy = accuracy_score(test_labels, knn_predictions)
+    print('KNN prediction accuracy: {:.4f}'.format(knn_accuracy))
+
+    if write_outputs:
+        # Write predictions to file.
+        knn_predictions.to_csv(KNN_PRED_FILE, header=True, index=True,
+                               index_label='Id')
+        print('KNN predictions written to {}'.format(KNN_PRED_FILE))
+    '''
+
+    # Report overall run time.
     t1 = time.time()
     print('Total program runtime: {:.2f} seconds.'.format(t1 - t0))
+
     '''
+    # Code for showing some images.
     import matplotlib.pyplot as plt
     # Sanity check, hard-coding 28x28.
     for i in range(5):
         plt.imshow(train_images[i, :].reshape(28, 28))
         print(train_labels[i])
         plt.show(block=False)
+    '''
+
+
+if __name__ == '__main__':
+    # Read data.
+    train_data, train_labels, test_data, test_labels = read_data()
+
+    main(train_data, train_labels, test_data, test_labels,
+         min_max_tol=240, write_outputs=True)
+
+    '''
+    # Loop over main with different minimum/maximum tolerances.
+    for i in range(250, 256, 1):
+        print('*' * 79)
+        print('min_max_tol: {}'.format(i))
+        main(train_data, train_labels, test_data, test_labels,
+             min_max_tol=i, write_outputs=False)
     '''
