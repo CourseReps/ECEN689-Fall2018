@@ -12,10 +12,10 @@
 * Ki Yeob Lee
 * Ashmitha Mahadevan
 * Vedant Mehta, [vedantmehta2808](https://www.github.com/vedantmehta2808)
-* Samarth Shaileshkumar Mistry
+* Samarth Mistry, [samarthmistry](https://github.com/samarthmistry)
 * Khaled Nakhleh
 * Zhiyang Ong, [eda-ricercatore](https://github.com/eda-ricercatore)
-* Venkata Koustubha Krishna Pydimarri
+* Venkata Koustubha Krishna Pydimarri, [koustubha26](https://github.com/koustubha26)
 * Swati Ramachandran
 * Deepika Ravipati, [deepikaravipati](https://github.com/deepikaravipati)
 * Mason Rumuly, [mason-rumuly](https://github.com/mason-rumuly)
@@ -31,7 +31,12 @@
 * Devarsh Jhaveri, [devarshjhaveri](https://github.com/devarshjhaveri)
 * Kanchan Satpute, [KanchanSatpute](https://github.com/KanchanSatpute)
 * Kishan Shah, [kishan3111](https://github.com/kishan3111)
-
+* Sayeed Alvi, [sayeed-alvi](https://github.com/sayeed-alvi)
+* Siddharth Ajit, [siddharthajit](https://github.com/siddharthajit)
+* AliAkbar Shafi, [albros123](https://github.com/albros123)
+* Shirish Pandagare, [shirishpandagare](https://github.com/shirishpandagare)
+* Rishi Laddha
+* Prabhneet Arora, [prabh93](https://github.com/prabh93)
 ## Teaching Team
 
 * Jean-Francois Chamberland, [chmbrlnd](https://github.com/chmbrlnd)
