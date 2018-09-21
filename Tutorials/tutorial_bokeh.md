@@ -18,7 +18,7 @@ We should mention that our ideal Python setup includes a combination of *Bokeh* 
 4. *Bokeh* installation
 5. *Bokeh* structure
 6. Code examples
-7. More reasons to use *Bokeh*
+7. Reasons to use *Bokeh* and some limitations
 8. Some fun and powerful examples that showcase *Bokeh's* capabilities
 9. References for mastering *Bokeh*
 
@@ -171,7 +171,7 @@ Try running these examples on your local machine, and see what results you'll ge
 
 ---
 
-### 7. Reasons for using *Bokeh* and some limitations
+### 7. Reasons to use *Bokeh* and some limitations
 
 If you're planning on joining an industry, then you can take advantage of *Bokeh's* estabilished industry presence.
 The Python *Bokeh* is actively used by the following institutions:
