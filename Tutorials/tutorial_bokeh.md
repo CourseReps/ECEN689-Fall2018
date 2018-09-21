@@ -9,7 +9,7 @@ Please be aware that we are not *Bokeh* experts, and this presentation is intend
 
 We should mention that our ideal steup includes a combination of *Bokeh* and *Matplotlib*. Using *Matplotlib* for static graphs (i.e. non-interactive graphs), and *Bokeh* for interactive visuals. Also, if you want to learn *Bokeh*, there will be an unavoidable learning curve to get familiarized with *Bokeh*. However, we believe that once you master *Bokeh*, you will become more efficient with presenting data visually.
 
-### This Tutorial will cover the following:
+### This Tutorial will cover the following
 
 1. *Bokeh* Breif description
 2. Why use *Bokeh* over other packages?
@@ -18,9 +18,10 @@ We should mention that our ideal steup includes a combination of *Bokeh* and *Ma
 5. *Bokeh* structure
 6. Code examples
 7. More reasons for using *Bokeh*
-8. References for mastering *Bokeh*
+8. Some fun examples that showcase *Bokeh's* capabilities
+9. References for mastering *Bokeh*
 
-### 1. Brief introduction:
+### 1. Brief introduction
 
 *Bokeh* is a visualization tool available for several programming languages: Python, R, Lua, and Julia. For the purpose of aligning with the course's objectives, we will only cover the Python *Bokeh* package. 
 
@@ -28,13 +29,13 @@ As mentioned, *Bokeh* is a tool for presenting data elegantly and interactively.
 
 The package *Bokeh* is a fiscally sponsored project of NumFOCUS, which supports other popular Python packages such as: Numpy, Pandas, and Matplotlib. *Bokeh* helps to create interactive plots, dashboards, and data applications efficiently.
 
-### 2. Why use *Bokeh*?:
+### 2. Why use *Bokeh*?
 
 The main reason we want students to start using *Bokeh* is to better represent the data structures they processed. Using only static graphs, student would need to type paragraphs to explain data's behavior. Not to mention the time and effort it takes to explain the technicalities of your graph to an audience. 
 
 We must also, as engineers, assume our audience is not familiar with the topic we're presenting. The audience may come form different educational backgrounds, and may not be able to visually imagine theoratical concepts. Our presentattion should reflect the educational diversity of our audience. We believe with *Bokeh* this process would become much simpler to implement, and more visually approchable to the audience's entirety.  
 
-### 3. Relevance to ECEN 689 course:
+### 3. Relevance to ECEN 689 course
 
 Reading the course's syllabus, under course description, it reads as follows:
 > The focus is on modular projects, algorithms and implementation, data management, and visualization. 
@@ -45,7 +46,7 @@ and under course objectives:
 Based on the two above syllabus quotes, we picked *Bokeh* package to support the fulfillment 
 of these objectives. Broadly speaking, the course also focuses on imporving students' Python skills, and students' presentation skills. Again, *Bokeh* is a Python package that builds upon what we're acheiving in this graduate course.
 
-### 4. *Bokeh* installation:
+### 4. *Bokeh* installation
 
 If you're using Python, we strongly recommend you use [Anaconda Python package manager](https://www.anaconda.com)
 
@@ -72,7 +73,7 @@ pip install bokeh
 ```
 Follow these steps, and you should now have *Bokeh* installed on your machine. 
 
-### 5. *Bokeh* structure:
+### 5. *Bokeh* structure
 
 The *Bokeh* python package consists of three main modules:
 
@@ -89,7 +90,7 @@ Intermediate-level interface. This module is what we used and recommend everyone
 Low-level interface. The hardest to handle of all modules. This one is intended for expert *Bokeh* users. We think that once you have mastered the functions and tools in *Bokeh*, you should start using this module. This module offers the greatest flexibility and options for visually presenting your data.
 
 
-### 6. Code examples:
+### 6. Code examples
 
 We wrote two basic Python script files to illustrate basic *Bokeh* functions. Code Snippets for the two examples are provided below. 
 
@@ -146,11 +147,33 @@ plot.circle(x, y, radius = r, fill_alpha = 0.3)
 show(plot)
 ```
 
-### 7. More reasons for using *Bokeh*:
+### 7. Reasons for using *Bokeh* and some limitations
 
+The main reason to use *Bokeh* is it estabilished industry presence.
+The Python *Bokeh* is actively used by the following institutions:
 
+* 
+*
+*
+*
+* and more!
 
-### 8. References for mastering *Bokeh*
+However, there are some limitations using *Bokeh*. 
+
+### 8. Some fun examples that showcase *Bokeh's* capabilities 
+
+These examples show how powerful this package is. They covers topics ranging from EM-signals to population graphs.
+We encourage you to run these interactive graphs, and examine their source codes. 
+
+* [3-D animated signal](https://demo.bokehplots.com/apps/surface3d)
+
+* [Countries' life expectancy vs. fertility rate](https://demo.bokehplots.com/apps/gapminder)
+
+* [Interactive graph](https://demo.bokehplots.com/apps/crossfilter)
+
+Other examples can be found here: https://demo.bokehplots.com
+
+### 9. References for mastering *Bokeh*
 
 Here is a list of all sources we used to learn *Bokeh* and for the presentation.
 We recommend you start with the official *Bokeh* manual:
