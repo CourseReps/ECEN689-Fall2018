@@ -1,7 +1,7 @@
 # Introduction to Bokeh
 
 ### by Khaled Nakhleh and Kishan Shah
-### Course instructor: Jean-Francois Chamberland
+### Course instructor: Prof. Jean-Francois Chamberland
 
 ---
 
