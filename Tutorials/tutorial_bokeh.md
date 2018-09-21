@@ -3,6 +3,7 @@
 ### by Khaled Nakhleh and Kishan Shah
 ### Course instructor: Jean-Francois Chamberland
 
+---
 
 Our presentation, presented on September 20th 2018, Introduced the Python packege called [**Bokeh**](https://bokeh.pydata.org/en/latest/).
 Please be aware that we are not *Bokeh* experts, and this presentation is intended to entice students to start experimenting with *Bokeh* on their own free time. We hope this presentation will explain *Bokeh's* basics, importance, and capabilities. 
@@ -20,6 +21,8 @@ We should mention that our ideal Python setup includes a combination of *Bokeh* 
 7. More reasons to use *Bokeh*
 8. Some fun and powerful examples that showcase *Bokeh's* capabilities
 9. References for mastering *Bokeh*
+
+---
 
 ### 1. Brief introduction
 
@@ -57,6 +60,8 @@ and under course objectives:
 
 Based on these two above syllabus quotes, we picked the *Bokeh* package to support the fulfillment 
 of these objectives. Broadly speaking, the course also focuses on imporving students' Python skills, and students' presentation skills. Again, *Bokeh* is a Python package that improves presentations' visual appeal.
+
+---
 
 ### 4. *Bokeh* installation
 
@@ -182,6 +187,8 @@ The Python *Bokeh* is actively used by the following institutions:
 However, there are some limitations with *Bokeh*. Since *Bokeh* is relativity new, changes are being committed rapidly to the source code. This means that some concepts you learn may end up becoming obsolete in the next update. This is something all users should be aware of, not just for *Bokeh*, but for Python in general. 
 
 The second limitation is the existance of *matplotlib* animation commands. It would make sense for novice programmers to start with *matplotlib* animation features, instead of learning a whole new package. However, we believe that once you step over the learning curve, *Bokeh* presents itself as a much more useful tool. We also think mastering *Bokeh* will help you become more efficient with visualizing large datasets.
+
+---
 
 ### 8. Some fun examples that showcase *Bokeh's* capabilities 
 
