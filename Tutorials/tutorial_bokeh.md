@@ -19,7 +19,7 @@ We should mention that our ideal Python setup includes a combination of *Bokeh* 
 5. *Bokeh* structure
 6. Code examples
 7. Reasons to use *Bokeh* and some limitations
-8. Some fun and powerful examples that showcase *Bokeh's* capabilities
+8. Fun examples that showcase *Bokeh's* capabilities
 9. References for mastering *Bokeh*
 
 ---
@@ -190,7 +190,7 @@ The second limitation is the existance of *matplotlib* animation commands. It wo
 
 ---
 
-### 8. Some fun examples that showcase *Bokeh's* capabilities 
+### 8. Fun examples that showcase *Bokeh's* capabilities 
 
 These examples show how powerful this package is. They cover topics such as EM-signals and population graphs.
 We encourage you to view these interactive graphs, and understand the available source code. 
