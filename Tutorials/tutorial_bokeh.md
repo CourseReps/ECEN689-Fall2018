@@ -52,10 +52,10 @@ of these objectives. Broadly speaking, the course also focuses on imporving stud
 If you're using Python, we strongly recommend you use [Anaconda Python package manager](https://www.anaconda.com)
 
 * Make sure you have *Bokeh* installed on your machine. To do that, type in the terminal:
-> conda list <
-* this command will list all installed packages alphabetically. If *Bokeh* is not listed, you can install it using:
+> conda list 
+* The above command will list all installed packages alphabetically. If *Bokeh* is not listed, you can install it using:
 > conda install bokeh
-The above command will install the latest version of *Bokeh* available on Anaconda's server.
+* The above command will install the latest version of *Bokeh* available on Anaconda's server.
 * to update *Bokeh* to the lastest version, type the following into the terminal:
 > conda update bokeh 
 and if you want to update all packages, you can use:
@@ -72,7 +72,60 @@ Follow these steps, and you should now have *Bokeh* installed on your machine.
 
 #### 6. Code examples:
 
+We wrote two basic Python script files to illustrate basic *Bokeh* functions. Code Snippets for the two examples are provided below. 
 
+###### First example: graphing a line
+
+```python
+import numpy as np
+from bokeh.plotting import *
+
+"------------------------------------------------------------"
+
+# Generate random data using numpy arrays.
+
+x = np.arange(10)
+y = np.random.randint(0, 20, size = 10)
+
+
+# Make a title, x-axis label, and y-axis label.
+plot = figure(x_axis_label = "X-axis", y_axis_label = "Y-axis", title = "Example 1")
+
+# Plot command with attributes.
+plot.line(x, y, line_color = "red", legend = "Random Y values") 
+
+# Show the plot in browser (HTML format).
+show(plot)
+```
+
+###### Second example: graphing circles and specifying tools used
+
+```python
+import numpy as np
+from bokeh.plotting import *
+
+"------------------------------------------------------------"
+
+# Generating data using numpy arrays.
+n = 1000
+
+x = np.random.random(size = n) * 80
+y = np.random.random(size = n) * 80
+r = np.random.random(size = n) * 2
+
+# Choosing graph tools
+t = "pan, lasso_select, box_zoom, reset, tap, hover"
+
+# Plot the figure with the listed tools in the string above.
+plot = figure(x_range = (0, 100), y_range = (0, 100), tools = t,\
+              x_axis_label = "X-axis", y_axis_label = "Y-axis", title = "Example 2")
+
+# Generate circles on 2-D plane.
+plot.circle(x, y, radius = r, fill_alpha = 0.3)
+
+# Show the plot in browser (HTML format).
+show(plot)
+```
 
 #### 7. More reasons for using *Bokeh*:
 
