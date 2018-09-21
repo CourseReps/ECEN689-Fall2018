@@ -67,7 +67,7 @@ and if you want to update all packages, you can use:
 ```
 conda update --all
 ```
-* In case you're using the more traditional [**pip**](https://pypi.org/project/pip/), type:
+* In case you're using the more traditional [**pip package manager**](https://pypi.org/project/pip/), type:
 ```
 pip install bokeh 
 ```
@@ -152,13 +152,15 @@ show(plot)
 The main reason to use *Bokeh* is it estabilished industry presence.
 The Python *Bokeh* is actively used by the following institutions:
 
-* 
-*
-*
-*
+* PepsiCo
+* Facebook
+* Uber
+* Spotify
 * and more!
 
-However, there are some limitations using *Bokeh*. 
+However, there are some limitations using *Bokeh*. Since *Bokeh* is relativity new, changes are being committed rapibly to the source code. This means that some concepts you learn may end up becoming obsolete in the next update. This is something all users should be aware of, not just for *Bokeh*, but for Python in general. 
+
+The second limitation is the existance of matplotlib animation commands. It would be make more sense for novice programmers to start with matplotlib animation features, instead of learning a whole new package. However, we believe that once you get over the learning curve, *Bokeh* presents itself as a much more useful coding tool. We also think mastering *Bokeh* will help you become more efficient with visualizing data.
 
 ### 8. Some fun examples that showcase *Bokeh's* capabilities 
 
