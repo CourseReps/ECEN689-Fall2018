@@ -4,7 +4,7 @@
 ### Course instructor: Jean-Francois Chamberland
 
 
-Our presentation, presented on September 20th 2018, Introduced the Python packege called *Bokeh*.
+Our presentation, presented on September 20th 2018, Introduced the Python packege called [**Bokeh**](https://bokeh.pydata.org/en/latest/).
 Please be aware that we are not *Bokeh* experts, and this presentation is intended to entice students to start experimenting with *Bokeh* on their own time. We hope this presentation will explain the *Bokeh's* basics, importance, and capabilities. 
 
 We should mention that our ideal steup includes a combination of *Bokeh* and *Matplotlib*. Using *Matplotlib* for static graphs (i.e. non-interactive graphs), and *Bokeh* for interactive visuals. Also, if you want to learn *Bokeh*, there will be an unavoidable learning curve to get familiarized with *Bokeh*. However, we believe that once you master *Bokeh*, you will become more efficient with presenting data visually.
@@ -51,6 +51,20 @@ of these objectives. Broadly speaking, the course also focuses on imporving stud
 
 If you're using Python, we strongly recommend you use [Anaconda Python package manager](https://www.anaconda.com)
 
+* Make sure you have *Bokeh* installed on your machine. To do that, type in the terminal:
+> conda list
+* this command will list all installed packages alphabetically. If *Bokeh* is not listed, you can install it using:
+> conda install bokeh
+The above command will install the latest version of *Bokeh* available on Anaconda's server.
+* to update *Bokeh* to the lastest version, type the following into the terminal:
+> conda update bokeh 
+and if you want to update all packages, you can use:
+> conda update --all
+
+* In case you're using the more traditional [**pip**](https://pypi.org/project/pip/), type:
+> pip install bokeh 
+
+Follow these steps, and you should now have *Bokeh* installed on your machine. 
 
 #### 5. *Bokeh* structure:
 
