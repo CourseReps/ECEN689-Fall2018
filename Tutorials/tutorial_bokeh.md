@@ -78,7 +78,8 @@ Follow these steps, and you should now have *Bokeh* installed on your machine.
 
 The *Bokeh* python package consists of three main modules:
 
-**1) bokeh.charts**
+**1) bokeh.charts:**
+
 This is the simplest of all *Bokeh* modules. **We don't recommend you use this package, since it's dated now and offers few customization options**. It offers basic functionality, and from what we read, it is no longer officially supported by the GitHub repository. 
 
 **2) bokeh.plotting**
