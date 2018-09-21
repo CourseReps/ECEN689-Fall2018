@@ -40,16 +40,24 @@ We must also, as engineers, assume our audience is not familiar with the topic w
 
 Reading the course's syllabus, under course description, it reads as follows:
 > The focus is on modular projects, algorithms and implementation, data management, and visualization. 
-<cite>Jean-Franciois Chamberland, Applied Information Science Practicum, ECEN 689 syllabus</cite>
 
 and under course objectives:
+> Develop the ability to bridge theoretical concepts and practical tasks while dealing with information extraction. 
 
-> Develop the ability to bridge theoretical concepts and practical tasks while dealing with information extraction. <cite>Jean-Franciois Chamberland, Applied Information Science Practicum, ECEN 689 syllabus</cite>
+Based on the two above syllabus quotes, we picked *Bokeh* package to support the fulfillment 
+of these objectives. Broadly speaking, the course also focuses on imporving students' Python skills, and students' presentation skills. Again, *Bokeh* is a Python package that builds upon what we're acheiving in this graduate course.
 
 #### 4. *Bokeh* installation:
 
 If you're using Python, we strongly recommend you use [Anaconda Python package manager](https://www.anaconda.com)
 
 #### 8. References for mastering *Bokeh*
+
+
+
+
+
+
+
 
 
