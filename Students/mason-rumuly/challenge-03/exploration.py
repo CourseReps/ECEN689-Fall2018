@@ -44,7 +44,6 @@ for country in light_train.index:
     use_countries = []
     for a in range(max(n_nonzero - 1, 0)):
         best_match = corr_vec.abs().idxmax()
-        print(best_match)
         match_vec = work_train.loc[best_match]
         use_countries.append(best_match)
         # subtract projection into match basis
@@ -77,6 +76,9 @@ for country in light_train.index:
     greedy_gs_test_difference += greedy_test_error - gs_test_error
     greedy_test_wins += greedy_test_score > gs_test_score
 
-print('cumulative error difference:', greedy_gs_test_difference)
+    # progress
+    
+
+print('cumulative error difference:', np.sqrt(greedy_gs_test_difference))
 print('greedy wins:', greedy_test_wins)
 print('gs wins:', len(light_test.index) - greedy_test_wins)
