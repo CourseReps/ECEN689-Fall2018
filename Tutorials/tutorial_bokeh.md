@@ -56,20 +56,34 @@ If you're using Python, we strongly recommend you use [Anaconda Python package m
 conda list
 ```
 * The above command will list all installed packages alphabetically. If *Bokeh* is not listed, you can install it using:
-> conda install bokeh
+```
+conda install bokeh
+```
 * The above command will install the latest version of *Bokeh* available on Anaconda's server.
 * to update *Bokeh* to the lastest version, type the following into the terminal:
-> conda update bokeh 
+```
+conda update bokeh
+```
 and if you want to update all packages, you can use:
-> conda update --all
-
+```
+conda update --all
+```
 * In case you're using the more traditional [**pip**](https://pypi.org/project/pip/), type:
-> pip install bokeh 
-
+```
+pip install bokeh 
+```
 Follow these steps, and you should now have *Bokeh* installed on your machine. 
 
 #### 5. *Bokeh* structure:
 
+The *Bokeh* python package consists of three main modules:
+
+**1) bokeh.charts**
+This is the simplest of all *Bokeh* modules. **We don't recommend you use this package, since it's dated now and offers few customization options**. It offers basic functionality, and from what we read, it is no longer officially supported by the GitHub repository. 
+
+**2) bokeh.plotting**
+
+**3) bokeh.models**
 
 
 #### 6. Code examples:
@@ -132,11 +146,17 @@ show(plot)
 #### 7. More reasons for using *Bokeh*:
 
 
+
 #### 8. References for mastering *Bokeh*
 
+Here is a list of all sources we used to learn *Bokeh* and for the presentation.
+We recommend you start with the official *Bokeh* manual:
+
+* https://bokeh.pydata.org/en/latest/
+* https://github.com/bokeh/bokeh
+* https://numfocus.org/
+* ECEN 689 Applied Information Science Practicum Fall 2018 Syllabus
 
 
 
-
-
-
+We hope this tutorial benefited you. Good luck!
