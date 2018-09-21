@@ -36,8 +36,16 @@ The main reason we want students to start using *Bokeh* is to better represent t
 
 We must also, as engineers, assume our audience is not familiar with the topic we're presenting. The audience may come form different educational backgrounds, and may not be able to visually imagine theoratical concepts. Our presentattion should reflect the educational diversity of our audience. We believe with *Bokeh* this process would become much simpler to implement, and more visually approchable to the audience's entirety.  
 
+#### 3. Relevance to ECEN 689 course:
 
-#### 3. *Bokeh* installation:
+Reading the course's syllabus, under course description, it reads as follows:
+> The focus is on modular projects, algorithms and implementation, data management, and visualization. <cite>Jean-Franciois Chamberland, Applied Information Science Practicum, ECEN 689 syllabus</cite>
+
+and under course objectives:
+
+> Develop the ability to bridge theoretical concepts and practical tasks while dealing with information extraction. <cite>Jean-Franciois Chamberland, Applied Information Science Practicum, ECEN 689 syllabus</cite>
+
+#### 4. *Bokeh* installation:
 
 If you're using Python, we strongly recommend you use [Anaconda Python package manager](https://www.anaconda.com)
 
