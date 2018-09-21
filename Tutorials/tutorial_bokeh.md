@@ -1,7 +1,7 @@
 # Introduction to Bokeh
 
-## by Khaled Nakhleh and Kishan Shah
-## Course instructor: Jean-Francois Chamberland
+### by Khaled Nakhleh and Kishan Shah
+### Course instructor: Jean-Francois Chamberland
 
 
 Our presentation, presented on September 20th 2018, Introduced the Python packege called *Bokeh*.
@@ -51,9 +51,19 @@ of these objectives. Broadly speaking, the course also focuses on imporving stud
 
 If you're using Python, we strongly recommend you use [Anaconda Python package manager](https://www.anaconda.com)
 
+
+#### 5. *Bokeh* structure:
+
+
+
+#### 6. Code examples:
+
+
+
+#### 7. More reasons for using *Bokeh*:
+
+
 #### 8. References for mastering *Bokeh*
-
-
 
 
 
