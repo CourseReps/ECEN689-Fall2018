@@ -20,7 +20,7 @@ We should mention that our ideal Python setup includes a combination of *Bokeh* 
 6. Code examples
 7. Reasons to use *Bokeh* and some limitations
 8. Fun examples that showcase *Bokeh's* capabilities
-9. References for mastering *Bokeh*
+9. References to master *Bokeh*
 
 ---
 
@@ -205,7 +205,7 @@ Other useful examples can be found here: https://demo.bokehplots.com
 
 ---
 
-### 9. References for mastering *Bokeh*
+### 9. References to master *Bokeh*
 
 Here is a list of all the sources we used to learn about *Bokeh* and for the presentation.
 We recommend you start with the official *Bokeh* manual:
