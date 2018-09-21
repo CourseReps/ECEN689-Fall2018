@@ -52,7 +52,8 @@ of these objectives. Broadly speaking, the course also focuses on imporving stud
 If you're using Python, we strongly recommend you use [Anaconda Python package manager](https://www.anaconda.com)
 
 * Make sure you have *Bokeh* installed on your machine. To do that, type in the terminal:
-``` conda list
+``` 
+conda list
 ```
 * The above command will list all installed packages alphabetically. If *Bokeh* is not listed, you can install it using:
 > conda install bokeh
