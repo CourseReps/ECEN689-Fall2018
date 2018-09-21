@@ -39,7 +39,8 @@ We must also, as engineers, assume our audience is not familiar with the topic w
 #### 3. Relevance to ECEN 689 course:
 
 Reading the course's syllabus, under course description, it reads as follows:
-> The focus is on modular projects, algorithms and implementation, data management, and visualization. <cite>Jean-Franciois Chamberland, Applied Information Science Practicum, ECEN 689 syllabus</cite>
+> The focus is on modular projects, algorithms and implementation, data management, and visualization. 
+<cite>Jean-Franciois Chamberland, Applied Information Science Practicum, ECEN 689 syllabus</cite>
 
 and under course objectives:
 
