@@ -27,7 +27,7 @@
 * Shirish Pandagare, [shirishpandagare](https://github.com/shirishpandagare)
 * Venkata Koustubha Krishna Pydimarri, [koustubha26](https://github.com/koustubha26)
 * Shabarish Kumar Rajendra Prasad
-* Swati Ramachandran
+* Swati Ramachandran, [swatirama](https://github.com/swatirama)
 * Mason Rumuly, [mason-rumuly](https://github.com/mason-rumuly)
 * Samyuktha Sankaran
 * Kanchan Satpute, [KanchanSatpute](https://github.com/KanchanSatpute)
