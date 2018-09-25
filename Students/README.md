@@ -40,8 +40,6 @@
 * Amrita Sundari Veerabagu
 * Neehar Yalamarti, [yneehar](https://github.com/yneehar)
 
-* Zhiyang Ong, [eda-ricercatore](https://github.com/eda-ricercatore)
-
 ## Teaching Team
 
 * Jean-Francois Chamberland, [chmbrlnd](https://github.com/chmbrlnd)
