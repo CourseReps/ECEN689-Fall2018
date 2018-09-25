@@ -22,7 +22,7 @@
 * Ki Yeob Lee
 * Vedant Mehta, [vedantmehta2808](https://www.github.com/vedantmehta2808)
 * Samarth Mistry, [samarthmistry](https://github.com/samarthmistry)
-* Khaled Nakhleh
+* Khaled Nakhleh, [khalednakhleh](https://github.com/khalednakhleh)
 * P R S Harinath
 * Shirish Pandagare, [shirishpandagare](https://github.com/shirishpandagare)
 * Venkata Koustubha Krishna Pydimarri, [koustubha26](https://github.com/koustubha26)
