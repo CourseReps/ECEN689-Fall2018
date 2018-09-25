@@ -16,15 +16,17 @@
 * Jatin Kamnani, [jatinKamnani](https://github.com/jatinKamnani)
 * Drupad Kumar Khublani
 * Ashish Kumar, [ashishtamuedu](https://github.com/ashishtamuedu)
+* Harish Kumar
 * Rishi Laddha
 * Aditya Lahiri, [adilahiri](https://github.com/adilahiri)
 * Ki Yeob Lee
 * Vedant Mehta, [vedantmehta2808](https://www.github.com/vedantmehta2808)
 * Samarth Mistry, [samarthmistry](https://github.com/samarthmistry)
 * Khaled Nakhleh
-* Deepika Ravipati, [deepikaravipati](https://github.com/deepikaravipati)
+* P R S Harinath
 * Shirish Pandagare, [shirishpandagare](https://github.com/shirishpandagare)
 * Venkata Koustubha Krishna Pydimarri, [koustubha26](https://github.com/koustubha26)
+* Shabarish Kumar Rajendra Prasad
 * Swati Ramachandran
 * Mason Rumuly, [mason-rumuly](https://github.com/mason-rumuly)
 * Samyuktha Sankaran
