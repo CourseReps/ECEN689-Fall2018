@@ -6,7 +6,7 @@
 * Siddharth Ajit, [siddharthajit](https://github.com/siddharthajit)
 * Sayeed Alvi, [sayeed-alvi](https://github.com/sayeed-alvi)
 * Prabhneet Arora, [prabh93](https://github.com/prabh93)
-* Priyadharsheni Balasubramanian
+* Priyadharsheni Balasubramanian, [priyab272](https://github.com/PriyaB272)
 * Michael Bass, [SuperMB](https://github.com/SuperMB)
 * Fazia Batool
 * Harish Chigurupati
