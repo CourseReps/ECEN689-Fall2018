@@ -11,6 +11,7 @@
 * Fazia Batool
 * Harish Chigurupati
 * Sambandh Bhusan Dhal
+* Jatin amnani
 * Divyank Garg
 * Devarsh Jhaveri, [devarshjhaveri](https://github.com/devarshjhaveri)
 * Jatin Kamnani, [jatinKamnani](https://github.com/jatinKamnani)
