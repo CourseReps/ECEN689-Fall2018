@@ -6,7 +6,7 @@
 * Siddharth Ajit, [siddharthajit](https://github.com/siddharthajit)
 * Sayeed Alvi, [sayeed-alvi](https://github.com/sayeed-alvi)
 * Prabhneet Arora, [prabh93](https://github.com/prabh93)
-* Priyadharsheni Balasubramanian
+* Priyadharsheni Balasubramanian, [priyab272](https://github.com/PriyaB272)
 * Michael Bass, [SuperMB](https://github.com/SuperMB)
 * Fazia Batool
 * Harish Chigurupati
@@ -22,12 +22,12 @@
 * Ki Yeob Lee
 * Vedant Mehta, [vedantmehta2808](https://www.github.com/vedantmehta2808)
 * Samarth Mistry, [samarthmistry](https://github.com/samarthmistry)
-* Khaled Nakhleh
+* Khaled Nakhleh, [khalednakhleh](https://github.com/khalednakhleh)
 * P R S Harinath
 * Shirish Pandagare, [shirishpandagare](https://github.com/shirishpandagare)
 * Venkata Koustubha Krishna Pydimarri, [koustubha26](https://github.com/koustubha26)
 * Shabarish Kumar Rajendra Prasad
-* Swati Ramachandran
+* Swati Ramachandran, [swatirama](https://github.com/swatirama)
 * Mason Rumuly, [mason-rumuly](https://github.com/mason-rumuly)
 * Samyuktha Sankaran
 * Kanchan Satpute, [KanchanSatpute](https://github.com/KanchanSatpute)
