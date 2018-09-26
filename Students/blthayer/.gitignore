@@ -1,3 +1,6 @@
+# Libre office uses these .~lock files
+.~*
+
 # Ignore .csv files.
 *.csv
 
