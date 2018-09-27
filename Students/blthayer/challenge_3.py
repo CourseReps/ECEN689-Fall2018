@@ -51,6 +51,38 @@ TOL = 0.01
 # Use all processors
 NUM_PROCESSES = cpu_count()
 
+# List of non-countries (aggregations) to remove so that we're only
+# considering countries
+NON_COUNTRIES = ['Arab World', 'Central Europe and the Baltics',
+                 'Caribbean small states',
+                 'East Asia & Pacific (excluding high income)',
+                 'Early-demographic dividend', 'East Asia & Pacific',
+                 'Europe & Central Asia (excluding high income)',
+                 'Europe & Central Asia', 'Euro area', 'European Union',
+                 'Fragile and conflict affected situations',
+                 'High income', 'Heavily indebted poor countries (HIPC)',
+                 'IBRD only', 'IDA & IBRD total', 'IDA total', 'IDA blend',
+                 'IDA only',
+                 'Latin America & Caribbean (excluding high income)',
+                 'Latin America & Caribbean',
+                 'Least developed countries: UN classification',
+                 'Low income', 'Lower middle income',
+                 'Low & middle income', 'Late-demographic dividend',
+                 'Middle East & North Africa', 'Middle income',
+                 'Middle East & North Africa (excluding high income)',
+                 'North America', 'OECD members', 'Other small states',
+                 'Pre-demographic dividend', 'Pacific island small states',
+                 'Post-demographic dividend', 'South Asia',
+                 'Sub-Saharan Africa (excluding high income)',
+                 'Sub-Saharan Africa', 'Small states',
+                 'East Asia & Pacific (IDA & IBRD countries)',
+                 'Europe & Central Asia (IDA & IBRD countries)',
+                 'Latin America & the Caribbean (IDA & IBRD countries)',
+                 'Middle East & North Africa (IDA & IBRD countries)',
+                 'South Asia (IDA & IBRD)',
+                 'Sub-Saharan Africa (IDA & IBRD countries)',
+                 'Upper middle income', 'World']
+
 ########################################################################
 # FUNCTIONS
 
@@ -179,22 +211,28 @@ def fit_for_country_worker(train_mat, test_mat, queue_in, queue_out):
         queue_in.task_done()
 
 
-def fit_for_all():
+def fit_for_all(drop_non_countries=False):
     """Main function to perform fit for all countries."""
     ####################################################################
     # Read files
-    train_df = pd.read_csv(TRAIN_FILE, encoding='cp1252').dropna(axis=0)
-    test_df = pd.read_csv(TEST_FILE, encoding='cp1252').dropna(axis=0)
+    train_df = pd.read_csv(TRAIN_FILE, encoding='cp1252',
+                           index_col='Country Name').dropna(axis=0)
+    test_df = pd.read_csv(TEST_FILE, encoding='cp1252',
+                          index_col='Country Name').dropna(axis=0)
 
     # The test_df has one extra country. Line up train and test.
     test_df = test_df.loc[train_df.index]
 
+    if drop_non_countries:
+        train_df = train_df.drop(NON_COUNTRIES)
+        test_df = test_df.drop(NON_COUNTRIES)
+
     # Get matrices.
-    train_mat = train_df.drop(['Country Name'], axis=1).values.T.astype(int)
-    test_mat = test_df.drop(['Country Name'], axis=1).values.T.astype(int)
+    train_mat = train_df.values.T.astype(int)
+    test_mat = test_df.values.T.astype(int)
 
     # Grab list and number of countries for convenience.
-    countries = train_df['Country Name']
+    countries = train_df.index.values
     num_countries = countries.shape[0]
 
     # Initialize queues for parallel processing.
@@ -211,7 +249,6 @@ def fit_for_all():
 
     # Loop over all the countries (columns of the train matrix).
     for i in range(num_countries):
-    #for i in range(NUM_PROCESSES):
         # Put boolean array in the queue.
         queue_in.put((i, num_countries))
 
@@ -219,24 +256,20 @@ def fit_for_all():
     queue_in.join()
 
     # Track coefficients.
-    best_coeff = pd.DataFrame(0.0, columns=train_df['Country Name'],
-                              index=train_df['Country Name'])
+    best_coeff = pd.DataFrame(0.0, columns=countries, index=countries)
 
     # Track training scores.
-    best_scores = pd.Series(0.0, index=train_df['Country Name'])
+    best_scores = pd.Series(0.0, index=countries)
 
     # Track predictions.
-    predictions = pd.DataFrame(0.0,
-                               columns=test_df.columns.drop('Country Name'),
-                               index=test_df['Country Name'])
+    predictions = pd.DataFrame(0.0, columns=test_df.columns, index=countries)
 
     # Map data.
     for _ in range(num_countries):
-    #for _ in range(NUM_PROCESSES):
         # Grab data from the queue.
         other_countries, s, c, p = queue_out.get()
 
-        country = countries[~other_countries].values[0]
+        country = countries[~other_countries][0]
 
         # Map.
         best_scores.loc[~other_countries] = s
@@ -262,4 +295,4 @@ def fit_for_all():
 
 
 if __name__ == '__main__':
-    fit_for_all()
+    fit_for_all(drop_non_countries=True)
