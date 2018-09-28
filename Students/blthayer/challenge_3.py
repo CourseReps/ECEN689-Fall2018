@@ -35,14 +35,15 @@ COEFF_MAX = 5
 
 # Initialize alphas for Lasso. This is terrible hard-coding, but hey, I
 # had to add more as I went and copy + paste was easy :)
-ALPHAS1 = 10 ** 10 * np.linspace(10, 0.1, 100)
+ALPHAS0 = 10 ** 10 * np.linspace(1, 0, 100)
+ALPHAS1 = 10 ** 10 * np.linspace(10, 1, 100)
 ALPHAS2 = 10 ** 10 * np.linspace(100, 10,  100)
 ALPHAS3 = 10 ** 10 * np.linspace(1000, 100, 100)
 ALPHAS4 = 10 ** 10 * np.linspace(10000, 1000, 100)
 ALPHAS5 = 10 ** 10 * np.linspace(100000, 10000, 100)
 ALPHAS6 = 10 ** 10 * np.linspace(1000000, 100000, 100)
 
-ALL_ALPHAS = [ALPHAS1, ALPHAS2, ALPHAS3, ALPHAS4, ALPHAS5, ALPHAS6]
+ALL_ALPHAS = [ALPHAS0, ALPHAS1, ALPHAS2, ALPHAS3, ALPHAS4, ALPHAS5, ALPHAS6]
 
 # Iterations and tolerance for Lasso.
 MAX_ITER = 100000
@@ -50,6 +51,11 @@ TOL = 0.01
 
 # Use all processors
 NUM_PROCESSES = cpu_count()
+
+# Tolerances for checking if a coefficient is close to zero. We'll go
+# four orders of magnitude "closer" than the defaults.
+ATOL = 1e-12
+RTOL = 1e-09
 
 # List of non-countries (aggregations) to remove so that we're only
 # considering countries
@@ -117,7 +123,7 @@ def lasso_for_alphas(alphas, x, y, x_test):
         c = lasso.coef_
 
         # Track coefficients if we have <= 5 "non-zero" elements.
-        non_zero = ~np.isclose(c, 0)
+        non_zero = ~np.isclose(c, 0, atol=ATOL, rtol=RTOL)
         num_non_zero = np.count_nonzero(non_zero)
 
         non_zero_coeff_list.append(num_non_zero)
@@ -281,18 +287,26 @@ def fit_for_all(drop_non_countries=False):
         queue_in.put_nowait(None)
         p.terminate()
 
-    # Save coefficients and predictions to file.
-    predictions.to_csv(PRED_OUT)
-    best_coeff.to_csv(COEFF_OUT, index_label='Country')
+    predictions.transpose().to_csv(PRED_OUT, index_label='Id',
+                                   encoding='cp1252')
+    best_coeff.to_csv(COEFF_OUT, index_label='Country Name', encoding='cp1252')
 
     # Print training scores.
     # TODO: Add prediction scores.
-    print('Summary of best R^2 scores:')
+    print('Summary of training R^2 scores:')
     print(best_scores.describe())
+
+    # Evaluate predictions.
+    mse = pd.DataFrame(mean_squared_error(test_df.values.T,
+                                          predictions.values.T,
+                                          multioutput='raw_values'))
+
+    print('Summary of prediction mean squared error:')
+    print(mse.describe())
 
 ########################################################################
 # MAIN
 
 
 if __name__ == '__main__':
-    fit_for_all(drop_non_countries=True)
+    fit_for_all(drop_non_countries=False)
