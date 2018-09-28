@@ -15,7 +15,7 @@ from sklearn.metrics import mean_squared_error
 ########################################################################
 # CONSTANTS
 # In/out paths.
-IN_DIR = join('..', '..', 'Challenges', '3Files')
+IN_DIR = join('..')
 OUT_DIR = '.'
 
 # Input files.
