@@ -7,6 +7,7 @@ from multiprocessing import Process, Queue, JoinableQueue, cpu_count
 # Installed
 import pandas as pd
 import numpy as np
+import networkx as nx
 import matplotlib.pyplot as plt
 
 from sklearn.linear_model import Ridge, Lasso
@@ -309,4 +310,39 @@ def fit_for_all(drop_non_countries=False):
 
 
 if __name__ == '__main__':
-    fit_for_all(drop_non_countries=False)
+    #fit_for_all(drop_non_countries=False)
+    # Read the coefficients file.
+    coef = pd.read_csv(COEFF_OUT, encoding='cp1252', index_col='Country Name')
+
+    # Create lists to store from and to nodes, and weights
+    f = []
+    t = []
+    w = []
+
+    # Loop over each DataFrame column, and map non-zero coefficients into
+    # f and t.
+    for country in coef.columns:
+        # Grab non-zero coefficients
+        non_zero = ~np.isclose(coef.loc[:, country], 0, atol=ATOL, rtol=RTOL)
+
+        # Get weights of connected countries.
+        country_weights = coef.loc[non_zero, country]
+        # Get list of connected countries.
+        connected_countries = coef.loc[non_zero].index.values
+
+        # Repeat this country (the from) for all our connected_countries
+        f_c = [country] * connected_countries.shape[0]
+
+        # Add to our lists.
+        f.extend(f_c)
+        t.extend(connected_countries)
+        w.extend(country_weights)
+
+    # Put the from and to into a DataFrame
+    tf_df = pd.DataFrame({'from': f, 'to': t})
+
+    # Build a graph.
+    G = nx.from_pandas_edgelist(tf_df, 'from', 'to')
+    nx.draw(G, with_labels=True)
+    plt.show()
+    pass
