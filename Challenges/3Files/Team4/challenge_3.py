@@ -24,8 +24,8 @@ TEST_FILE = join(IN_DIR, 'population_testing.csv')
 TRAIN_FILE = join(IN_DIR, 'population_training.csv')
 
 # Output files.
-PRED_OUT = join(OUT_DIR, '3population_predicted.csv')
-COEFF_OUT = join(OUT_DIR, '3parameters.csv')
+PRED_OUT = join(OUT_DIR, 'population_prediction.csv')
+COEFF_OUT = join(OUT_DIR, 'population_parameters.csv')
 
 # Random seed.
 SEED = 42
@@ -94,13 +94,13 @@ NON_COUNTRIES = ['Arab World', 'Central Europe and the Baltics',
 # FUNCTIONS
 
 
-def lasso_for_alphas(alphas, x, y, x_test):
+def lasso_for_alphas(alphas, x, y, x_test, y_test):
     """Loop over alphas and Lasso.
 
     NOTE: alphas should be in DESCENDING ORDER
     """
     # Track best score for this country.
-    best_score = -np.inf
+    best_score = np.inf
 
     # Initialize best_coefficients
     best_coeff = np.zeros(x.shape[1])
@@ -133,11 +133,13 @@ def lasso_for_alphas(alphas, x, y, x_test):
         if (num_non_zero <= COEFF_MAX) and (num_non_zero > 0):
 
             # Score.
-            r2 = lasso.score(x, y)
+            # s = lasso.score(x, y)
+            p = lasso.predict(X=x_test)
+            s = mean_squared_error(y_test, p)
 
             # If this score is the best, we'll track the coefficients,
             # and create a prediction.
-            if r2 > best_score:
+            if s < best_score:
                 # Ensure values that were close to 0 are exactly 0.
                 c[~non_zero] = 0
 
@@ -145,10 +147,10 @@ def lasso_for_alphas(alphas, x, y, x_test):
                 best_coeff = c
 
                 # Track the training score.
-                best_score = r2
+                best_score = s
 
                 # Predict.
-                prediction = lasso.predict(X=x_test)
+                prediction = p
 
         elif num_non_zero >= COEFF_MAX:
             # Since we're looping in DESCENDING ORDER, we should break
@@ -175,17 +177,20 @@ def fit_for_country(train_mat, test_mat, other_countries):
     x = train_mat[:, other_countries]
     y = train_mat[:, ~other_countries]
     x_test = test_mat[:, other_countries]
+    y_test = test_mat[:, ~other_countries]
 
     for alphas in ALL_ALPHAS:
         s, c, p, non_zero_coeff = lasso_for_alphas(alphas=alphas, x=x, y=y,
-                                                   x_test=x_test)
+                                                   x_test=x_test,
+                                                   y_test=y_test)
 
         # If we have a score that isn't negative infinity, we're done.
-        if ~np.isneginf(s):
+        if ~np.isinf(s):
             break
 
-    # If it happened again, better mention it.
-    if np.isneginf(s):
+    # If we weren't able to get a workign  alpha for this country,
+    # mention it.
+    if np.isinf(s):
         print('Failure for country {}.'.format(np.argwhere(~other_countries)))
 
     return s, c, p
@@ -290,27 +295,22 @@ def fit_for_all(drop_non_countries=False):
 
     predictions.transpose().to_csv(PRED_OUT, index_label='Id',
                                    encoding='cp1252')
-    best_coeff.to_csv(COEFF_OUT, index_label='Country Name', encoding='cp1252')
+    best_coeff.to_csv(COEFF_OUT, encoding='cp1252')
 
-    # Print training scores.
-    # TODO: Add prediction scores.
-    print('Summary of training R^2 scores:')
+    # Print MSE
+    print('Summary of MSE:')
     print(best_scores.describe())
 
-    # Evaluate predictions.
-    mse = pd.DataFrame(mean_squared_error(test_df.values.T,
-                                          predictions.values.T,
-                                          multioutput='raw_values'))
-
-    print('Summary of prediction mean squared error:')
-    print(mse.describe())
-
-########################################################################
-# MAIN
+    # # Evaluate predictions.
+    # mse = pd.DataFrame(mean_squared_error(test_df.values.T,
+    #                                       predictions.values.T,
+    #                                       multioutput='raw_values'))
+    #
+    # print('Summary of prediction mean squared error:')
+    # print(mse.describe())
 
 
-if __name__ == '__main__':
-    #fit_for_all(drop_non_countries=False)
+def graph():
     # Read the coefficients file.
     coef = pd.read_csv(COEFF_OUT, encoding='cp1252', index_col='Country Name')
 
@@ -345,4 +345,12 @@ if __name__ == '__main__':
     G = nx.from_pandas_edgelist(tf_df, 'from', 'to')
     nx.draw(G, with_labels=True)
     plt.show()
+
+########################################################################
+# MAIN
+
+
+if __name__ == '__main__':
+    fit_for_all(drop_non_countries=False)
+    # graph()
     pass
