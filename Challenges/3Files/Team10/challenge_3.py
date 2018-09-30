@@ -1,19 +1,21 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Fri Sep 28 17:33:40 2018
+Created on Sat Sep 29 19:54:57 2018
 
 Name: khalednakhleh
 """
+
 import pandas as pd
 import numpy as np
 from sklearn.linear_model import Lasso
 from timeit import default_timer as timer
 from sklearn.metrics import mean_squared_error as mse
 
-def lasso_prediction(x, y):
-        
-    lasso = Lasso(normalize = "True", tol = 0.001, max_iter = 5000000)
+
+def lasso_pred(x, y):
+    
+    lasso = Lasso(normalize = "True", tol = 0.001, max_iter = 50000)
     w, q = x.shape
     
     coefs = []
@@ -21,49 +23,99 @@ def lasso_prediction(x, y):
     
     i = 0
     
-    alphas = 10 ** (np.linspace(0.01, 8, 1000))
-    
-    while i < q: 
+    while i < q:
         
-        x_i = x
+        start = timer() 
         print("\n------------------------------------\n")
         name ="Fitting for country no.: %s" %(i + 1)
         print(name)
-    
-        lasso.set_params(alpha = 1000000000)
-        population_vector = x.iloc[:, i]
-        y_true = y.iloc[:, i]
-        lasso.fit(x_i, population_vector)    
-        prediction = lasso.predict(y)
-        error = mse(y_true, prediction)   
-         
-        for a in alphas:
         
-            lasso.set_params(alpha = a)
+        if x.iloc[0, i] < 2500000:   
+        
+            alpha = 1
+            lasso.set_params(alpha = alpha)
             population_vector = x.iloc[:, i]
+            x.iloc[:, i] = np.zeros(w)
             y_true = y.iloc[:, i]
-            lasso.fit(x, population_vector)
+            lasso.fit(x, population_vector) 
             prediction = lasso.predict(y)
-            mean_error = mse(y_true, prediction)   
-      
-            if (mean_error < error) and 0 < np.count_nonzero(lasso.coef_) <= 5:     
+            error = mse(y_true, prediction)  
+            x.iloc[:, i] = population_vector
+            
+            while np.count_nonzero(lasso.coef_) > 5:
+                
+                alpha = alpha + 10
+                lasso.set_params(alpha = alpha)
+                population_vector = x.iloc[:, i]
+                x.iloc[:, i] = np.zeros(w)
+                y_true = y.iloc[:, i]
+                lasso.fit(x, population_vector)
+                prediction = lasso.predict(y)
+                mean_error = mse(y_true, prediction)
+                x.iloc[:, i] = population_vector
+                
+            if (mean_error < error):
                 coefs_best = lasso.coef_
                 pred_best = prediction
                 error = mean_error
-                alpha_value = a
+                alpha_value = alpha
                 country_number = np.count_nonzero(lasso.coef_)
+     
+            coefs.append(coefs_best)
+            preds.append(pred_best)  
+            
+            end_timer = timer() - start
+        
+            time_statement = "Fitting time for country no. %s: " %(i + 1)
+            print(time_statement + str(round(end_timer, 3)) + " seconds.")
+            print("Alpha value: " + str(alpha_value))
+            print("Number of countries used for fitting: " + str(country_number))
                 
-        coefs.append(coefs_best)
-        preds.append(pred_best)     
-        print("Aplha value: " + str(alpha_value))
-        print("Number of countries used for fitting: " + str(country_number))
-        i = i + 1 
-
+        else:
         
- 
+            alpha = 1000
+            lasso.set_params(alpha = alpha)
+            population_vector = x.iloc[:, i]
+            x.iloc[:, i] = np.zeros(w)
+            y_true = y.iloc[:, i]
+            lasso.fit(x, population_vector) 
+            prediction = lasso.predict(y)
+            error = mse(y_true, prediction)  
+            x.iloc[:, i] = population_vector
+            
+            while np.count_nonzero(lasso.coef_) > 5:
+                
+                alpha = alpha + 10000
+                lasso.set_params(alpha = alpha)
+                population_vector = x.iloc[:, i]
+                x.iloc[:, i] = np.zeros(w)
+                y_true = y.iloc[:, i]
+                lasso.fit(x, population_vector)
+                prediction = lasso.predict(y)
+                mean_error = mse(y_true, prediction)
+                x.iloc[:, i] = population_vector
+                
+            if (mean_error < error):
+                coefs_best = lasso.coef_
+                pred_best = prediction
+                error = mean_error
+                alpha_value = alpha
+                country_number = np.count_nonzero(lasso.coef_)
+     
+            coefs.append(coefs_best)
+            preds.append(pred_best)   
+            
+            end_timer = timer() - start
+        
+            time_statement = "Fitting time for country no. %s: " %(i + 1)
+            print(time_statement + str(round(end_timer, 3)) + " seconds.")
+            print("Alpha value: " + str(alpha_value))
+            print("Number of countries used for fitting: " + str(country_number))
+               
+        i = i + 1
+        
     return coefs, preds
-    
-        
+
 
 def main():
     
@@ -76,16 +128,13 @@ def main():
     population_testing_df.drop(['Country Name'], axis=1, inplace=True)
     
     
-    population_training_df = population_training_df.T
-    population_training_df = population_training_df.T
-    
     X = population_training_df.T
     Y = population_testing_df.T
 
 
     start = timer() 
     
-    coefs, preds = lasso_prediction(X, Y)
+    coefs, preds = lasso_pred(X, Y)
     
     preds = np.transpose(preds)
     coefs = np.transpose(coefs)
@@ -101,16 +150,14 @@ def main():
  
     preds_1.reindex(index = kaggle_file.index, columns = kaggle_file.columns)
     coefs_1.reindex(index = parameter_file.index, columns = parameter_file.columns)
-    preds_1.to_csv("reformatted_preds.csv")
-    coefs_1.to_csv("reformatted_coefs.csv")
+    preds_1.to_csv("predictions.csv")
+    coefs_1.to_csv("coefficients.csv")
  
-    
     timer_end = timer() - start
+    
     print("\n\nTotal elapsed time: " + str(timer_end) + " seconds.")
-
 
 
 if __name__ == "__main__":
     main()
   
-    
