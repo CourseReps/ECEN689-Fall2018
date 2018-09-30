@@ -8,10 +8,12 @@ from multiprocessing import Process, Queue, JoinableQueue, cpu_count
 import pandas as pd
 import numpy as np
 import networkx as nx
+import matplotlib as mpl
 import matplotlib.pyplot as plt
 
 from sklearn.linear_model import Ridge, Lasso
 from sklearn.metrics import mean_squared_error
+from sklearn.preprocessing import MinMaxScaler
 
 ########################################################################
 # CONSTANTS
@@ -312,17 +314,35 @@ def fit_for_all(drop_non_countries=False):
 
 def graph():
     # Read the coefficients file.
-    coef = pd.read_csv(COEFF_OUT, encoding='cp1252', index_col='Country Name')
+    coef = pd.read_csv(COEFF_OUT, encoding='cp1252', index_col=0)
 
-    # Create lists to store from and to nodes, and weights
+    # Read the training data (we'll size the nodes based on max pop in
+    # training).
+    train_df = pd.read_csv(TRAIN_FILE, encoding='cp1252',
+                           index_col='Country Name').dropna(axis=0)
+
+    # Get maximum population per country.
+    max_pop = train_df.max(axis=1)
+
+    # Scale so that data is on the range [0, 1]
+    node_size = (max_pop - max_pop.min()) / (max_pop.max() - max_pop.min())
+
+    # Convert to dictionary
+    node_size_dict = node_size.to_dict()
+
+    # For networkx to use the dictionary, we need to add another
+    # dictionary layer.
+    node_size_dict = {x: {'size': y} for x, y in node_size_dict.items()}
+
+    # Create lists to store from and to nodes, and coefficients
     f = []
     t = []
-    w = []
+    c = []
 
-    # Loop over each DataFrame column, and map non-zero coefficients into
-    # f and t.
+    # Loop over each DataFrame column, and map non-zero coefficients
+    # into f and t.
     for country in coef.columns:
-        # Grab non-zero coefficients
+        # Grab non-zero coefficients.
         non_zero = ~np.isclose(coef.loc[:, country], 0, atol=ATOL, rtol=RTOL)
 
         # Get weights of connected countries.
@@ -330,27 +350,54 @@ def graph():
         # Get list of connected countries.
         connected_countries = coef.loc[non_zero].index.values
 
-        # Repeat this country (the from) for all our connected_countries
+        # Repeat this country (from) for all our connected_countries.
         f_c = [country] * connected_countries.shape[0]
 
         # Add to our lists.
         f.extend(f_c)
         t.extend(connected_countries)
-        w.extend(country_weights)
+        c.extend(country_weights)
 
-    # Put the from and to into a DataFrame
-    tf_df = pd.DataFrame({'from': f, 'to': t})
+    # Put the from and to into a DataFrame.
+    tf_df = pd.DataFrame({'from': f, 'to': t, 'weight': c})
+
+    # Create an attribute for positive or negative correlation.
+    tf_df['positive'] = tf_df['weight'] > 0
+
+    # Make the weights positive.
+    tf_df['weight'] = tf_df['weight'].abs()
 
     # Build a graph.
-    G = nx.from_pandas_edgelist(tf_df, 'from', 'to')
-    nx.draw(G, with_labels=True)
-    plt.show()
+    G = nx.from_pandas_edgelist(tf_df, 'from', 'to', edge_attr=True,
+                                create_using=nx.MultiDiGraph)
+
+    nx.set_node_attributes(G, node_size_dict)
+
+    # Save the graph in a form we can use with Gephi.
+    nx.readwrite.gexf.write_gexf(G, 'graph.gexf')
+
+    # # Setup graph styling.
+    # graph_style()
+    #
+    # fig, ax = plt.subplots(1, 1)
+    # # Draw graph.
+    # nx.drawing.nx_pylab.draw_networkx(G, arrows=True, with_labels=True,
+    #                                   node_size=dot_size, ax=ax)
+    # plt.show()
+
+def graph_style():
+    """Helper to setup matplotlib for graphing"""
+    # Get a large figure
+    mpl.rcParams['figure.figsize'] = (11*0.9, 8.5*0.9)
 
 ########################################################################
 # MAIN
 
 
 if __name__ == '__main__':
+    # Perform fit.
     fit_for_all(drop_non_countries=False)
-    # graph()
+
+    # Create and save graph.
+    graph()
     pass
