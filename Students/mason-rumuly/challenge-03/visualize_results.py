@@ -12,7 +12,7 @@ test_pred_filename = destin_dir + '3population_predicted.csv'
 
 # import data
 train_data = pd.read_csv(train_filename, index_col='Country Name', encoding='cp1252').dropna(axis=0)
-test_data = pd.read_csv(test_filename, index_col='Country Name', encoding='cp1252').dropna(axis=0).drop('Kuwait')
+test_data = pd.read_csv(test_filename, index_col='Country Name', encoding='cp1252').dropna(axis=0)
 train_pred_data = pd.read_csv(train_pred_filename, index_col='Country Name', encoding='cp1252').dropna(axis=0)
 test_pred_data =  pd.read_csv(test_pred_filename, index_col='Country Name', encoding='cp1252').dropna(axis=0)
 
