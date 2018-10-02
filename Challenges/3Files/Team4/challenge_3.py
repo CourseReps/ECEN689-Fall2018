@@ -37,20 +37,15 @@ SEED = 42
 # as predictors)
 COEFF_MAX = 5
 
-# Initialize alphas for Lasso. This is terrible hard-coding, but hey, I
-# had to add more as I went and copy + paste was easy :)
-ALPHAS0 = 10 ** 10 * np.linspace(1, 0, 10000)
-ALPHAS1 = 10 ** 10 * np.linspace(10, 1, 10000)
-ALPHAS2 = 10 ** 10 * np.linspace(100, 10,  10000)
-ALPHAS3 = 10 ** 10 * np.linspace(1000, 100, 10000)
-ALPHAS4 = 10 ** 10 * np.linspace(10000, 1000, 10000)
-ALPHAS5 = 10 ** 10 * np.linspace(100000, 10000, 10000)
-ALPHAS6 = 10 ** 10 * np.linspace(1000000, 100000, 10000)
-
-ALL_ALPHAS = [ALPHAS0, ALPHAS1, ALPHAS2, ALPHAS3, ALPHAS4, ALPHAS5, ALPHAS6]
+# Initialize alphas for Lasso.
+ALL_ALPHAS = []
+a = np.linspace(0.1, 0.01, 100)
+b = np.logspace(1, 20, 20)
+for mult in b:
+    ALL_ALPHAS.append(a * mult)
 
 # Iterations and tolerance for Lasso.
-MAX_ITER = 100000
+MAX_ITER = 1000000
 TOL = 0.01
 
 # Use all processors
@@ -115,9 +110,9 @@ def lasso_for_alphas(alphas, x, y, x_test, y_test):
     non_zero_coeff_list = []
 
     # Loop over alphas and fit.
-    for a in alphas:
+    for alpha in alphas:
         # Initialize a Lasso object
-        lasso = Lasso(alpha=a, random_state=SEED, max_iter=MAX_ITER,
+        lasso = Lasso(alpha=alpha, random_state=SEED, max_iter=MAX_ITER,
                       tol=TOL)
 
         # Fit.
@@ -182,21 +177,24 @@ def fit_for_country(train_mat, test_mat, other_countries):
     x_test = test_mat[:, other_countries]
     y_test = test_mat[:, ~other_countries]
 
+    best_score = np.inf
+    return_tuple  = ()
+
     for alphas in ALL_ALPHAS:
         s, c, p, non_zero_coeff = lasso_for_alphas(alphas=alphas, x=x, y=y,
                                                    x_test=x_test,
                                                    y_test=y_test)
 
-        # If we have a score that isn't negative infinity, we're done.
-        if ~np.isinf(s):
-            break
+        if s < best_score:
+            return_tuple = (s, c, p)
+            best_score = s
 
     # If we weren't able to get a workign  alpha for this country,
     # mention it.
-    if np.isinf(s):
+    if np.isinf(best_score):
         print('Failure for country {}.'.format(np.argwhere(~other_countries)))
 
-    return s, c, p
+    return return_tuple
 
 
 def fit_for_country_worker(train_mat, test_mat, queue_in, queue_out):
