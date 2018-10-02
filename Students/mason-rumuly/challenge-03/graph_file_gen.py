@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+from make_final import drop_non_countries
 
 # file names
 adjacency_mat_file = 'Students/mason-rumuly/challenge-03/3parameters_countries_only.csv'
@@ -8,6 +9,7 @@ edge_file = 'Students/mason-rumuly/challenge-03/edges.csv'
 
 # import coefficient table
 adjacency_mat = pd.read_csv(adjacency_mat_file, index_col='Country Name', encoding='cp1252').dropna(axis=0)
+adjacency_mat = drop_non_countries(adjacency_mat)
 countries = list(enumerate(adjacency_mat.index.values))
 
 # Enumerate nodes
