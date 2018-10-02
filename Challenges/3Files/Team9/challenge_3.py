@@ -78,7 +78,7 @@ def drop_non_countries(dataframe):
 
 # mse over test set: 5.30564383207e+13
 # mse over test set when normalized: 1.67974912494e+15
-def lasso_choose_countries(target, n, dataframe, log10_alpha = 8, max_alpha_iter = 100):
+def lasso_choose_countries(target, n, dataframe, log10_alpha = 8, max_alpha_iter = 50):
     '''
     Chooses n countries from the dataframe which best predict the target country value
     Uses a Lasso process which uses binary estimation to find a correct alpha value
@@ -202,6 +202,7 @@ if __name__ == "__main__":
         country: predictions[i]
         for i, country in enumerate(countries)
     }, index=pop_test.T.index)
+    pred_mat = pred_mat[countries]
     pred_mat.index.name = 'Id'
     pred_mat.to_csv(submission_loc + 'population_prediction.csv')
 
@@ -210,7 +211,7 @@ if __name__ == "__main__":
         country: to_sparse_vector(chosen_countries[i], regressions[i].coef_, countries)
         for i, country in enumerate(countries)
     }, index=countries)
-    coef_mat.index.name = 'Country Name'
+    coef_mat = coef_mat.loc[countries, countries]
     coef_mat.to_csv(submission_loc + 'population_parameters.csv')
 
     print(np.average(mse))
