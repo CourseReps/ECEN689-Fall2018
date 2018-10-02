@@ -346,6 +346,7 @@ def test_predictions():
     else:
         print('Testing failed! Coefficients do not lead to predictions.')
 
+
 def color_bars(colors, bar_list):
     """Helper function to color bars in a bar chart."""
     # Loop and assign colors to each bar.
@@ -476,6 +477,21 @@ def graph():
     plt.savefig('bar.eps', type='eps', dpi=1000)
 
     ####################################################################
+    # BOX PLOT OF OUT-DEGREE
+
+    # Compute the in-degree of all nodes.
+    out_degree = pd.Series(dict(g.out_degree))
+
+    # Create the box plot.
+    fig_od, ax_od = plt.subplots()
+    ax_od.boxplot(out_degree, vert=True, whis=[0, 100])
+    ax_od.set_axisbelow(True)
+    ax_od.grid(b=True, which='major', axis='y')
+    ax_od.set_xlabel('Coefficients')
+    plt.tight_layout()
+    plt.savefig('box_out_degree.eps', type='eps', dpi=100)
+
+    ####################################################################
     # BOX PLOT OF COEFFICIENTS FOR NON-ZERO IN-DEGREE
     # WARNING: Variables from previous sections are re-used here.
 
@@ -502,7 +518,7 @@ def graph():
     ax_box.grid(b=True, which='major', axis='both')
     ax_box.set_xlabel('Coefficients')
     plt.tight_layout()
-    plt.savefig('box.eps', type='eps', dpi=100)
+    plt.savefig('box_in_degree.eps', type='eps', dpi=100)
 
     ####################################################################
     # ASSESS PREDICTION ERRORS
@@ -531,7 +547,7 @@ def graph():
     ax_acc.set_axisbelow(True)
     ax_acc.grid(b=True, which='major', axis='y')
     plt.tight_layout()
-    plt.savefig('acc_box.eps', type='eps', dpi=1000)
+    plt.savefig('box_accuracy.eps', type='eps', dpi=1000)
 
     # Describe.
     print('Mean prediction accuracy for all countries:')
@@ -560,5 +576,5 @@ if __name__ == '__main__':
     # Test fit.
     test_predictions()
 
-    # Create and save graph.
-    #graph()
+    # Create and save graph, plus figures for report.
+    # graph()
