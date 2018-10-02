@@ -3,6 +3,7 @@
 # Standard library
 from os.path import join
 from multiprocessing import Process, Queue, JoinableQueue, cpu_count
+import textwrap
 
 # Installed
 import pandas as pd
@@ -10,10 +11,10 @@ import numpy as np
 import networkx as nx
 import matplotlib as mpl
 import matplotlib.pyplot as plt
+from matplotlib.ticker import FuncFormatter
 
-from sklearn.linear_model import Ridge, Lasso
+from sklearn.linear_model import Lasso
 from sklearn.metrics import mean_squared_error
-from sklearn.preprocessing import MinMaxScaler
 
 ########################################################################
 # CONSTANTS
@@ -312,7 +313,33 @@ def fit_for_all(drop_non_countries=False):
     # print(mse.describe())
 
 
+def color_bars(colors, bar_list):
+    """Helper function to color bars in a bar chart."""
+    # Loop and assign colors to each bar.
+    color_index = 0
+    for b in bar_list:
+        try:
+            c = colors[color_index]
+        except IndexError:
+            # We 'overflowed' - reset index to 0.
+            color_index = 0
+            c = colors[0]
+
+        # Set bar color.
+        b.set_facecolor(c)
+
+        # Increment color index for next iteration.
+        color_index += 1
+
+
 def graph():
+    """Function for graph/analysis portion of challenge 3.
+
+    Creates plots for report, and saves graph as .gexf file for Gephi.
+    """
+    ####################################################################
+    # CREATE GRAPH OF COEFFICIENTS
+
     # Read the coefficients file.
     coef = pd.read_csv(COEFF_OUT, encoding='cp1252', index_col=0)
 
@@ -368,27 +395,126 @@ def graph():
     tf_df['weight'] = tf_df['weight'].abs()
 
     # Build a graph.
-    G = nx.from_pandas_edgelist(tf_df, 'from', 'to', edge_attr=True,
+    g = nx.from_pandas_edgelist(tf_df, 'from', 'to', edge_attr=True,
                                 create_using=nx.MultiDiGraph)
 
-    nx.set_node_attributes(G, node_size_dict)
+    # Add the node sizing as node attributes.
+    nx.set_node_attributes(g, node_size_dict)
 
+    ####################################################################
+    # SAVE GRAPH TO FILE
     # Save the graph in a form we can use with Gephi.
-    nx.readwrite.gexf.write_gexf(G, 'graph.gexf')
+    nx.readwrite.gexf.write_gexf(g, 'graph.gexf')
 
-    # # Setup graph styling.
-    # graph_style()
-    #
-    # fig, ax = plt.subplots(1, 1)
-    # # Draw graph.
-    # nx.drawing.nx_pylab.draw_networkx(G, arrows=True, with_labels=True,
-    #                                   node_size=dot_size, ax=ax)
-    # plt.show()
+    ####################################################################
+    # BAR CHART OF IN-DEGREE
 
-def graph_style():
-    """Helper to setup matplotlib for graphing"""
-    # Get a large figure
-    mpl.rcParams['figure.figsize'] = (11*0.9, 8.5*0.9)
+    # Compute the in-degree of all nodes.
+    in_degree = pd.Series(dict(g.in_degree))
+
+    # Grab and sort degree > 0
+    non_zero_degree = in_degree[in_degree[:] > 0]
+    non_zero_degree.sort_values(ascending=False, inplace=True)
+
+    # Create index for bar chart.
+    ind = np.arange(1, non_zero_degree.shape[0] + 1)
+
+    # Get figure and axes for this plot.
+    fig_bar, ax_bar = plt.subplots()
+
+    # Do initial bar plotting.
+    bar_list = ax_bar.barh(ind, non_zero_degree.values)
+
+    # Get the color cycle.
+    colors = mpl.rcParams['axes.prop_cycle'].by_key()['color']
+
+    # Color all the bars.
+    color_bars(colors, bar_list)
+
+    # Grab labels from non_zero_degree, and wrap them.
+    labels = ['\n'.join(textwrap.wrap(l, 23)) for l in
+              non_zero_degree.index.values]
+    # Format bar chart.
+    plt.yticks(ind, labels)
+    ax_bar.set_axisbelow(True)
+    ax_bar.grid(b=True, which='major', axis='x')
+    ax_bar.set_xlabel('In-Degree')
+    plt.tight_layout()
+    plt.savefig('bar.eps', type='eps', dpi=1000)
+
+    ####################################################################
+    # BOX PLOT OF COEFFICIENTS FOR NON-ZERO IN-DEGREE
+    # WARNING: Variables from previous sections are re-used here.
+
+    # First, we need to grab all the incoming weights for the non-zero
+    # countries.
+    weight_list = []
+    for country in non_zero_degree.index:
+        country_bool = tf_df['to'] == country
+        # Pull weights for all incoming countries.
+        country_df = tf_df.loc[country_bool, :]
+        # Doing all this mumbo-jumbo to avoid a setting with copy
+        # warning.
+        weights = pd.Series(country_df.loc[:, 'weight'].values)
+        neg_values = ~country_df.loc[:, 'positive'].values
+        # Make negative weights negative.
+        weights.loc[neg_values] = -1 * weights.loc[neg_values]
+        weight_list.append(weights)
+
+    # Create the box plot.
+    fig_box, ax_box = plt.subplots()
+    ax_box.boxplot(weight_list, vert=False, whis=[5, 95])
+    plt.yticks(ind, labels)
+    ax_box.set_axisbelow(True)
+    ax_box.grid(b=True, which='major', axis='both')
+    ax_box.set_xlabel('Coefficients')
+    plt.tight_layout()
+    plt.savefig('box.eps', type='eps', dpi=100)
+
+    ####################################################################
+    # ASSESS PREDICTION ERRORS
+    test_df = pd.read_csv(TEST_FILE, encoding='cp1252',
+                          index_col='Country Name').dropna(axis=0)
+
+    # The test_df has one extra country. Line up train and test.
+    test_df = test_df.loc[train_df.index]
+
+    test_t = test_df.transpose()
+
+    # Load up the predictions.
+    pred_df = pd.read_csv(PRED_OUT, encoding='cp1252', index_col='Id')
+
+    # Line up the indexes. DANGER ZONE!
+    pred_df.index = test_t.index
+
+    # Compute accuracy.
+    accuracy = 1 - ((pred_df - test_t).abs()/test_t).sum()/test_t.shape[0]
+
+    # Make boxplot of accuracy
+    fig_acc, ax_acc = plt.subplots()
+    ax_acc.boxplot(accuracy.values, whis=[5, 95])
+    ax_acc.set_ylabel('Mean Absolute Percent Correct')
+    ax_acc.yaxis.set_major_formatter(FuncFormatter('{0:.0%}'.format))
+    ax_acc.set_axisbelow(True)
+    ax_acc.grid(b=True, which='major', axis='y')
+    plt.tight_layout()
+    plt.savefig('acc_box.eps', type='eps', dpi=1000)
+
+    # Describe.
+    print('Mean prediction accuracy for all countries:')
+    print(accuracy.describe())
+
+    # Make DataFrame of accuracy and maximum population
+    acc_vs_pop = pd.DataFrame({'accuracy': accuracy, 'max_pop': max_pop})
+    fig_scatter, ax_scatter = plt.subplots()
+    ax_scatter.semilogx(acc_vs_pop['max_pop'], acc_vs_pop['accuracy'],
+                        linestyle='None', marker ='o')
+    ax_scatter.set_xlabel('Maximum Population, 1960-1999')
+    ax_scatter.set_ylabel('Mean Prediction Accuracy')
+    ax_scatter.yaxis.set_major_formatter(FuncFormatter('{0:.0%}'.format))
+    plt.tight_layout()
+    plt.savefig('scatter.eps', type='eps', dpi=1000)
+
 
 ########################################################################
 # MAIN
@@ -400,4 +526,3 @@ if __name__ == '__main__':
 
     # Create and save graph.
     graph()
-    pass
