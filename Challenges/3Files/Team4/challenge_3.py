@@ -13,7 +13,7 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 from matplotlib.ticker import FuncFormatter
 
-from sklearn.linear_model import Lasso
+from sklearn.linear_model import Lasso, LinearRegression
 from sklearn.metrics import mean_squared_error
 
 ########################################################################
@@ -100,14 +100,8 @@ def lasso_for_alphas(alphas, x, y, x_test, y_test):
     # Track best score for this country.
     best_score = np.inf
 
-    # Initialize best_coefficients
-    best_coeff = np.zeros(x.shape[1])
-
-    # Initialize predictions.
-    prediction = np.zeros(x_test.shape[0])
-
-    # Track number of non-zero coefficients.
-    non_zero_coeff_list = []
+    # Track the final boolean of non-zero coefficients
+    final_non_zero = None
 
     # Loop over alphas and fit.
     for alpha in alphas:
@@ -125,8 +119,6 @@ def lasso_for_alphas(alphas, x, y, x_test, y_test):
         non_zero = ~np.isclose(c, 0, atol=ATOL, rtol=RTOL)
         num_non_zero = np.count_nonzero(non_zero)
 
-        non_zero_coeff_list.append(num_non_zero)
-
         # If we're below zero, track the minimum coefficients.
         if (num_non_zero <= COEFF_MAX) and (num_non_zero > 0):
 
@@ -138,17 +130,10 @@ def lasso_for_alphas(alphas, x, y, x_test, y_test):
             # If this score is the best, we'll track the coefficients,
             # and create a prediction.
             if s < best_score:
-                # Ensure values that were close to 0 are exactly 0.
-                c[~non_zero] = 0
-
-                # Put c into coeff.
-                best_coeff = c
+                final_non_zero = non_zero
 
                 # Track the training score.
                 best_score = s
-
-                # Predict.
-                prediction = p
 
         elif num_non_zero >= COEFF_MAX:
             # Since we're looping in DESCENDING ORDER, we should break
@@ -165,11 +150,11 @@ def lasso_for_alphas(alphas, x, y, x_test, y_test):
             # What's going on?
             raise UserWarning('WTF?')
 
-    return best_score, best_coeff, prediction, non_zero_coeff_list
+    return best_score, final_non_zero
 
 
 def fit_for_country(train_mat, test_mat, other_countries):
-    """Call scores, coefficients, and predictions for a given country.
+    """Loop over sets of alphas, get linear regression fit, track best.
     """
     # Extract x and y
     x = train_mat[:, other_countries]
@@ -177,19 +162,39 @@ def fit_for_country(train_mat, test_mat, other_countries):
     x_test = test_mat[:, other_countries]
     y_test = test_mat[:, ~other_countries]
 
+    # Initialize returns.
     best_score = np.inf
-    return_tuple  = ()
+    return_tuple = ()
 
     for alphas in ALL_ALPHAS:
-        s, c, p, non_zero_coeff = lasso_for_alphas(alphas=alphas, x=x, y=y,
-                                                   x_test=x_test,
-                                                   y_test=y_test)
+        # Perform lasso for this set of alphas.
+        score, non_zero = lasso_for_alphas(alphas=alphas, x=x, y=y,
+                                           x_test=x_test, y_test=y_test)
 
-        if s < best_score:
-            return_tuple = (s, c, p)
-            best_score = s
+        if not np.isinf(score):
+            # Initialize linear regression object.
+            lr = LinearRegression()
 
-    # If we weren't able to get a workign  alpha for this country,
+            # Fit and predict.
+            lr.fit(x[:, non_zero], y)
+            p = lr.predict(x_test[:, non_zero])
+
+            # Score prediction.
+            s = mean_squared_error(y_test, p)
+
+            if s < best_score:
+                # For tracking coefficients:
+                c = np.zeros(np.count_nonzero(other_countries))
+                # Place coefficients in the appropriate place. For some
+                # reason, the coefficients come back nested (like
+                # [[1, 2, 3]]), so we have to squeeze them out.
+                c[non_zero] = np.squeeze(lr.coef_)
+                # Update best score.
+                best_score = s
+                # Update final return.
+                return_tuple = (s, c, p)
+
+    # If we weren't able to get a working  alpha for this country,
     # mention it.
     if np.isinf(best_score):
         print('Failure for country {}.'.format(np.argwhere(~other_countries)))
@@ -287,7 +292,8 @@ def fit_for_all(drop_non_countries=False):
         # Map.
         best_scores.loc[~other_countries] = s
         best_coeff.loc[other_countries, country] = c
-        predictions.loc[~other_countries, :] = p
+        # p needs to be transformed (17x1 vs 1x17)
+        predictions.loc[~other_countries, :] = p.T
 
     # Shut down processes.
     for p in processes:
