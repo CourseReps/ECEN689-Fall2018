@@ -8,7 +8,7 @@ from sklearn.metrics import mean_squared_error as mse
 
 def lasso_pred(x, y):
     
-    lasso = Lasso(normalize = "True", tol = 0.00001, max_iter = 500000)
+    lasso = Lasso(normalize = "True", tol = 1e-35 , max_iter = 5000)
     w, q = x.shape
     
     coefs = []
@@ -17,7 +17,7 @@ def lasso_pred(x, y):
     alpha_max=0
     i = 0
     
-    while i < q:
+    while i<q :
         
             start = timer() 
             print("\n------------------------------------\n")
@@ -25,8 +25,8 @@ def lasso_pred(x, y):
             print(name)
       
         
-            alpha_min = 1
-            alpha_max = 10e15
+            alpha_min = 0.1
+            alpha_max = 10e30
             alpha_avg=(alpha_min + alpha_max)/2
             lasso.set_params(alpha = alpha_avg)
             population_vector = x.iloc[:, i]
@@ -37,7 +37,7 @@ def lasso_pred(x, y):
             error = mse(y_true, prediction)  
             x.iloc[:, i] = population_vector
             
-            for j in range(150):
+            for j in range(100):
             
                 #if(i == 60):
                     #print(alpha_min, alpha_max, np.count_nonzero(lasso.coef_))
@@ -52,9 +52,9 @@ def lasso_pred(x, y):
                         population_vector = x.iloc[:, i]
                         x.iloc[:, i] = np.zeros(w)
                         y_true = y.iloc[:, i]
-                        lasso.fit(x, population_vector)
+                        lasso.fit(x, population_vector) 
                         prediction = lasso.predict(y)
-                        mean_error = mse(y_true, prediction)
+                        mean_error = mse(y_true, prediction)  
                         x.iloc[:, i] = population_vector
                         
                     if np.count_nonzero(lasso.coef_) < 5:
@@ -65,16 +65,60 @@ def lasso_pred(x, y):
                         population_vector = x.iloc[:, i]
                         x.iloc[:, i] = np.zeros(w)
                         y_true = y.iloc[:, i]
-                        lasso.fit(x, population_vector)
+                        lasso.fit(x, population_vector) 
                         prediction = lasso.predict(y)
-                        mean_error = mse(y_true, prediction)
+                        mean_error = mse(y_true, prediction)  
                         x.iloc[:, i] = population_vector
-                        name ="Fitting for country no.: %s" %(i + 1)
                 
                 else:
                     break
+            
+            if np.count_nonzero(lasso.coef_) > 5:
                 
-            assert np.count_nonzero(lasso.coef_) <= 5, "too,amu non-zero"
+                    alpha_min = 1
+                    alpha_max = 10e20
+                    alpha_avg=(alpha_min + alpha_max)/2
+                    lasso.set_params(alpha = alpha_avg,normalize = "True", tol = 1e-20, max_iter = 50000)
+                    population_vector = x.iloc[:, i]
+                    x.iloc[:, i] = np.zeros(w)
+                    y_true = y.iloc[:, i]
+                    lasso.fit(x, population_vector) 
+                    prediction = lasso.predict(y)
+                    error = mse(y_true, prediction)  
+                    x.iloc[:, i] = population_vector
+                         
+                    for j in range(150):
+       
+                        if np.count_nonzero(lasso.coef_) > 5 or np.count_nonzero(lasso.coef_) < 5:
+                            
+                             if np.count_nonzero(lasso.coef_) > 5:
+                                alpha_min = alpha_avg
+                                alpha_avg=(alpha_min + alpha_max)/2
+                                lasso.set_params(alpha = alpha_avg,normalize = "True", tol = 1e-20, max_iter = 50000)
+                                population_vector = x.iloc[:, i]
+                                x.iloc[:, i] = np.zeros(w)
+                                y_true = y.iloc[:, i]
+                                lasso.fit(x, population_vector) 
+                                prediction = lasso.predict(y)
+                                mean_error = mse(y_true, prediction)  
+                                x.iloc[:, i] = population_vector
+                            
+                             if np.count_nonzero(lasso.coef_) < 5:
+                                alpha_max = alpha_avg
+                                alpha_avg=(alpha_min + alpha_max)/2
+                                lasso.set_params(alpha = alpha_avg,normalize = "True", tol = 1e-20, max_iter = 50000)
+                                population_vector = x.iloc[:, i]
+                                x.iloc[:, i] = np.zeros(w)
+                                y_true = y.iloc[:, i]
+                                lasso.fit(x, population_vector) 
+                                prediction = lasso.predict(y)
+                                mean_error = mse(y_true, prediction)  
+                                x.iloc[:, i] = population_vector
+                        else:
+                            break
+                
+                
+            assert np.count_nonzero(lasso.coef_) <= 5, "too many non-zero"
                 
             if (mean_error < error):
                 coefs_best = lasso.coef_
