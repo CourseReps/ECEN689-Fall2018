@@ -39,13 +39,13 @@ COEFF_MAX = 5
 
 # Initialize alphas for Lasso. This is terrible hard-coding, but hey, I
 # had to add more as I went and copy + paste was easy :)
-ALPHAS0 = 10 ** 10 * np.linspace(1, 0, 100)
-ALPHAS1 = 10 ** 10 * np.linspace(10, 1, 100)
-ALPHAS2 = 10 ** 10 * np.linspace(100, 10,  100)
-ALPHAS3 = 10 ** 10 * np.linspace(1000, 100, 100)
-ALPHAS4 = 10 ** 10 * np.linspace(10000, 1000, 100)
-ALPHAS5 = 10 ** 10 * np.linspace(100000, 10000, 100)
-ALPHAS6 = 10 ** 10 * np.linspace(1000000, 100000, 100)
+ALPHAS0 = 10 ** 10 * np.linspace(1, 0, 10000)
+ALPHAS1 = 10 ** 10 * np.linspace(10, 1, 10000)
+ALPHAS2 = 10 ** 10 * np.linspace(100, 10,  10000)
+ALPHAS3 = 10 ** 10 * np.linspace(1000, 100, 10000)
+ALPHAS4 = 10 ** 10 * np.linspace(10000, 1000, 10000)
+ALPHAS5 = 10 ** 10 * np.linspace(100000, 10000, 10000)
+ALPHAS6 = 10 ** 10 * np.linspace(1000000, 100000, 10000)
 
 ALL_ALPHAS = [ALPHAS0, ALPHAS1, ALPHAS2, ALPHAS3, ALPHAS4, ALPHAS5, ALPHAS6]
 
@@ -525,4 +525,4 @@ if __name__ == '__main__':
     fit_for_all(drop_non_countries=False)
 
     # Create and save graph.
-    graph()
+    #graph()
