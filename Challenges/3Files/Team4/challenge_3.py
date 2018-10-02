@@ -177,7 +177,7 @@ def fit_for_country(train_mat, test_mat, other_countries):
 
             # Fit and predict.
             lr.fit(x[:, non_zero], y)
-            p = lr.predict(x_test[:, non_zero])
+            p = lr.predict(X=x_test[:, non_zero])
 
             # Score prediction.
             s = mean_squared_error(y_test, p)
@@ -317,6 +317,36 @@ def fit_for_all(drop_non_countries=False):
     # print(mse.describe())
 
 
+def test_predictions():
+    """Ensure the predictions written to file are close """
+    # Load data
+    pred = pd.read_csv(PRED_OUT, encoding='cp1252', index_col='Id')
+    coef = pd.read_csv(COEFF_OUT, encoding='cp1252', index_col=0)
+    actual = pd.read_csv(TEST_FILE, encoding='cp1252',
+                         index_col='Country Name')
+
+    success = True
+    # Loop over countries.
+    for country in pred.columns:
+        # Derive predictions. Note - we'll be off by a constant (the
+        # intercept term)
+        derived_pred = np.matmul(coef.loc[:, country].values, actual.values)
+
+        # Get vector of differences.
+        diff = pred[country].values - derived_pred
+
+        # If all differences are nearly the same, then we're good.
+        all_same = np.all(np.isclose(diff[0], diff))
+
+        if not all_same:
+            success = False
+
+    if success:
+        print('Testing succeeded! Coefficients lead to predictions.')
+    else:
+        print('Testing failed! Coefficients do not lead to predictions.')
+
+
 def color_bars(colors, bar_list):
     """Helper function to color bars in a bar chart."""
     # Loop and assign colors to each bar.
@@ -447,6 +477,21 @@ def graph():
     plt.savefig('bar.eps', type='eps', dpi=1000)
 
     ####################################################################
+    # BOX PLOT OF OUT-DEGREE
+
+    # Compute the in-degree of all nodes.
+    out_degree = pd.Series(dict(g.out_degree))
+
+    # Create the box plot.
+    fig_od, ax_od = plt.subplots()
+    ax_od.boxplot(out_degree, vert=True, whis=[0, 100])
+    ax_od.set_axisbelow(True)
+    ax_od.grid(b=True, which='major', axis='y')
+    ax_od.set_xlabel('Coefficients')
+    plt.tight_layout()
+    plt.savefig('box_out_degree.eps', type='eps', dpi=100)
+
+    ####################################################################
     # BOX PLOT OF COEFFICIENTS FOR NON-ZERO IN-DEGREE
     # WARNING: Variables from previous sections are re-used here.
 
@@ -473,7 +518,7 @@ def graph():
     ax_box.grid(b=True, which='major', axis='both')
     ax_box.set_xlabel('Coefficients')
     plt.tight_layout()
-    plt.savefig('box.eps', type='eps', dpi=100)
+    plt.savefig('box_in_degree.eps', type='eps', dpi=100)
 
     ####################################################################
     # ASSESS PREDICTION ERRORS
@@ -502,7 +547,7 @@ def graph():
     ax_acc.set_axisbelow(True)
     ax_acc.grid(b=True, which='major', axis='y')
     plt.tight_layout()
-    plt.savefig('acc_box.eps', type='eps', dpi=1000)
+    plt.savefig('box_accuracy.eps', type='eps', dpi=1000)
 
     # Describe.
     print('Mean prediction accuracy for all countries:')
@@ -528,5 +573,8 @@ if __name__ == '__main__':
     # Perform fit.
     fit_for_all(drop_non_countries=False)
 
-    # Create and save graph.
-    #graph()
+    # Test fit.
+    test_predictions()
+
+    # Create and save graph, plus figures for report.
+    # graph()
