@@ -78,17 +78,17 @@ def drop_non_countries(dataframe):
 
 # mse over test set: 5.30564383207e+13
 # mse over test set when normalized: 1.67974912494e+15
-def lasso_choose_countries(target, n, dataframe, log10_alpha = 8, max_alpha_iter = 1000):
+def lasso_choose_countries(target, n, dataframe, log10_alpha = 8, max_alpha_iter = 100):
     '''
     Chooses n countries from the dataframe which best predict the target country value
     Uses a Lasso process which uses binary estimation to find a correct alpha value
     '''
     # temp to avoid messing up original
-    tmp = dataframe.drop(target).transpose()
+    tmp = dataframe.drop(target)
     # normalize the rows to avoid over-emphasizing large populations
     # tmp = (tmp - tmp.mean()) / (tmp.max() - tmp.min())
     # drop non-countries
-    tmp = tmp.transpose()
+    # tmp = tmp.transpose()
     # narrow LASSO alpha setting for precision
     log10_amin = 0
     log10_amax = None
@@ -170,7 +170,7 @@ if __name__ == "__main__":
 
     # settings
     n_nonzero = 5 # linear combination of 5 other countries
-    submission_loc = 'Students/mason-rumuly/challenge-03/'
+    submission_loc = 'Challenges/3Files/Team9/'
 
     # load operative files
     train_filename = 'Challenges/3Files/population_training.csv'
@@ -197,21 +197,13 @@ if __name__ == "__main__":
         for i, country in enumerate(countries)
     ]
 
-    # save sanity check: predictions over training set
-    sanity_mat = pd.DataFrame({
-        country: regressions[i].predict(pop_data.loc[chosen_countries[i]].values.transpose())
-        for i, country in enumerate(countries)
-    }, index=pop_data.T.index).T
-    sanity_mat.index.name = 'Country Name'
-    sanity_mat.to_csv(submission_loc + '3population_sanity.csv')
-
     # save predictions
     pred_mat = pd.DataFrame({
         country: predictions[i]
         for i, country in enumerate(countries)
-    }, index=pop_test.T.index).T
-    pred_mat.index.name = 'Country Name'
-    pred_mat.to_csv(submission_loc + '3population_predicted.csv')
+    }, index=pop_test.T.index)
+    pred_mat.index.name = 'Id'
+    pred_mat.to_csv(submission_loc + 'population_prediction.csv')
 
     # save coefficient matrix
     coef_mat = pd.DataFrame({
@@ -219,6 +211,6 @@ if __name__ == "__main__":
         for i, country in enumerate(countries)
     }, index=countries)
     coef_mat.index.name = 'Country Name'
-    coef_mat.to_csv(submission_loc + '3parameters.csv')
+    coef_mat.to_csv(submission_loc + 'population_parameters.csv')
 
     print(np.average(mse))
