@@ -3,6 +3,7 @@
 # Standard library
 from os.path import join
 from multiprocessing import Process, Queue, JoinableQueue, cpu_count
+import textwrap
 
 # Installed
 import pandas as pd
@@ -10,10 +11,10 @@ import numpy as np
 import networkx as nx
 import matplotlib as mpl
 import matplotlib.pyplot as plt
+from matplotlib.ticker import FuncFormatter
 
-from sklearn.linear_model import Ridge, Lasso
+from sklearn.linear_model import Lasso, LinearRegression
 from sklearn.metrics import mean_squared_error
-from sklearn.preprocessing import MinMaxScaler
 
 ########################################################################
 # CONSTANTS
@@ -36,20 +37,15 @@ SEED = 42
 # as predictors)
 COEFF_MAX = 5
 
-# Initialize alphas for Lasso. This is terrible hard-coding, but hey, I
-# had to add more as I went and copy + paste was easy :)
-ALPHAS0 = 10 ** 10 * np.linspace(1, 0, 100)
-ALPHAS1 = 10 ** 10 * np.linspace(10, 1, 100)
-ALPHAS2 = 10 ** 10 * np.linspace(100, 10,  100)
-ALPHAS3 = 10 ** 10 * np.linspace(1000, 100, 100)
-ALPHAS4 = 10 ** 10 * np.linspace(10000, 1000, 100)
-ALPHAS5 = 10 ** 10 * np.linspace(100000, 10000, 100)
-ALPHAS6 = 10 ** 10 * np.linspace(1000000, 100000, 100)
-
-ALL_ALPHAS = [ALPHAS0, ALPHAS1, ALPHAS2, ALPHAS3, ALPHAS4, ALPHAS5, ALPHAS6]
+# Initialize alphas for Lasso.
+ALL_ALPHAS = []
+a = np.linspace(0.1, 0.01, 100)
+b = np.logspace(1, 20, 20)
+for mult in b:
+    ALL_ALPHAS.append(a * mult)
 
 # Iterations and tolerance for Lasso.
-MAX_ITER = 100000
+MAX_ITER = 1000000
 TOL = 0.01
 
 # Use all processors
@@ -104,19 +100,13 @@ def lasso_for_alphas(alphas, x, y, x_test, y_test):
     # Track best score for this country.
     best_score = np.inf
 
-    # Initialize best_coefficients
-    best_coeff = np.zeros(x.shape[1])
-
-    # Initialize predictions.
-    prediction = np.zeros(x_test.shape[0])
-
-    # Track number of non-zero coefficients.
-    non_zero_coeff_list = []
+    # Track the final boolean of non-zero coefficients
+    final_non_zero = None
 
     # Loop over alphas and fit.
-    for a in alphas:
+    for alpha in alphas:
         # Initialize a Lasso object
-        lasso = Lasso(alpha=a, random_state=SEED, max_iter=MAX_ITER,
+        lasso = Lasso(alpha=alpha, random_state=SEED, max_iter=MAX_ITER,
                       tol=TOL)
 
         # Fit.
@@ -129,8 +119,6 @@ def lasso_for_alphas(alphas, x, y, x_test, y_test):
         non_zero = ~np.isclose(c, 0, atol=ATOL, rtol=RTOL)
         num_non_zero = np.count_nonzero(non_zero)
 
-        non_zero_coeff_list.append(num_non_zero)
-
         # If we're below zero, track the minimum coefficients.
         if (num_non_zero <= COEFF_MAX) and (num_non_zero > 0):
 
@@ -142,17 +130,10 @@ def lasso_for_alphas(alphas, x, y, x_test, y_test):
             # If this score is the best, we'll track the coefficients,
             # and create a prediction.
             if s < best_score:
-                # Ensure values that were close to 0 are exactly 0.
-                c[~non_zero] = 0
-
-                # Put c into coeff.
-                best_coeff = c
+                final_non_zero = non_zero
 
                 # Track the training score.
                 best_score = s
-
-                # Predict.
-                prediction = p
 
         elif num_non_zero >= COEFF_MAX:
             # Since we're looping in DESCENDING ORDER, we should break
@@ -169,11 +150,11 @@ def lasso_for_alphas(alphas, x, y, x_test, y_test):
             # What's going on?
             raise UserWarning('WTF?')
 
-    return best_score, best_coeff, prediction, non_zero_coeff_list
+    return best_score, final_non_zero
 
 
 def fit_for_country(train_mat, test_mat, other_countries):
-    """Call scores, coefficients, and predictions for a given country.
+    """Loop over sets of alphas, get linear regression fit, track best.
     """
     # Extract x and y
     x = train_mat[:, other_countries]
@@ -181,21 +162,44 @@ def fit_for_country(train_mat, test_mat, other_countries):
     x_test = test_mat[:, other_countries]
     y_test = test_mat[:, ~other_countries]
 
+    # Initialize returns.
+    best_score = np.inf
+    return_tuple = ()
+
     for alphas in ALL_ALPHAS:
-        s, c, p, non_zero_coeff = lasso_for_alphas(alphas=alphas, x=x, y=y,
-                                                   x_test=x_test,
-                                                   y_test=y_test)
+        # Perform lasso for this set of alphas.
+        score, non_zero = lasso_for_alphas(alphas=alphas, x=x, y=y,
+                                           x_test=x_test, y_test=y_test)
 
-        # If we have a score that isn't negative infinity, we're done.
-        if ~np.isinf(s):
-            break
+        if not np.isinf(score):
+            # Initialize linear regression object.
+            lr = LinearRegression()
 
-    # If we weren't able to get a workign  alpha for this country,
+            # Fit and predict.
+            lr.fit(x[:, non_zero], y)
+            p = lr.predict(x_test[:, non_zero])
+
+            # Score prediction.
+            s = mean_squared_error(y_test, p)
+
+            if s < best_score:
+                # For tracking coefficients:
+                c = np.zeros(np.count_nonzero(other_countries))
+                # Place coefficients in the appropriate place. For some
+                # reason, the coefficients come back nested (like
+                # [[1, 2, 3]]), so we have to squeeze them out.
+                c[non_zero] = np.squeeze(lr.coef_)
+                # Update best score.
+                best_score = s
+                # Update final return.
+                return_tuple = (s, c, p)
+
+    # If we weren't able to get a working  alpha for this country,
     # mention it.
-    if np.isinf(s):
+    if np.isinf(best_score):
         print('Failure for country {}.'.format(np.argwhere(~other_countries)))
 
-    return s, c, p
+    return return_tuple
 
 
 def fit_for_country_worker(train_mat, test_mat, queue_in, queue_out):
@@ -288,7 +292,8 @@ def fit_for_all(drop_non_countries=False):
         # Map.
         best_scores.loc[~other_countries] = s
         best_coeff.loc[other_countries, country] = c
-        predictions.loc[~other_countries, :] = p
+        # p needs to be transformed (17x1 vs 1x17)
+        predictions.loc[~other_countries, :] = p.T
 
     # Shut down processes.
     for p in processes:
@@ -312,7 +317,33 @@ def fit_for_all(drop_non_countries=False):
     # print(mse.describe())
 
 
+def color_bars(colors, bar_list):
+    """Helper function to color bars in a bar chart."""
+    # Loop and assign colors to each bar.
+    color_index = 0
+    for b in bar_list:
+        try:
+            c = colors[color_index]
+        except IndexError:
+            # We 'overflowed' - reset index to 0.
+            color_index = 0
+            c = colors[0]
+
+        # Set bar color.
+        b.set_facecolor(c)
+
+        # Increment color index for next iteration.
+        color_index += 1
+
+
 def graph():
+    """Function for graph/analysis portion of challenge 3.
+
+    Creates plots for report, and saves graph as .gexf file for Gephi.
+    """
+    ####################################################################
+    # CREATE GRAPH OF COEFFICIENTS
+
     # Read the coefficients file.
     coef = pd.read_csv(COEFF_OUT, encoding='cp1252', index_col=0)
 
@@ -368,27 +399,126 @@ def graph():
     tf_df['weight'] = tf_df['weight'].abs()
 
     # Build a graph.
-    G = nx.from_pandas_edgelist(tf_df, 'from', 'to', edge_attr=True,
+    g = nx.from_pandas_edgelist(tf_df, 'from', 'to', edge_attr=True,
                                 create_using=nx.MultiDiGraph)
 
-    nx.set_node_attributes(G, node_size_dict)
+    # Add the node sizing as node attributes.
+    nx.set_node_attributes(g, node_size_dict)
 
+    ####################################################################
+    # SAVE GRAPH TO FILE
     # Save the graph in a form we can use with Gephi.
-    nx.readwrite.gexf.write_gexf(G, 'graph.gexf')
+    nx.readwrite.gexf.write_gexf(g, 'graph.gexf')
 
-    # # Setup graph styling.
-    # graph_style()
-    #
-    # fig, ax = plt.subplots(1, 1)
-    # # Draw graph.
-    # nx.drawing.nx_pylab.draw_networkx(G, arrows=True, with_labels=True,
-    #                                   node_size=dot_size, ax=ax)
-    # plt.show()
+    ####################################################################
+    # BAR CHART OF IN-DEGREE
 
-def graph_style():
-    """Helper to setup matplotlib for graphing"""
-    # Get a large figure
-    mpl.rcParams['figure.figsize'] = (11*0.9, 8.5*0.9)
+    # Compute the in-degree of all nodes.
+    in_degree = pd.Series(dict(g.in_degree))
+
+    # Grab and sort degree > 0
+    non_zero_degree = in_degree[in_degree[:] > 0]
+    non_zero_degree.sort_values(ascending=False, inplace=True)
+
+    # Create index for bar chart.
+    ind = np.arange(1, non_zero_degree.shape[0] + 1)
+
+    # Get figure and axes for this plot.
+    fig_bar, ax_bar = plt.subplots()
+
+    # Do initial bar plotting.
+    bar_list = ax_bar.barh(ind, non_zero_degree.values)
+
+    # Get the color cycle.
+    colors = mpl.rcParams['axes.prop_cycle'].by_key()['color']
+
+    # Color all the bars.
+    color_bars(colors, bar_list)
+
+    # Grab labels from non_zero_degree, and wrap them.
+    labels = ['\n'.join(textwrap.wrap(l, 23)) for l in
+              non_zero_degree.index.values]
+    # Format bar chart.
+    plt.yticks(ind, labels)
+    ax_bar.set_axisbelow(True)
+    ax_bar.grid(b=True, which='major', axis='x')
+    ax_bar.set_xlabel('In-Degree')
+    plt.tight_layout()
+    plt.savefig('bar.eps', type='eps', dpi=1000)
+
+    ####################################################################
+    # BOX PLOT OF COEFFICIENTS FOR NON-ZERO IN-DEGREE
+    # WARNING: Variables from previous sections are re-used here.
+
+    # First, we need to grab all the incoming weights for the non-zero
+    # countries.
+    weight_list = []
+    for country in non_zero_degree.index:
+        country_bool = tf_df['to'] == country
+        # Pull weights for all incoming countries.
+        country_df = tf_df.loc[country_bool, :]
+        # Doing all this mumbo-jumbo to avoid a setting with copy
+        # warning.
+        weights = pd.Series(country_df.loc[:, 'weight'].values)
+        neg_values = ~country_df.loc[:, 'positive'].values
+        # Make negative weights negative.
+        weights.loc[neg_values] = -1 * weights.loc[neg_values]
+        weight_list.append(weights)
+
+    # Create the box plot.
+    fig_box, ax_box = plt.subplots()
+    ax_box.boxplot(weight_list, vert=False, whis=[5, 95])
+    plt.yticks(ind, labels)
+    ax_box.set_axisbelow(True)
+    ax_box.grid(b=True, which='major', axis='both')
+    ax_box.set_xlabel('Coefficients')
+    plt.tight_layout()
+    plt.savefig('box.eps', type='eps', dpi=100)
+
+    ####################################################################
+    # ASSESS PREDICTION ERRORS
+    test_df = pd.read_csv(TEST_FILE, encoding='cp1252',
+                          index_col='Country Name').dropna(axis=0)
+
+    # The test_df has one extra country. Line up train and test.
+    test_df = test_df.loc[train_df.index]
+
+    test_t = test_df.transpose()
+
+    # Load up the predictions.
+    pred_df = pd.read_csv(PRED_OUT, encoding='cp1252', index_col='Id')
+
+    # Line up the indexes. DANGER ZONE!
+    pred_df.index = test_t.index
+
+    # Compute accuracy.
+    accuracy = 1 - ((pred_df - test_t).abs()/test_t).sum()/test_t.shape[0]
+
+    # Make boxplot of accuracy
+    fig_acc, ax_acc = plt.subplots()
+    ax_acc.boxplot(accuracy.values, whis=[5, 95])
+    ax_acc.set_ylabel('Mean Absolute Percent Correct')
+    ax_acc.yaxis.set_major_formatter(FuncFormatter('{0:.0%}'.format))
+    ax_acc.set_axisbelow(True)
+    ax_acc.grid(b=True, which='major', axis='y')
+    plt.tight_layout()
+    plt.savefig('acc_box.eps', type='eps', dpi=1000)
+
+    # Describe.
+    print('Mean prediction accuracy for all countries:')
+    print(accuracy.describe())
+
+    # Make DataFrame of accuracy and maximum population
+    acc_vs_pop = pd.DataFrame({'accuracy': accuracy, 'max_pop': max_pop})
+    fig_scatter, ax_scatter = plt.subplots()
+    ax_scatter.semilogx(acc_vs_pop['max_pop'], acc_vs_pop['accuracy'],
+                        linestyle='None', marker ='o')
+    ax_scatter.set_xlabel('Maximum Population, 1960-1999')
+    ax_scatter.set_ylabel('Mean Prediction Accuracy')
+    ax_scatter.yaxis.set_major_formatter(FuncFormatter('{0:.0%}'.format))
+    plt.tight_layout()
+    plt.savefig('scatter.eps', type='eps', dpi=1000)
+
 
 ########################################################################
 # MAIN
@@ -399,5 +529,4 @@ if __name__ == '__main__':
     fit_for_all(drop_non_countries=False)
 
     # Create and save graph.
-    graph()
-    pass
+    #graph()
