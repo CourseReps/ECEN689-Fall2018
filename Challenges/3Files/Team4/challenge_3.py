@@ -478,18 +478,34 @@ def graph():
 
     ####################################################################
     # BOX PLOT OF OUT-DEGREE
+    # NOTE: this isn't particularly informative. We'll do a bar chart
+    # instead.
 
-    # Compute the in-degree of all nodes.
+    # # Compute the in-degree of all nodes.
+    # out_degree = pd.Series(dict(g.out_degree))
+    #
+    # # Create the box plot.
+    # fig_od, ax_od = plt.subplots()
+    # ax_od.boxplot(out_degree, vert=True, whis=[0, 100])
+    # ax_od.set_axisbelow(True)
+    # ax_od.grid(b=True, which='major', axis='y')
+    # ax_od.set_xlabel('Coefficients')
+    # plt.tight_layout()
+    # plt.savefig('box_out_degree.eps', type='eps', dpi=100)
+
+    ####################################################################
+    # BAR CHART OF OUT-DEGREE
     out_degree = pd.Series(dict(g.out_degree))
-
-    # Create the box plot.
     fig_od, ax_od = plt.subplots()
-    ax_od.boxplot(out_degree, vert=True, whis=[0, 100])
+
+    ax_od.hist(out_degree, bins=np.arange(1, COEFF_MAX+2), align='left',
+               edgecolor='black', linewidth=1.2)
     ax_od.set_axisbelow(True)
     ax_od.grid(b=True, which='major', axis='y')
-    ax_od.set_xlabel('Coefficients')
+    ax_od.set_xlabel('Out-Degree')
+    ax_od.set_ylabel('Country Count')
     plt.tight_layout()
-    plt.savefig('box_out_degree.eps', type='eps', dpi=100)
+    plt.savefig('hist_out_degree.eps')
 
     ####################################################################
     # BOX PLOT OF COEFFICIENTS FOR NON-ZERO IN-DEGREE
