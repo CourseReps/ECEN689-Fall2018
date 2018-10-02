@@ -177,7 +177,7 @@ def fit_for_country(train_mat, test_mat, other_countries):
 
             # Fit and predict.
             lr.fit(x[:, non_zero], y)
-            p = lr.predict(x_test[:, non_zero])
+            p = lr.predict(X=x_test[:, non_zero])
 
             # Score prediction.
             s = mean_squared_error(y_test, p)
@@ -316,6 +316,35 @@ def fit_for_all(drop_non_countries=False):
     # print('Summary of prediction mean squared error:')
     # print(mse.describe())
 
+
+def test_predictions():
+    """Ensure the predictions written to file are close """
+    # Load data
+    pred = pd.read_csv(PRED_OUT, encoding='cp1252', index_col='Id')
+    coef = pd.read_csv(COEFF_OUT, encoding='cp1252', index_col=0)
+    actual = pd.read_csv(TEST_FILE, encoding='cp1252',
+                         index_col='Country Name')
+
+    success = True
+    # Loop over countries.
+    for country in pred.columns:
+        # Derive predictions. Note - we'll be off by a constant (the
+        # intercept term)
+        derived_pred = np.matmul(coef.loc[:, country].values, actual.values)
+
+        # Get vector of differences.
+        diff = pred[country].values - derived_pred
+
+        # If all differences are nearly the same, then we're good.
+        all_same = np.all(np.isclose(diff[0], diff))
+
+        if not all_same:
+            success = False
+
+    if success:
+        print('Testing succeeded! Coefficients lead to predictions.')
+    else:
+        print('Testing failed! Coefficients do not lead to predictions.')
 
 def color_bars(colors, bar_list):
     """Helper function to color bars in a bar chart."""
@@ -527,6 +556,9 @@ def graph():
 if __name__ == '__main__':
     # Perform fit.
     fit_for_all(drop_non_countries=False)
+
+    # Test fit.
+    test_predictions()
 
     # Create and save graph.
     #graph()
