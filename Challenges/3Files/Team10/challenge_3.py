@@ -8,7 +8,7 @@ from sklearn.metrics import mean_squared_error as mse
 
 def lasso_pred(x, y):
     
-    lasso = Lasso(normalize = "True", tol = 1e-35 , max_iter = 5000)
+    lasso = Lasso(normalize = "True", tol = 1e-35, max_iter = 500000)
     w, q = x.shape
     
     coefs = []
@@ -26,7 +26,7 @@ def lasso_pred(x, y):
       
         
             alpha_min = 0.1
-            alpha_max = 10e30
+            alpha_max = 10e10
             alpha_avg=(alpha_min + alpha_max)/2
             lasso.set_params(alpha = alpha_avg)
             population_vector = x.iloc[:, i]

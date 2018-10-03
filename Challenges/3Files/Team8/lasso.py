@@ -19,7 +19,7 @@ pop_train_data.drop(['Id'], axis=1,inplace=True)
 year_col_bkp = pop_test_data['Id']
 pop_test_data.drop(['Id'], axis=1, inplace=True)
 
-alphas = 10**np.linspace(5,0,500)*1
+alphas = 10**np.linspace(5,-1,1000)*1
 alphas
 
 coefpara_array = []
