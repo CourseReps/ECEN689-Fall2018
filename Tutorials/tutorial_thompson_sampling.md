@@ -16,7 +16,7 @@ Mention (reference paper) optimal regret is log(n)
 
 ## Example
 
-3-arm bandit (litteraly)
+3-arm bandit
 Randomly generate the three payout probabilities
 Step through samples in ipython notebook
 Show choice, distributions, and payout after each sample (and sampled values on distribution before)

@@ -1,0 +1,10 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1671
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 The outer loop of the figure given above shows the countries that have more than 6 nodes coming out of them. This means that the these countries have an affect on the population of the remaining countries. Mostly the countries in the outer loop are used to predict the population and we can see from the countries chosen that they represent a pretty diverse set of countries ranging from First World Countries i.e. USA, Japan to Third World Countries i.e. Afghanistan, Ethiopia. We can infer that based on the size of the nodes of the outer loop countries, they have more out going edges. It can be said that this diverse set of countries described above are more than enough to predict a population of a certain country which incorporates all the demographics	and geopolitical information. The information that is used to predict a country\'92s population might be embodied in the countries in the outer loop.\
+\
+For a specific country e.g. Saudi Arabia, it might be possible that the factors that embody Saudi Arabia\'92s population are pulled for the countries i.e. US, China, Bangladesh, China and Iran. Some specific factors might just be related to India or China or Bangladesh. We cannot infer what specific factor is inflicted by which country, but we can say that the the 5 mentioned country are diverse enough in order to capture all the information that is necessary in order to predict the population of Saudi Arabia. Similarly, this can be said for other countries as  well.}

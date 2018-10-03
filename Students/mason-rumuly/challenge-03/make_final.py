@@ -84,11 +84,9 @@ def lasso_choose_countries(target, n, dataframe, log10_alpha = 8, max_alpha_iter
     Uses a Lasso process which uses binary estimation to find a correct alpha value
     '''
     # temp to avoid messing up original
-    tmp = dataframe.drop(target).transpose()
+    tmp = dataframe.drop(target)
     # normalize the rows to avoid over-emphasizing large populations
     # tmp = (tmp - tmp.mean()) / (tmp.max() - tmp.min())
-    # drop non-countries
-    tmp = tmp.transpose()
     # narrow LASSO alpha setting for precision
     log10_amin = 0
     log10_amax = None
@@ -177,6 +175,8 @@ if __name__ == "__main__":
     pop_data = pd.read_csv(train_filename, index_col='Country Name', encoding='cp1252').dropna(axis=0)
     test_filename = 'Challenges/3Files/population_testing.csv'
     pop_test = pd.read_csv(test_filename, index_col='Country Name', encoding='cp1252').dropna(axis=0)
+    pop_data = drop_non_countries(pop_data).sort_index()
+    pop_test = drop_non_countries(pop_test).sort_index()
 
     # for each country
     countries = pop_data.index.values
@@ -219,6 +219,6 @@ if __name__ == "__main__":
         for i, country in enumerate(countries)
     }, index=countries)
     coef_mat.index.name = 'Country Name'
-    coef_mat.to_csv(submission_loc + '3parameters.csv')
+    coef_mat.to_csv(submission_loc + '3parameters_countries_only.csv')
 
     print(np.average(mse))
