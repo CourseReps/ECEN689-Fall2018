@@ -20,3 +20,11 @@ Mention (reference paper) optimal regret is log(n)
 Randomly generate the three payout probabilities
 Step through samples in ipython notebook
 Show choice, distributions, and payout after each sample (and sampled values on distribution before)
+
+## Mention Extensions
+
+Choice of priors (1, 1), (0.5, 0.5), (0, 0)
+Alternate parameterizations (mean and sample size specifically)
+Sample * payout_value for expected payout
+Multiple possible outcomes, use Dirichlet distribution
+All manner of contextual schemes
