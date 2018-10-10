@@ -112,4 +112,13 @@ plt.xlabel('PC1')
 plt.ylabel('PC2')
 plt.legend()
 plt.show()
-'''
+```
+### Drawbacks of PCA
+The the new axis formed by PCA are not interpretable.
+PCA assumes that the input data is real and continuous.
+
+
+### References
+https://www.dezyre.com/data-science-in-python-tutorial/principal-component-analysis-tutorial
+http://setosa.io/ev/principal-component-analysis/
+http://www.stat.columbia.edu/~fwood/Teaching/w4315/Fall2009/pca.pdf
