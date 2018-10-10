@@ -31,6 +31,7 @@ http://setosa.io/ev/principal-component-analysis/
 We use the wine dataset in scikit learn library to demonstrate the applications of PCA. We perform classification on this dataset which contatins 3 class labels using logistic regression. We compare the accuracies of logistic regression in predicting the class labels by first training and testing it on the oridnary dataset and then training and testing on the PCA transformed dataset. We construct the confusion matrix for each case and find that PCA improves the accuracy for test prediction. We also see that pca allows us to visualize our test results by projecting our 13 dimensional data onto a 2 dimesional subspace. 
 
 
+```python 
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -111,4 +112,4 @@ plt.xlabel('PC1')
 plt.ylabel('PC2')
 plt.legend()
 plt.show()
-
+'''
