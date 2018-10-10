@@ -13,6 +13,7 @@
 * [Binary Decision Tree](binary_decision_tree.md): Vedant Mehta and Neehar Yalamarti, Oct 9, 2018
 * [Thompson Sampling](tutorial_thompson_sampling.md): Mason Rumuly and Siddharth Ajit, Oct 9, 2018
 * [K-means Clustering](tutorial_kmeans.md): Brandon Thayer and Harish Chigurupati, Oct 16, 2018
+* [Reinforcement Learning](tutorial_reinforcement_learning.md): Harish Kumar and Michael Bass, Oct 16, 2018
 * [Neural Netowrks](tutorial_neuralnets.md): Amrita Veerabagu and Divyank Garg, Oct 23, 2018
 * [KERAS](tutorial_keras.md): Ranjith Tamil Selvan and Drupad Khublani, Oct 23, 2018
 * [TensorFlow](tutorial_tensorflow.md): Ashish Kumar and Shabarish Prasad, Oct 25, 2018
