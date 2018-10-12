@@ -1,13 +1,23 @@
 import numpy as np
-import matplotlib.pyplot as plt
 
 # Custom SGD linear regressor for the fun of it
+# include L1 and L2 regularization
 
 class SGDRegressor(object):
-    def __init__(self, learning_rate, rate_decay=1, epochs=1, use_momentum=True, moment_factor=0.9):
+    def __init__(
+        self, 
+        learning_rate=0.001, 
+        rate_decay=1, 
+        epochs=100, 
+        use_momentum=True, 
+        moment_factor=0.9,
+        regularization='none',
+        reg_strength = 0.1
+    ):
         '''
         Sets learning_rate to learning_rate*rate_decay once per epoch
         Trains using L2 loss
+        regularization values: 'none', 'lasso', 'ridge'
         '''
         self.learning_rate = learning_rate
         self.rate_decay = rate_decay
@@ -17,6 +27,8 @@ class SGDRegressor(object):
         self.use_momentum = use_momentum
         self.momentum = None
         self.moment_factor = moment_factor
+        self.regularization = regularization
+        self.reg_strength = reg_strength
 
     def initialize_coefs(self, length, method='zeros'):
         if method == 'zeros':
@@ -61,6 +73,11 @@ class SGDRegressor(object):
 
         # Prepare training data
         X_array = np.array(X).reshape((len(y), -1))
+        y_array = np.array(y)
+
+        # initializat if not already
+        if self.W is None:
+            self.initialize_coefs(X_array.shape[1])
 
         # Keep update history
         if keep_hist:
@@ -72,11 +89,15 @@ class SGDRegressor(object):
         # for each epoch
         for e in range(epochs):
             # on each training/value pair
-            for x_row, y_val in zip(X_array, y):
+            for x_row, y_val in zip(X_array, y_array):
 
                 # compute loss gradient
                 difference = self.predict(x_row) - y_val
                 lgrad = 2 * x_row * difference
+                if self.regularization == 'lasso':
+                    lgrad += self.reg_strength*np.sign(self.W)
+                elif self.regularization == 'ridge':
+                    lgrad += self.reg_strength*2*self.W
 
                 # create random vector with expectation of loss gradient
                 rgrad = lgrad*(1 + np.random.randn(*self.W.shape))
@@ -94,7 +115,12 @@ class SGDRegressor(object):
                 self.W -= rgrad*learning_rate
 
                 # update intercept
-                self.b -= learning_rate*2*difference*(1+np.random.randn())
+                b_grad = learning_rate*2*difference
+                if self.regularization == 'lasso':
+                    b_grad += self.reg_strength*np.sign(self.b)
+                elif self.regularization == 'ridge':
+                    b_grad += self.reg_strength*2*self.b
+                self.b -= b_grad*(1+np.random.randn())
             
             # update history
             if keep_hist:
@@ -124,19 +150,20 @@ class SGDRegressor(object):
         Get mean squared error over given set
         '''
         difference = self.predict(X) - np.array(y)
-        return (difference.dot(difference)).mean()
+        return (difference.dot(difference)/difference.shape[0]).mean()
         
 
 # Unit tests
 if __name__ == '__main__':
 
-    sgdr = SGDRegressor(0.01, epochs=100)
+    sgdr = SGDRegressor(0.01, epochs=100, regularization='lasso', reg_strength=0.001)
     # should work on 1D and 2D training data
     sgdr.fit(
         [1, 2, 3], [1, 2, 3]
     )
     assert sgdr.W.shape[0] == 1, 'Invalid coefficient size on 1D'
     print(sgdr.mse([1, 2, 3], [1, 2, 3]))
+    print(sgdr.W, sgdr.b) 
     sgdr.fit(
         [[1,1],[2,4],[3,9]], [2, 6, 12], learning_rate=0.001, epochs=1000, keep_hist=True
     )
