@@ -1,3 +1,9 @@
+# Ignore .pdf
+*.pdf
+
+# Ignore .gv (graphviz)
+*.gv
+
 # Libre office uses these .~lock files
 .~*
 
