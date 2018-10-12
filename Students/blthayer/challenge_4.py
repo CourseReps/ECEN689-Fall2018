@@ -1,12 +1,15 @@
 # Installed packages:
 import pandas as pd
 import numpy as np
+from numpy.random import uniform, seed
 from sklearn.metrics import mean_squared_error
 from sklearn.linear_model import LassoLarsCV, LassoCV, RidgeCV, \
     LinearRegression
+from sklearn.preprocessing import MinMaxScaler
 from sklearn import tree
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.decomposition import PCA
 import matplotlib.pyplot as plt
 import graphviz
@@ -42,7 +45,10 @@ PART3_PREDICTIONS = os.path.join(OUT_DIR, w + '-red-solution.csv')
 
 # Use consistent seed.
 SEED = 1234
+seed(SEED)
 
+# Create 1000 alphas to test.
+ALPHAS = uniform(low=0, high=0.1, size=1000)
 
 def part_1():
     """Linear regression on the white wine data."""
@@ -76,7 +82,7 @@ def part_1():
     t0 = time.time()
     lr = LinearRegression(n_jobs=-1)
     lr.fit(X_train, y_train)
-    p_lr = lr.predict(X_test)
+    p_lr = lr.predict(X=X_test)
     mse_lr = mean_squared_error(y_test, p_lr)
     t1 = time.time()
     out['LinearRegression']['mse'] = mse_lr
@@ -89,9 +95,9 @@ def part_1():
     out['LassoCV'] = {}
     # Using 5-fold as that will be the new default soon.
     t0 = time.time()
-    lcv = LassoCV(eps=1e-5, n_alphas=1000, cv=5, n_jobs=-1, random_state=SEED)
+    lcv = LassoCV(eps=1e-5, alphas=ALPHAS, cv=5, n_jobs=-1, random_state=SEED)
     lcv.fit(X_train, y_train)
-    p_lcv = lcv.predict(X_test)
+    p_lcv = lcv.predict(X=X_test)
     mse_lcv = mean_squared_error(y_test, p_lcv)
     t1 = time.time()
     out['LassoCV']['mse'] = mse_lcv
@@ -99,19 +105,19 @@ def part_1():
     out['LassoCV']['prediction'] = p_lcv
     print('Done in {:.2f} seconds.'.format(t1 - t0), end='\n')
 
-    # Try LassoLarsCV
-    print('Running LassoLarsCV...', end='')
-    out['LassoLarsCV'] = {}
-    t0 = time.time()
-    llcv = LassoLarsCV(cv=5, normalize=False, n_jobs=-1)
-    llcv.fit(X_train, y_train)
-    p_llcv = llcv.predict(X_test)
-    mse_llcv = mean_squared_error(y_test, p_llcv)
-    t1 = time.time()
-    out['LassoLarsCV']['mse'] = mse_llcv
-    out['LassoLarsCV']['model'] = llcv
-    out['LassoLarsCV']['prediction'] = p_llcv
-    print('Done in {:.2f} seconds.'.format(t1 - t0), end='\n')
+    # # Try LassoLarsCV
+    # print('Running LassoLarsCV...', end='')
+    # out['LassoLarsCV'] = {}
+    # t0 = time.time()
+    # llcv = LassoLarsCV(cv=5, normalize=False, n_jobs=-1)
+    # llcv.fit(X_train, y_train)
+    # p_llcv = llcv.predict(X=X_test)
+    # mse_llcv = mean_squared_error(y_test, p_llcv)
+    # t1 = time.time()
+    # out['LassoLarsCV']['mse'] = mse_llcv
+    # out['LassoLarsCV']['model'] = llcv
+    # out['LassoLarsCV']['prediction'] = p_llcv
+    # print('Done in {:.2f} seconds.'.format(t1 - t0), end='\n')
 
     # Try RidgeCV
     print('Running RidgeCV...', end='')
@@ -119,9 +125,10 @@ def part_1():
     # TODO: Should refine our alpha selection based on which one the
     # cross validation selects.
     t0 = time.time()
-    rcv = RidgeCV(alphas=(0.01, 0.1, 10, 100, 1000), cv=5)
+
+    rcv = RidgeCV(alphas=ALPHAS, cv=5)
     rcv.fit(X_train, y_train)
-    p_rcv = rcv.predict(X_test)
+    p_rcv = rcv.predict(X=X_test)
     mse_rcv = mean_squared_error(y_test, p_rcv)
     t1 = time.time()
     out['RidgeCV']['mse'] = mse_rcv
@@ -162,12 +169,12 @@ def part_1():
             best_model = key
             best_mse = value['mse']
 
-        # Plotting:
-        plt.plot(x, value['model'].coef_)
-
-    # Add legend, show plot.
-    plt.legend(out.keys())
-    plt.show()
+    #     # Plotting:
+    #     plt.plot(x, value['model'].coef_)
+    #
+    # # Add legend, show plot.
+    # plt.legend(out.keys())
+    # plt.show()
 
     # Notify best model.
     print('\nBest model is {}.'.format(best_model))
@@ -184,15 +191,11 @@ def part_1():
     best_predictions = pd.Series(out[best_model]['model'].predict(test_df),
                                  index=test_df.index, name='quality')
     best_predictions.to_csv(PART1_PREDICTIONS, header=True)
-    best_coefficients = pd.Series(out[best_model]['model'].coef_,
-                                  index=X_train.columns)
-    pd.DataFrame(best_coefficients).T.to_csv(PART1_COEFFICIENTS, index=False)
+    coef = np.insert(out[best_model]['model'].coef_, 0,
+                     out[best_model]['model'].intercept_)
+    best_coefficients = pd.Series(coef, name='parameters')
+    best_coefficients.to_csv(PART1_COEFFICIENTS, index=False, header=True)
     print('\nPrediction and coefficients written to file.')
-
-    # Handle intercept.
-    intercept = pd.DataFrame(pd.Series(out[best_model]['model'].intercept_,
-                             index=['intercept']))
-    intercept.T.to_csv(PART1_INTERCEPT, index=False)
 
 
 def part_2():
@@ -236,7 +239,7 @@ def part_2():
     # X_test = test.drop(['type'], axis=1)
     # y_test = test['type']
 
-    # Code below is for if we aren't ensuring even training samples.
+    # Extract views into training and testing data for easy access.
     X_train = train.drop(['type'], axis=1)
     y_train = train['type']
     X_test = test.drop(['type'], axis=1)
@@ -263,12 +266,39 @@ def part_2():
     tree_2_score = tree_2.score(X_test, y_test)
     print('Tree 2 score: {:.4f}'.format(tree_2_score))
 
-    # Train tree_2 on the entire data set and write predictions.
-    tree_2.fit(train_df.drop(['type'], axis=1), train_df['type'])
-    pred = pd.Series(tree_2.predict(test_df), index=test_df.index,
+    # print('Tree 2 feature importance: {}'.format(
+    # tree_2.feature_importances_))
+
+    # # Train tree_2 on the entire data set and write predictions.
+    # tree_2.fit(train_df.drop(['type'], axis=1), train_df['type'])
+    # pred = pd.Series(tree_2.predict(test_df), index=test_df.index,
+    #                  name='type')
+    # pred.to_csv(PART2_PREDICTIONS, header=True)
+    # print('\nPredictions written to file.')
+
+    # Random forest.
+    print('Training a random forest...', end='', flush=True)
+    t0 = time.time()
+    rf = RandomForestClassifier(n_estimators=10000, max_depth=7,
+                                random_state=SEED, n_jobs=-1)
+    rf.fit(train_df.drop(['type'], axis=1), train_df['type'])
+    t1 = time.time()
+    print('Done.', flush=True)
+    print('Random forest trained in {:.2f} seconds.'.format(t1-t0))
+
+    pred = pd.Series(rf.predict(test_df), index=test_df.index,
                      name='type')
     pred.to_csv(PART2_PREDICTIONS, header=True)
     print('\nPredictions written to file.')
+
+    # # Visualize the tree.
+    # dot_data = tree.export_graphviz(tree_2, out_file=None,
+    #                                 feature_names=X_train.columns,
+    #                                 class_names=['white', 'red'],
+    #                                 filled=True, rounded=True,
+    #                                 special_characters=True)
+    # graph = graphviz.Source(dot_data)
+    # graph.render(view=True)
 
     # Code below was used for experimenting with tree depth, minimum
     # leaf samples, and PCA
@@ -289,55 +319,68 @@ def part_2():
     #     print('Min leaf samples {:02}, Score: {:.4f}, Depth: {:02}'.format(
     #         int(k), s, t.tree_.max_depth))
     #
-    # Perform PCA in a loop.
+
+    # # Perform PCA in a loop, but first normalize the data.
+    # # Load training and testing data.
+    # scaler = MinMaxScaler()
+    # scaler.fit(train_df)
+    # train_df_norm = scaler.transform(train_df)
+    # test_df_norm = scaler.transform(test_df)
+    #
+    # # Split train/test.
+    # train_norm, test_norm = train_test_split(train_df_norm,
+    #                                          train_size=train_size,
+    #                                          test_size=test_size,
+    #                                          random_state=SEED)
+    #
+    # # Hard-coding! Quality comes last.
+    # X_train_norm = train_norm[:, 0:-1]
+    # y_train_norm = train_norm[:, -1]
+    # X_test_norm = test_norm[:, 0:-1]
+    # y_test_norm = test_norm[:, -1]
     # print('\nPCA scores:')
-    # for f in range(1, X_train.columns.shape[0]+1):
+    # for f in range(1, X_train_norm.shape[1]+1):
     #     # Perform PCA with f features.
-    #     p = PCA(n_components=f, whiten=True)
-    #     p.fit(X_train)
+    #     p = PCA(n_components=f, whiten=False)
+    #     p.fit(X_train_norm)
     #
     #     # Fit and score the tree.
-    #     t = DecisionTreeClassifier(random_state=SEED)
-    #     t.fit(X=p.transform(X_train), y=y_train)
-    #     s = t.score(X=p.transform(X_test), y=y_test)
+    #     t = DecisionTreeClassifier(random_state=SEED, max_depth=7)
+    #     t.fit(X=p.transform(X_train_norm), y=y_train_norm)
+    #     s = t.score(X=p.transform(X_test_norm), y=y_test_norm)
     #
     #     print('Score with {:02} components: {:.4f}'.format(f, s))
-
-    # Visualize the tree.
-    # dot_data = tree.export_graphviz(tree_basic, out_file=None,
-    #                                 feature_names=X_train.columns,
-    #                                 class_names=['white', 'red'],
-    #                                 filled=True, rounded=True,
-    #                                 special_characters=True)
-    # graph = graphviz.Source(dot_data)
-    # graph.render(view=True)
 
 
 def part_3():
     """Part 3 - use white wine coefficients to predict red wine."""
     print('*' * 79)
-    print('PART 2')
+    print('PART 3')
 
     # Read white wine coefficients and intercept
-    coeff = pd.read_csv(PART1_COEFFICIENTS)
-    intercept = pd.read_csv(PART1_INTERCEPT)
+    coeff = pd.read_csv(PART1_COEFFICIENTS).values
 
-    # Read red wine testing data.
+    # Read red wine training and testing data.
+    red_train = pd.read_csv(RED_TRAIN, index_col='Id')
+    X_train = red_train.drop(['quality'], axis=1)
     red_test = pd.read_csv(RED_TEST, index_col='Id')
 
     print('All data read from file.')
 
     # Predict.
-    predictions = intercept.values + np.matmul(red_test.values, coeff.values.T)
-    print('Predictions made.')
+    pred_train = (coeff[0] + np.matmul(X_train, coeff[1:]))
+    pred_test = coeff[0] + np.matmul(red_test.values, coeff[1:])
+    print('Predictions made for both training and testing data.')
+    mse_train = mean_squared_error(red_train['quality'], pred_train)
+    print('Training MSE: {:.2f}'.format(mse_train))
 
     # Write to file.
-    p = pd.DataFrame(predictions, index=red_test.index, columns=['quality'])
+    p = pd.DataFrame(pred_test, index=red_test.index, columns=['quality'])
     p.to_csv(PART3_PREDICTIONS, header=True)
     print('Predictions written to file')
 
 
 if __name__ == '__main__':
-    # part_1()
-    # part_2()
+    part_1()
+    part_2()
     part_3()
