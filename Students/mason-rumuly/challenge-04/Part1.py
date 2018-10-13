@@ -14,7 +14,7 @@ homeDir = os.path.sep.join(os.path.abspath(getsourcefile(lambda:0)).split(os.pat
 sourceDir = homeDir + 'Challenges{0}4Files{0}'.format(os.path.sep)
 targetDir = homeDir
 
-cv_bins = 4
+cv_bins = 8
 
 if __name__=='__main__':
 

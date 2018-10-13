@@ -10,13 +10,13 @@ import matplotlib.pyplot as plt
 # locations
 homeDir = os.path.sep.join(os.path.abspath(getsourcefile(lambda:0)).split(os.path.sep)[:-4]) + os.path.sep
 sourceDir = homeDir + 'Challenges{0}4Files{0}'.format(os.path.sep)
-targetDir = homeDir
+targetDir = homeDir +'Students{0}mason-rumuly{0}challenge-04{0}'.format(os.path.sep)
 
 # tree limits to test
 tree_limits = [i for i in range(1, 30)]
 
 # number of bins
-cv_bins = 100
+cv_bins = 8
 
 if __name__=='__main__':
 
@@ -73,11 +73,15 @@ if __name__=='__main__':
 
     # compare methods
     plt.figure()
-    plt.hlines(me_train_linear, tree_limits[0], tree_limits[-1], label='linear model train')
-    plt.hlines(me_test_linear, tree_limits[0], tree_limits[-1], label='linear model test')
-    plt.semilogy(tree_limits, me_train, label='raw train score')
-    plt.semilogy(tree_limits, me_test, label='raw test score')
-    plt.semilogy(tree_limits, me_train_lda, label='lda train score')
-    plt.semilogy(tree_limits, me_test_lda, label='lda test score')
+    plt.hlines(me_train_linear, tree_limits[0], tree_limits[-1], label='lda model train')
+    plt.hlines(me_test_linear, tree_limits[0], tree_limits[-1], label='lda model test')
+    plt.semilogy(tree_limits, me_train, label='raw train tree')
+    plt.semilogy(tree_limits, me_test, label='raw test tree')
+    plt.semilogy(tree_limits, me_train_lda, label='lda train tree')
+    plt.semilogy(tree_limits, me_test_lda, label='lda test tree')
     plt.legend()
+    plt.title('Classification Methods in Cross Validation')
+    plt.xlabel('Max Tree Depth')
+    plt.ylabel('Error Rate')
+    plt.savefig(targetDir + 'tree_goodnes.png')
     plt.show()
