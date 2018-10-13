@@ -1,7 +1,6 @@
 import numpy as np
 
 # Custom SGD linear regressor for the fun of it
-# include L1 and L2 regularization
 
 class SGDRegressor(object):
     def __init__(
@@ -133,6 +132,9 @@ class SGDRegressor(object):
         return self
     
     def predict(self, X):
+        '''
+        predict values corresponding to X
+        '''
         assert self.W is not None, 'not fit'
 
         X_array = np.array(X)
@@ -149,25 +151,33 @@ class SGDRegressor(object):
         '''
         Get mean squared error over given set
         '''
-        difference = self.predict(X) - np.array(y)
-        return (difference.dot(difference)/difference.shape[0]).mean()
+        return ((self.predict(X) - np.array(y))**2).mean()
         
+    def score(self, X, y):
+        '''
+        Get performance as (1-u/v), where u is sum of squared errors and v is the label variance. 
+        Best score is 1, worst scores approach -infty
+        '''
+        y_array = np.array(y)
+        return 1 - ((self.predict(X) - y_array)**2).sum()/((y_array - y_array.mean())**2).sum()
 
 # Unit tests
 if __name__ == '__main__':
 
+    # simple test vectors, can be perfectly reproduced
+    part_0 = [1, 2, 3], [1, 2, 3]
+    part_1 = [[1,1],[2,4],[3,9]], [2, 6, 12]
+
     sgdr = SGDRegressor(0.01, epochs=100, regularization='lasso', reg_strength=0.001)
     # should work on 1D and 2D training data
     sgdr.fit(
-        [1, 2, 3], [1, 2, 3]
+        *part_0
     )
     assert sgdr.W.shape[0] == 1, 'Invalid coefficient size on 1D'
-    print(sgdr.mse([1, 2, 3], [1, 2, 3]))
-    print(sgdr.W, sgdr.b) 
+    print('MSE:', sgdr.mse(*part_0), 'Score:', sgdr.score(*part_0))
     sgdr.fit(
-        [[1,1],[2,4],[3,9]], [2, 6, 12], learning_rate=0.001, epochs=1000, keep_hist=True
+        *part_1, learning_rate=0.001, epochs=1000, keep_hist=True
     )
     assert sgdr.W.shape[0] == 2, 'Invalid coefficient size on 2D'
-    print(sgdr.mse([[1,1],[2,4],[3,9]], [2, 6, 12]))
-    print(sgdr.W, sgdr.b) 
+    print('MSE:', sgdr.mse(*part_1), 'Score:', sgdr.score(*part_1))
     
