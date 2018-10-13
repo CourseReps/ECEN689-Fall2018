@@ -192,8 +192,9 @@ def part_1():
     best_predictions.to_csv(PART1_PREDICTIONS, header=True)
     coef = np.insert(out[best_model]['model'].coef_, 0,
                      out[best_model]['model'].intercept_)
-    best_coefficients = pd.Series(coef, name='parameters')
-    best_coefficients.to_csv(PART1_COEFFICIENTS, index=False, header=True)
+    best_coefficients = pd.Series(coef, name='parameter')
+    best_coefficients.index.name = 'Id'
+    best_coefficients.to_csv(PART1_COEFFICIENTS, index=True, header=True)
     print('\nPrediction and coefficients written to file.')
 
 
@@ -357,7 +358,7 @@ def part_3():
     print('PART 3')
 
     # Read white wine coefficients and intercept
-    coeff = pd.read_csv(PART1_COEFFICIENTS).values
+    coeff = pd.read_csv(PART1_COEFFICIENTS, index_col='Id').values
 
     # Read red wine training and testing data.
     red_train = pd.read_csv(RED_TRAIN, index_col='Id')
@@ -401,7 +402,7 @@ def round_results():
 if __name__ == '__main__':
     # Run parts 1, 2, and 3.
     part_1()
-    part_2()
+    # part_2()
     part_3()
 
     # Round predictions to nearest integer for parts 1 and 3.
