@@ -3,16 +3,16 @@ import pandas as pd
 import numpy as np
 from numpy.random import uniform, seed
 from sklearn.metrics import mean_squared_error
-from sklearn.linear_model import LassoLarsCV, LassoCV, RidgeCV, \
-    LinearRegression
-from sklearn.preprocessing import MinMaxScaler
-from sklearn import tree
+from sklearn.linear_model import LinearRegression, LassoCV, RidgeCV
+# LassoLarsCV
+# from sklearn.preprocessing import MinMaxScaler
+# from sklearn import tree
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.decomposition import PCA
-import matplotlib.pyplot as plt
-import graphviz
+# from sklearn.decomposition import PCA
+# import matplotlib.pyplot as plt
+# import graphviz
 
 # Standard library:
 import os.path
@@ -49,6 +49,7 @@ seed(SEED)
 
 # Create 1000 alphas to test.
 ALPHAS = uniform(low=0, high=0.1, size=1000)
+
 
 def part_1():
     """Linear regression on the white wine data."""
@@ -122,8 +123,6 @@ def part_1():
     # Try RidgeCV
     print('Running RidgeCV...', end='')
     out['RidgeCV'] = {}
-    # TODO: Should refine our alpha selection based on which one the
-    # cross validation selects.
     t0 = time.time()
 
     rcv = RidgeCV(alphas=ALPHAS, cv=5)
@@ -138,7 +137,7 @@ def part_1():
 
     print('Evaluating models...')
     # Initialize for plotting.
-    x = np.arange(1, lr.coef_.shape[0]+1)
+    # x = np.arange(1, lr.coef_.shape[0]+1)
 
     # Track best MSE. Initialize to infinity so we're always below it.
     best_mse = np.inf
