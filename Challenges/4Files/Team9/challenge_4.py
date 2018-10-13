@@ -3,16 +3,16 @@ import pandas as pd
 import numpy as np
 from numpy.random import uniform, seed
 from sklearn.metrics import mean_squared_error
-from sklearn.linear_model import LassoLarsCV, LassoCV, RidgeCV, \
-    LinearRegression
-from sklearn.preprocessing import MinMaxScaler
-from sklearn import tree
+from sklearn.linear_model import LinearRegression, LassoCV, RidgeCV
+# LassoLarsCV
+# from sklearn.preprocessing import MinMaxScaler
+# from sklearn import tree
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.decomposition import PCA
-import matplotlib.pyplot as plt
-import graphviz
+# from sklearn.decomposition import PCA
+# import matplotlib.pyplot as plt
+# import graphviz
 
 # Standard library:
 import os.path
@@ -49,6 +49,7 @@ seed(SEED)
 
 # Create 1000 alphas to test.
 ALPHAS = uniform(low=0, high=0.1, size=1000)
+
 
 def part_1():
     """Linear regression on the white wine data."""
@@ -122,8 +123,6 @@ def part_1():
     # Try RidgeCV
     print('Running RidgeCV...', end='')
     out['RidgeCV'] = {}
-    # TODO: Should refine our alpha selection based on which one the
-    # cross validation selects.
     t0 = time.time()
 
     rcv = RidgeCV(alphas=ALPHAS, cv=5)
@@ -138,7 +137,7 @@ def part_1():
 
     print('Evaluating models...')
     # Initialize for plotting.
-    x = np.arange(1, lr.coef_.shape[0]+1)
+    # x = np.arange(1, lr.coef_.shape[0]+1)
 
     # Track best MSE. Initialize to infinity so we're always below it.
     best_mse = np.inf
@@ -193,8 +192,9 @@ def part_1():
     best_predictions.to_csv(PART1_PREDICTIONS, header=True)
     coef = np.insert(out[best_model]['model'].coef_, 0,
                      out[best_model]['model'].intercept_)
-    best_coefficients = pd.Series(coef, name='parameters')
-    best_coefficients.to_csv(PART1_COEFFICIENTS, index=False, header=True)
+    best_coefficients = pd.Series(coef, name='parameter')
+    best_coefficients.index.name = 'Id'
+    best_coefficients.to_csv(PART1_COEFFICIENTS, index=True, header=True)
     print('\nPrediction and coefficients written to file.')
 
 
@@ -358,7 +358,7 @@ def part_3():
     print('PART 3')
 
     # Read white wine coefficients and intercept
-    coeff = pd.read_csv(PART1_COEFFICIENTS).values
+    coeff = pd.read_csv(PART1_COEFFICIENTS, index_col='Id').values
 
     # Read red wine training and testing data.
     red_train = pd.read_csv(RED_TRAIN, index_col='Id')
@@ -380,7 +380,31 @@ def part_3():
     print('Predictions written to file')
 
 
+def round_results():
+    """Load up results files, round answers, write new files."""
+    # Read files.
+    part_1_pred = pd.read_csv(PART1_PREDICTIONS, index_col='Id')
+    part_3_pred = pd.read_csv(PART3_PREDICTIONS, index_col='Id')
+
+    # Round to nearest integer.
+    part_1_rounded = part_1_pred.round(0)
+    part_3_rounded = part_3_pred.round(0)
+
+    # # Floor round.
+    # part_1_rounded = np.floor(part_1_pred)
+    # part_3_rounded = np.floor(part_3_pred)
+
+    # Write results.
+    part_1_rounded.to_csv(os.path.join(OUT_DIR, 'part1_rounded.csv'))
+    part_3_rounded.to_csv(os.path.join(OUT_DIR, 'part3_rounded.csv'))
+
+
 if __name__ == '__main__':
+    # Run parts 1, 2, and 3.
     part_1()
-    part_2()
+    # part_2()
     part_3()
+
+    # Round predictions to nearest integer for parts 1 and 3.
+    # This didn't seem to improve the public results.
+    # round_results()
