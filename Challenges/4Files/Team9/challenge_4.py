@@ -379,7 +379,31 @@ def part_3():
     print('Predictions written to file')
 
 
+def round_results():
+    """Load up results files, round answers, write new files."""
+    # Read files.
+    part_1_pred = pd.read_csv(PART1_PREDICTIONS, index_col='Id')
+    part_3_pred = pd.read_csv(PART3_PREDICTIONS, index_col='Id')
+
+    # Round to nearest integer.
+    part_1_rounded = part_1_pred.round(0)
+    part_3_rounded = part_3_pred.round(0)
+
+    # # Floor round.
+    # part_1_rounded = np.floor(part_1_pred)
+    # part_3_rounded = np.floor(part_3_pred)
+
+    # Write results.
+    part_1_rounded.to_csv(os.path.join(OUT_DIR, 'part1_rounded.csv'))
+    part_3_rounded.to_csv(os.path.join(OUT_DIR, 'part3_rounded.csv'))
+
+
 if __name__ == '__main__':
+    # Run parts 1, 2, and 3.
     part_1()
     part_2()
     part_3()
+
+    # Round predictions to nearest integer for parts 1 and 3.
+    # This didn't seem to improve the public results.
+    # round_results()
