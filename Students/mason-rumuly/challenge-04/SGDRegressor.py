@@ -99,7 +99,8 @@ class SGDRegressor(object):
                     lgrad += self.reg_strength*2*self.W
 
                 # create random vector with expectation of loss gradient
-                rgrad = lgrad*(1 + np.random.randn(*self.W.shape))
+                # sample is a random vector, don't need this stupidity
+                rgrad = lgrad  # *(1 + np.random.randn(*self.W.shape))
 
                 # values for update
                 update = rgrad*learning_rate
