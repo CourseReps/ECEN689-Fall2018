@@ -147,7 +147,6 @@ def part_1():
     print('Running RidgeCV...', end='')
     out['RidgeCV'] = {}
     t0 = time.time()
-
     rcv = RidgeCV(alphas=ALPHAS, cv=5)
     rcv.fit(X_train, y_train)
     p_rcv = rcv.predict(X=X_test)
