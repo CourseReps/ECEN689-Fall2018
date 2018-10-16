@@ -2,13 +2,13 @@
   
 ## Teams
 
- * __Team 1__: 
- * __Team 2__: 
- * __Team 3__: 
- * __Team 4__: 
- * __Team 5__: 
- * __Team 6__: 
- * __Team 7__: 
- * __Team 8__: 
- * __Team 9__: 
+ * __Team 1__: Anirudh Shaktawat, Rishi Laddha, Aditya Lahiri, Harinath
+ * __Team 2__: Neehar Yalamarti, Siddharth Ajit, Devarsh Jhaveri, Amrita Veerabagu
+ * __Team 3__: Ki Yeob Lee, Ali Shafi, Michael Bass, Shirish Pandagare
+ * __Team 4__: Harish Chigurupati, Drupad Khublani, Sambandh Bhusan Dhal
+ * __Team 5__: Priya Balasubramanian, Divyank Garg, Ranjith Tamil Selvan, Samarth Mistry
+ * __Team 6__: Prabhneet Arora, Mahalakshmi Sridharan, Vedant Mehta, Samyuktha Sankaran
+ * __Team 7__: Shabarish Rajendra, Khaled Nakhleh, Fazia Batool, Venkata Pydimarri
+ * __Team 8__: Ashish Kumar, Mason Rumuly, Sayeed Alvi, Kanchan Satpute
+ * __Team 9__: Harish Kumar, Swati Ramachandran, Jatin Kamnani, Brandon Thayer
 
