@@ -11,7 +11,7 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 # from sklearn.decomposition import PCA
-# import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 # import graphviz
 
 # Standard library:
@@ -106,6 +106,29 @@ def part_1():
     out['LassoCV']['prediction'] = p_lcv
     print('Done in {:.2f} seconds.'.format(t1 - t0), end='\n')
 
+    # Lasso tends to drop density. Hard-code drop density and run.
+    print('Running LinearRegression without density...', end='')
+    out['LinRegNoDensity'] = {}
+    t0 = time.time()
+    lr_nd = LinearRegression(n_jobs=-1)
+    # Get an X with a zeroed out density.
+    X_train_no_density = X_train.drop(['density'], axis=1)
+    lr_nd.fit(X_train_no_density, y_train)
+    # Recreate the coefficients, placing a 0 in the density slot.
+    coef = np.zeros(X_train.columns.shape)
+    density_boolean = X_train.columns.values == 'density'
+    coef[~density_boolean] = lr_nd.coef_
+    lr_nd.coef_ = coef
+    # Make predictions with the testing data.
+    p_lr_nd = lr_nd.predict(X=X_test)
+    # Compute MSE.
+    mse_lr_nd = mean_squared_error(y_test, p_lr_nd)
+    t1 = time.time()
+    out['LinRegNoDensity']['mse'] = mse_lr_nd
+    out['LinRegNoDensity']['model'] = p_lr_nd
+    out['LinRegNoDensity']['prediction'] = p_lr_nd
+    print('Done in {:.2f} seconds.'.format(t1 - t0), end='\n')
+
     # # Try LassoLarsCV
     # print('Running LassoLarsCV...', end='')
     # out['LassoLarsCV'] = {}
@@ -124,7 +147,6 @@ def part_1():
     print('Running RidgeCV...', end='')
     out['RidgeCV'] = {}
     t0 = time.time()
-
     rcv = RidgeCV(alphas=ALPHAS, cv=5)
     rcv.fit(X_train, y_train)
     p_rcv = rcv.predict(X=X_test)
@@ -269,27 +291,27 @@ def part_2():
     # print('Tree 2 feature importance: {}'.format(
     # tree_2.feature_importances_))
 
-    # # Train tree_2 on the entire data set and write predictions.
-    # tree_2.fit(train_df.drop(['type'], axis=1), train_df['type'])
-    # pred = pd.Series(tree_2.predict(test_df), index=test_df.index,
-    #                  name='type')
-    # pred.to_csv(PART2_PREDICTIONS, header=True)
-    # print('\nPredictions written to file.')
-
-    # Random forest.
-    print('Training a random forest...', end='', flush=True)
-    t0 = time.time()
-    rf = RandomForestClassifier(n_estimators=10000, max_depth=7,
-                                random_state=SEED, n_jobs=-1)
-    rf.fit(train_df.drop(['type'], axis=1), train_df['type'])
-    t1 = time.time()
-    print('Done.', flush=True)
-    print('Random forest trained in {:.2f} seconds.'.format(t1-t0))
-
-    pred = pd.Series(rf.predict(test_df), index=test_df.index,
+    # Train tree_2 on the entire data set and write predictions.
+    tree_2.fit(train_df.drop(['type'], axis=1), train_df['type'])
+    pred = pd.Series(tree_2.predict(test_df), index=test_df.index,
                      name='type')
     pred.to_csv(PART2_PREDICTIONS, header=True)
     print('\nPredictions written to file.')
+
+    # Random forest.
+    # print('Training a random forest...', end='', flush=True)
+    # t0 = time.time()
+    # rf = RandomForestClassifier(n_estimators=10000, max_depth=7,
+    #                             random_state=SEED, n_jobs=-1)
+    # rf.fit(train_df.drop(['type'], axis=1), train_df['type'])
+    # t1 = time.time()
+    # print('Done.', flush=True)
+    # print('Random forest trained in {:.2f} seconds.'.format(t1-t0))
+    #
+    # pred = pd.Series(rf.predict(test_df), index=test_df.index,
+    #                  name='type')
+    # pred.to_csv(PART2_PREDICTIONS, header=True)
+    # print('\nPredictions written to file.')
 
     # # Visualize the tree.
     # dot_data = tree.export_graphviz(tree_2, out_file=None,
@@ -368,8 +390,8 @@ def part_3():
     print('All data read from file.')
 
     # Predict.
-    pred_train = (coeff[0] + np.matmul(X_train, coeff[1:]))
-    pred_test = coeff[0] + np.matmul(red_test.values, coeff[1:])
+    pred_train = predict(coeff, X_train)
+    pred_test = predict(coeff, red_test.values)
     print('Predictions made for both training and testing data.')
     mse_train = mean_squared_error(red_train['quality'], pred_train)
     print('Training MSE: {:.2f}'.format(mse_train))
@@ -378,6 +400,11 @@ def part_3():
     p = pd.DataFrame(pred_test, index=red_test.index, columns=['quality'])
     p.to_csv(PART3_PREDICTIONS, header=True)
     print('Predictions written to file')
+
+
+def predict(coeff, mat):
+    """Helper to make prediction given coefficients and matrix."""
+    return coeff[0] + np.matmul(mat, coeff[1:])
 
 
 def round_results():
@@ -399,11 +426,45 @@ def round_results():
     part_3_rounded.to_csv(os.path.join(OUT_DIR, 'part3_rounded.csv'))
 
 
+def part_4():
+    """Create visualizations for the report."""
+    # Read training data for red/white wine.
+    r_train = pd.read_csv(RED_TRAIN, index_col='Id')
+    w_train = pd.read_csv(WHITE_TRAIN, index_col='Id')
+
+    # Extract X for convenience.
+    r_X = r_train.drop(['quality'], axis=1)
+    w_X = w_train.drop(['quality'], axis=1)
+
+    # Read coefficients.
+    coeff = pd.read_csv(PART1_COEFFICIENTS, index_col='Id').values
+
+    # Make predictions for red/white wine.
+    r_pred = predict(coeff, r_X.values)
+    w_pred = predict(coeff, w_X.values)
+
+    # Get differences between real quality and predicted quality.
+    r_delta = r_train['quality'] - np.squeeze(r_pred)
+    w_delta = w_train['quality'] - np.squeeze(w_pred)
+
+    # Make a boxplot of raw prediction errors. Whiskers at 1st and 99th
+    # percentiles.
+    plt.boxplot(x=[r_delta.values, w_delta.values], whis=[1, 99])
+    ax = plt.gca()
+    ax.set_xticklabels(['Red Wine', 'White Wine'])
+    ax.set_xlabel('Wine Types')
+    ax.set_ylabel('Actual Quality Minus Predicted Quality')
+
+    # Write boxplot to file.
+    plt.savefig('boxplot.eps', type='eps')
+
+
 if __name__ == '__main__':
     # Run parts 1, 2, and 3.
     part_1()
-    # part_2()
+    part_2()
     part_3()
+    # part_4()
 
     # Round predictions to nearest integer for parts 1 and 3.
     # This didn't seem to improve the public results.
