@@ -16,7 +16,7 @@ Multi-Arm Bandits (MAB), which derive their name from a tongue-in-cheek descript
 
 ## Exploration and Exploitation
 
-Describe tradeoff here, especially need to reduce exploration over time.
+
 
 ## Thompson Sampling Algorithm
 
