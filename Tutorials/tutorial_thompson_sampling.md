@@ -15,6 +15,11 @@ This tutorial covers the following topics:
 Multi-Arm Bandits (MAB), which derive their name from a tongue-in-cheek description of Slot Machines, are perhaps the simplest incarnation of Reinforcement Learning. A MAB problem presents a number of actions which can be taken each round; these are the 'arms,' which are 'pulled' or acted on. Each arm creates a probabilistic reward when pulled. The reward probability is independent of the other arms and of all other actions. An arm must be pulled each round. The goal is to maximize the sum of rewards over a number of rounds, or equivalently to find and exploit the arm with the best payout probability.
 
 ## Exploration and Exploitation
+Exploration : Gain or learn more information about the rewards by pulling all the arms; gather more information to improve future decisions.
+
+Exploitation : Maximize the reward or minimize the regret by pulling the arms with greatest expected value; Make the best decision given the existing information.
+
+In the context of MAB, the user must take action (play an arm) to learn about it. In short, sub optimal actions should be chosen to maximize long term benefits.
 
 
 
