@@ -25,7 +25,7 @@ This can be better explained by a real life scenario
 
 Visit the new restaurant to learn more information about it. You may like the new place and hopefully visit it more often or regret your decision.This is an example of exploration. Go to the usual favorite restaurant and “exploit” the utility or value associated with the decision but you may lose out on finding a better restaurant. This action represents exploitation.
 
-Thompson sampling does not have a seperate exploration and exploitation phase.However,the distribution with the highest likelihood of payout gets chosen the most assuming a finite number of sampling rounds.
+Thompson sampling does not have a seperate exploration and exploitation phase. However,the distribution with the highest likelihood of payout gets chosen the most assuming a finite number of sampling rounds.
 
 
 
