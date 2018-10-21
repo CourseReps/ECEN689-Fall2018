@@ -21,6 +21,14 @@ Exploitation : Maximize the reward or minimize the regret by pulling the arms wi
 
 In the context of MAB, the user must take action (play an arm) to learn about it. In short, sub optimal actions should be chosen to maximize long term benefits.
 
+This can be better explained by a real life scenario
+![image](https://user-images.githubusercontent.com/35848569/47262851-c50f8600-d4b8-11e8-9c49-13e98c4caf7e.png)
+
+Visit the new restaurant to learn more information about it. You may like the new place and hopefully visit it more often or regret your decision.This is an example of exploration.
+
+Go to the usual favorite restaurant and “exploit” the utility or value associated with the decision but you may lose out on finding a better restaurant. This action represents exploitation.
+
+
 
 
 ## Thompson Sampling Algorithm
