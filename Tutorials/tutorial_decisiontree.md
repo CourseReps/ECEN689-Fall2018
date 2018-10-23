@@ -31,6 +31,14 @@ There are various Decision tree algorithms which are different mainly based on s
 * They are typically not very robust. A small change in the training data can result in a large change in the tree (suffers from high variance)
 * They can easily overfit data. Pruning is necessary to avoid this problem.
 
+### Data
+
+* Consider a simple two class problem with two features (as shown in the snippet below)
+<p align="center">
+<img src="https://github.com/CourseReps/ECEN689-Fall2018/blob/master/Students/vedantmehta2808/Figures%20for%20Tutorial/Data%20snippet.JPG" width="300" height="400">
+</p>
+And this is how the feature space looks like
+
 ### Prediction
 
 **For a Classification problem:**
