@@ -37,7 +37,18 @@ There are various Decision tree algorithms which are different mainly based on s
 <p align="center">
 <img src="https://github.com/CourseReps/ECEN689-Fall2018/blob/master/Students/vedantmehta2808/Figures%20for%20Tutorial/Data%20snippet.JPG" width="300" height="400">
 </p>
-And this is how the feature space looks like
+
+And this is how the feature space looks like:
+
+<p align="center">
+  <img src="https://github.com/CourseReps/ECEN689-Fall2018/blob/master/Students/vedantmehta2808/Figures%20for%20Tutorial/FeatureSpace.png" width="350" height="250"></img>
+</p>
+
+The goal of decision tree is to divide the feature space into regions such that each of the regions have as much purity (data belonging to a particular class) as possible. So in order to divide the feature space, widely famous loss function named Gini Impurity is used. 
+
+Gini Impurity is defined as below:
+<p align="center">
+  <img src="
 
 ### Prediction
 
