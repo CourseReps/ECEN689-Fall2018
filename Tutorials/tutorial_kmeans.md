@@ -35,7 +35,7 @@ K-means clustering is a simple clustering algorithm classified as unsupervised l
 * Each input sample belongs to the closest Cj.
 * Mathematically, K-Means Objective function is given as:
 
-![first equation](http://latex.codecogs.com/gif.latex?%5Csum_%7Bi%3D0%7D%5E%7Bn%7D%20%5Cunderset%7B%5Cmu_j%20%5Cin%20C%7D%7B%5Ctext%7Bmin%7D%7D%28%7C%7Cx_i%20-%20%5Cmu_j%7C%7C%5E2%29)
+  ![first equation](http://latex.codecogs.com/gif.latex?%5Csum_%7Bi%3D0%7D%5E%7Bn%7D%20%5Cunderset%7B%5Cmu_j%20%5Cin%20C%7D%7B%5Ctext%7Bmin%7D%7D%28%7C%7Cx_i%20-%20%5Cmu_j%7C%7C%5E2%29)
 
 ## K-Means Algorithm
 * Finding the optimal k-means solution is often computationally infeasible.
