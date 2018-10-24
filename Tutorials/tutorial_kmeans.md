@@ -12,12 +12,12 @@ by Brandon Thayer and Harish Chigurupati
 
 
 ## Introduction to Clustering
-Clustering is one of the most widely used techniques for exploratory data analysis. clustering is the task of grouping a set of objects such that similar objects end up in the same group and dissimilar objects are separated into different groups. In simple words, the aim is to segregate groups with similar traits and assign them into clusters. 
+Clustering is one of the most widely used techniques for exploratory data analysis. Clustering is the task of grouping a set of objects such that similar objects end up in the same group and dissimilar objects are separated into different groups. In simple words, the aim is to segregate groups with similar traits and assign them into clusters. 
 
-There are various Clustering algorithms that are available. We choose the right algorithm based on the data we are handling.i.e, we identify meaningful groups with a lack of "ground truth" for clustering, which is a common problem in unsupervised learning.  The goal of supervised learning is clear we wish to learn a classifier which will predict the labels of future examples as accurately as possible. Furthermore, a supervised learner can estimate the success, or the risk, of its hypotheses using the labeled training data by computing the empirical loss. In contrast, clustering is an unsupervised learning problem; namely, there are no labels that we try to predict. Instead, we wish to organize the data in some meaningful way. As a result, there is no clear success evaluation procedure for clustering. In fact, even on the basis of full knowledge of the underlying data distribution, it is not clear what is the correct" clustering for that data or how to evaluate a proposed clustering.
+There are various clustering algorithms that are available. We choose the right algorithm based on the data we are handling. .I.e, we identify meaningful groups with a lack of "ground truth" for clustering, which is a common problem in unsupervised learning.  The goal of supervised learning is clear we wish to learn a classifier which will predict the labels of future examples as accurately as possible. Furthermore, a supervised learner can estimate the success, or the risk, of its hypotheses using the labeled training data by computing the empirical loss. In contrast, clustering is an unsupervised learning problem; namely, there are no labels that we try to predict. Instead, we wish to organize the data in some meaningful way. As a result, there is no clear success evaluation procedure for clustering. In fact, even on the basis of full knowledge of the underlying data distribution, it is not clear what is the correct" clustering for that data or how to evaluate a proposed clustering.
 
 <p align="center">
-<img src="https://github.com/CourseReps/ECEN689-Fall2018/blob/master/Students/harishchigurupati/Images%20for%20tutorial/clusters.png" width="300" height="400">
+<img src="https://github.com/CourseReps/ECEN689-Fall2018/blob/master/Students/harishchigurupati/Images%20for%20tutorial/clusters.png" width="600" height="400">
 </p>
 
 
@@ -34,6 +34,7 @@ K-means clustering is a simple Clustering algorithm coming under unsupervised le
 *  The k-means objective function measures the squared distance between each point in X to the centroid of its cluster.
 * Each input sample belongs to the closest Cj.
 * Mathematically, K-Means Objective function is given as:
+
 ![first equation](http://latex.codecogs.com/gif.latex?%5Csum_%7Bi%3D0%7D%5E%7Bn%7D%20%5Cunderset%7B%5Cmu_j%20%5Cin%20C%7D%7B%5Ctext%7Bmin%7D%7D%28%7C%7Cx_i%20-%20%5Cmu_j%7C%7C%5E2%29)
 
 ## K-Means Algorithm
@@ -44,8 +45,10 @@ K-means clustering is a simple Clustering algorithm coming under unsupervised le
 1. *Initialize*: Randomly choose initial centroid μi,...,μk.
 2. *Repeat until convergence:*
 2.1  Assign data to clusters:
+
 ![Second Equation](http://latex.codecogs.com/gif.latex?%24%5Cforall%20i%20%5Cin%20%5Bk%5D%24%20set%20%24C_i%20%3D%20%5C%7Bx%20%5Cin%20X%3A%20i%20%3D%20%5Ctext%7Bargmin%7D_j%20%7C%7Cx%20-%20%7B%5Cmu%7D_j%7C%7C%5C%7D%24)
 2.2 *Update centroids:*
+
 ![third equation](http://latex.codecogs.com/gif.latex?%5Cforall%20i%20%5Cin%20%5Bk%5D%20update%20%7B%5Cmu%7D_i%20%3D%20%5Cfrac%7B1%7D%7B%7CC_i%7C%7D%5Csum_%7Bx%20%5Cin%20C_i%7D%20x)
 
 ## Demonstration
