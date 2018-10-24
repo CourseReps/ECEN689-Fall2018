@@ -44,9 +44,11 @@ K-means clustering is a simple Clustering algorithm coming under unsupervised le
  **Algorithm**
 1. *Initialize*: Randomly choose initial centroid μi,...,μk.
 2. *Repeat until convergence:*
+
 2.1  Assign data to clusters:
 
 ![Second Equation](http://latex.codecogs.com/gif.latex?%24%5Cforall%20i%20%5Cin%20%5Bk%5D%24%20set%20%24C_i%20%3D%20%5C%7Bx%20%5Cin%20X%3A%20i%20%3D%20%5Ctext%7Bargmin%7D_j%20%7C%7Cx%20-%20%7B%5Cmu%7D_j%7C%7C%5C%7D%24)
+
 2.2 *Update centroids:*
 
 ![third equation](http://latex.codecogs.com/gif.latex?%5Cforall%20i%20%5Cin%20%5Bk%5D%20update%20%7B%5Cmu%7D_i%20%3D%20%5Cfrac%7B1%7D%7B%7CC_i%7C%7D%5Csum_%7Bx%20%5Cin%20C_i%7D%20x)
@@ -188,7 +190,7 @@ print(('K-Means with normalized data correctly identified {:.0f}% of the '
 * Converges to local minimum depending on starting point-Circumvent by repeating algorithm with different initial centroids.
 
 ## References
-* Wikipedia Clustering (https://en.wikipedia.org/wiki/Cluster_analysis)
-* More on Clustering (http://scikit-learn.org/stable/modules/clustering.html)
-* K-Means Algorithm (https://www.cs.huji.ac.il/~shais/UnderstandingMachineLearning/understanding-machine-learning-theory-algorithms.pdf)
+* [Wikipedia](https://en.wikipedia.org/wiki/Cluster_analysis)
+* [scikit-learn](http://scikit-learn.org/stable/modules/clustering.html)
+* [Course textbook](https://www.cs.huji.ac.il/~shais/UnderstandingMachineLearning/understanding-machine-learning-theory-algorithms.pdf)
 
