@@ -14,16 +14,16 @@ by Brandon Thayer and Harish Chigurupati
 ## Introduction to Clustering
 Clustering is one of the most widely used techniques for exploratory data analysis. Clustering is the task of grouping a set of objects such that similar objects end up in the same group and dissimilar objects are separated into different groups. In simple words, the aim is to segregate groups with similar traits and assign them into clusters. 
 
-There are various clustering algorithms that are available. We choose the right algorithm based on the data we are handling. .I.e, we identify meaningful groups with a lack of "ground truth" for clustering, which is a common problem in unsupervised learning.  The goal of supervised learning is clear we wish to learn a classifier which will predict the labels of future examples as accurately as possible. Furthermore, a supervised learner can estimate the success, or the risk, of its hypotheses using the labeled training data by computing the empirical loss. In contrast, clustering is an unsupervised learning problem; namely, there are no labels that we try to predict. Instead, we wish to organize the data in some meaningful way. As a result, there is no clear success evaluation procedure for clustering. In fact, even on the basis of full knowledge of the underlying data distribution, it is not clear what is the correct" clustering for that data or how to evaluate a proposed clustering.
+There are various clustering algorithms that are available. We choose the right algorithm based on the data we are handling .I.e, we identify meaningful groups with a lack of "ground truth" for clustering, which is a common problem in unsupervised learning.  The goal of supervised learning is clear: we wish to learn a classifier which will predict the labels of future examples as accurately as possible. Furthermore, a supervised learner can estimate the success, or the risk, of its hypotheses using the labeled training data by computing the empirical loss. In contrast, clustering is an unsupervised learning problem; namely, there are no labels that we try to predict. Instead, we wish to organize the data in some meaningful way. As a result, there is no clear success evaluation procedure for clustering. In fact, even on the basis of full knowledge of the underlying data distribution, it is not clear what is the correct" clustering for that data or how to evaluate a proposed clustering.
 
 <p align="center">
 <img src="https://github.com/CourseReps/ECEN689-Fall2018/blob/master/Students/harishchigurupati/Images%20for%20tutorial/clusters.png" width="600" height="400">
 </p>
 
 
-## K-Means Clustering- Basic Understanding
+## K-Means Clustering - Basic Understanding
 
-K-means clustering is a simple Clustering algorithm coming under unsupervised learning, which is used when you have unlabeled data (i.e., data without defined categories or groups). Here, the user specifies the number of clusters the data is to be partitioned (denoted by "K"). The main aim of this algorithm is to minimise the "inertia"(within cluster sum of squares). Since it is a very simple yet efficient algorithm, K-Means is very fast as it converges to local minima rapidly.
+K-means clustering is a simple clustering algorithm classified as unsupervised learning, which is used when you have unlabeled data (i.e., data without defined categories or groups). Here, the user specifies the number of clusters the data is to be partitioned (denoted by "K"). The main aim of this algorithm is to minimise the "inertia" (within cluster sum of squares). Since it is a very simple yet efficient algorithm, K-Means is very fast as it converges to local minima rapidly.
 
 <p align="center">
 <img src="https://github.com/CourseReps/ECEN689-Fall2018/blob/master/Students/harishchigurupati/Images%20for%20tutorial/k_means_cluster.png" width="300" height="400">
@@ -31,7 +31,7 @@ K-means clustering is a simple Clustering algorithm coming under unsupervised le
 
 ## K-Means Mathematical Representation
 * In k-means the data X is partitioned into disjoint sets C1,...,Ck where each Cj is represented by a centroid μ.
-*  The k-means objective function measures the squared distance between each point in X to the centroid of its cluster.
+* The k-means objective function measures the squared distance between each point in X to the centroid of its cluster.
 * Each input sample belongs to the closest Cj.
 * Mathematically, K-Means Objective function is given as:
 
@@ -41,17 +41,19 @@ K-means clustering is a simple Clustering algorithm coming under unsupervised le
 * Finding the optimal k-means solution is often computationally infeasible.
 * To circumvent this, simple iterative algorithm used.
 * This Iterative algorithm converges to local minimum.
+
  **Algorithm**
+ 
 1. *Initialize*: Randomly choose initial centroid μi,...,μk.
 2. *Repeat until convergence:*
 
-2.1  Assign data to clusters:
+  - Assign data to clusters:
+  
+   <img src="http://latex.codecogs.com/gif.latex?\forall%20i%20\in%20[k],\;%20C_i%20=%20\{x%20\in%20X:%20i%20=%20\text{argmin}_j%20||x%20-%20{\mu}_j||\}" border="0"/>
 
-![Second Equation](http://latex.codecogs.com/gif.latex?%24%5Cforall%20i%20%5Cin%20%5Bk%5D%24%20set%20%24C_i%20%3D%20%5C%7Bx%20%5Cin%20X%3A%20i%20%3D%20%5Ctext%7Bargmin%7D_j%20%7C%7Cx%20-%20%7B%5Cmu%7D_j%7C%7C%5C%7D%24)
-
-2.2 *Update centroids:*
-
-![third equation](http://latex.codecogs.com/gif.latex?%5Cforall%20i%20%5Cin%20%5Bk%5D%20update%20%7B%5Cmu%7D_i%20%3D%20%5Cfrac%7B1%7D%7B%7CC_i%7C%7D%5Csum_%7Bx%20%5Cin%20C_i%7D%20x)
+  - *Update centroids:*
+  
+     <img src="http://latex.codecogs.com/gif.latex?\forall%20i%20\in%20[k],\;%20{\mu}_i%20=%20\frac{1}{|C_i|}\sum_{x%20\in%20C_i}%20x" border="0"/>
 
 ## Demonstration
 ```python
