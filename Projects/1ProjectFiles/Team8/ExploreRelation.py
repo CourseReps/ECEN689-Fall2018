@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-from RetrieveOriginalData import get_health
+from RetrieveOriginalData import get_data
 from sklearn.linear_model import LinearRegression
 import numpy as np
 
@@ -18,7 +18,7 @@ def scatter_with_trend(x, y, title=None, xlabel=None, ylabel=None, subplot=None)
     plt.plot(range_x, lr.predict(range_x), c='r')
     
 # load data
-health_med = get_health()
+health_med = get_data()
 
 # set up and normalize x
 X = health_med['MEDHHINC15'].values.reshape((-1, 1))
