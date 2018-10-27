@@ -78,6 +78,7 @@ if __name__ == '__main__':
         usecols=[1,2,3,4,6,7,8],
         dtype={'zipcode': str}
     ).dropna().groupby('zipcode').agg(sum)
+    income08_df['agi_kUSD'] = income08_df['agi_kUSD'] / 1000
     income13_df = pd.read_csv(
         source_dir + irs13_fn,
         header=0,
