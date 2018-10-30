@@ -5,8 +5,10 @@ by Anirudh Shaktawat, Rishi Laddha, Aditya Lahiri, Harinath
  * 
 
 ## Data Sources
- * 
- * 
+ * [Food Atlas](https://www.ers.usda.gov/data-products/food-environment-atlas/data-access-and-documentation-downloads)
+ * [IRS Income Data](https://www.irs.gov/statistics/soi-tax-stats-individual-income-tax-statistics-zip-code-data-soi)
+ * [ZIP AND FIPS DATA] https://www.huduser.gov/portal/datasets/usps_crosswalk.html
+ * [Mortality and Life Expectancy Data] https://healthinequality.org/data/
 
 ## Python Code
  * IRSpreprocess.ipynb	
