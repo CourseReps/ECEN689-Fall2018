@@ -20,10 +20,10 @@ by
 * scipy
 * seaborn
 
-####Plotly Choropleth maps require the following:
-* geopandas==0.3.0
-* pyshp==1.2.10
-* shapely==1.6.3
+* ####Plotly Choropleth maps require the following:
+   * geopandas==0.3.0
+   * pyshp==1.2.10
+   * shapely==1.6.3
 * #####NOTE: Had to run sudo apt-get install libgeos-dev
 * #####NOTE: Had to downgrade from Python3.7 to Python3.6
 
