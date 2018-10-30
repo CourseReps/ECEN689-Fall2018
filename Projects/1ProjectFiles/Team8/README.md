@@ -11,6 +11,6 @@ by Ashish Kumar, Mason Rumuly, Sayeed Alvi, and Kanchan Satpute
  * [Country Health Report](https://github.com/CourseReps/ECEN689-Fall2018/blob/master/Projects/1ProjectFiles/Team8/2015-County-Health-Rankings-Data.xls)
 
 ## Python Code
- * 
- * 
-
+ * Data collection - `RetrieveOriginalData.py`
+ * Income Correlation - `DiagonalCorrelationMatrix.ipynb`
+ * Analysis - `ExploreRelation.py` and `1Project_ashish_work.ipynb`
