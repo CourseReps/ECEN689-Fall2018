@@ -11,7 +11,7 @@ by
 2. Copy the zip archive `zipcode2013.zip` to this directory.
 3. Extract into `zipcode2013` in this directory.
 
-### requirements
+## Requirements
 * numpy
 * pandas
 * matplotlib
