@@ -92,18 +92,18 @@ if __name__ == '__main__':
 
     # check sanity of income distribution; distribution over time highly corellated
     plt.figure()
-    plt.suptitle('Income Check')
+    # plt.suptitle('Income Check')
     scatter_with_trend(
         X08, X13, (W08 + W13)/2,
-        'Time Means', x08_label, x13_label, (2,1,1)
+        'Correlation Over Time', x08_label, x13_label, (2,1,1)
     )
     scatter_with_trend(
         XMed, X08, W08,
-        '2008', xmed_label, x08_label, (2,2,3)
+        "Median '15 to Mean '08", xmed_label, x08_label, (2,2,3)
     )
     scatter_with_trend(
         XMed, X13, W13,
-        '2013', xmed_label, x13_label, (2,2,4)
+        "Median '15 to Mean '13", xmed_label, x13_label, (2,2,4)
     )
     plt.tight_layout()
     plt.savefig(home_dir + 'Visualizations/IncomeCorr.png')
