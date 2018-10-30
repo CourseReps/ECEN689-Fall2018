@@ -47,8 +47,8 @@ def scatter_with_trend(x, y, w=None, title=None, xlabel=None, ylabel=None, subpl
     plt.title(title)
     plt.xlabel(xlabel)
     plt.ylabel(ylabel)
-    plt.scatter(x, y, c='b')
-    plt.plot(range_x, y_hat, c='r')
+    plt.scatter(x, y, c='r')
+    plt.plot(range_x, y_hat, c='b')
 
     print('Corr {} with {}: r={}'.format(xlabel, ylabel, corr(x, y, w))) # want single-tailed version
 
