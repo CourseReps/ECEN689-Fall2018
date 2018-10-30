@@ -1,0 +1,33 @@
+Cross Validation Results, 4 bins
+
+No normalization, all ridge (so just linear regerssion)
+Average Error:
+LASSO 1.28459410833e+13
+Greed 2.75300522586e+23
+GramS 6.36370513819e+12
+Wins:
+LASSO 250
+Greed 286
+GramS 496
+
+Normalized, all ridge 
+Average Error:
+LASSO 9.02232809423e+14
+Greed 8.22346977695e+14
+GramS 6.92850260444e+14
+Wins:
+LASSO 253
+Greed 471
+GramS 308
+
+Greed normalized ridge, gs unnormalized ridge (aka just linear regression), lasso stays lasso
+Average Error:
+LASSO 3.01186289555e+13
+Greed 8.22346977695e+14
+GramS 6.36370513819e+12
+Wins:
+LASSO 224
+Greed 132
+GramS 676
+
+Best is GramS unnormalized ridge

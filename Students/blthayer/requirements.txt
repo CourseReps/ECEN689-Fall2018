@@ -3,3 +3,8 @@ numpy
 scipy
 scikit-learn
 matplotlib
+networkx
+# NOTE: The following installs the graphviz Python wrapper. To use, you
+# also need to install the binaries. On Ubuntu it was as simple as
+# 'sudo apt-get install graphviz'
+graphviz
