@@ -11,19 +11,19 @@ What is a Version Control System and why do we need it ?
  
 The most common and useful type of version control system used is the distributed version control system. Git is the most famoust VCS out there. It is much faster than other DVCS like subversion.
 
-Github
+**Github**
   * A website which provides hosting service for version control systems using git 
   * Also provides multiple other functionalities 
     * Visualization
     * Common user interface
     * Gist
     
-Available GUI applications for GitHub
+**Available GUI applications for GitHub**
   * https://git-scm.com/download/gui/mac
   * https://git-scm.com/download/gui/windows
   * https://git-scm.com/download/gui/linux
 
-Commonly used terms
+**Commonly used terms**
   * Clone
     Create instance of the repository
     Checks out working copy and mirrors the entire repository
@@ -48,7 +48,7 @@ Commonly used terms
   * Fork
     Create an independent copy of a repository from an existing one
 
-Git commands
+**Git commands**
   * To clone existing repository:
     git clone https://github.com/swatirama/demo-repository.git
   * Start tracking new/edited files (add to staging area):
@@ -70,7 +70,7 @@ Git commands
   * Merge remote and your branch:
     git merge
 
-Additional Commands
+**Additional Commands**
   * Remove untracked files:
     git clean
   * Reset HEAD to specified state (revert to older commit):
