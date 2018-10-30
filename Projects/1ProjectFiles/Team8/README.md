@@ -12,5 +12,5 @@ by Ashish Kumar, Mason Rumuly, Sayeed Alvi, and Kanchan Satpute
 
 ## Python Code
  * Data collection - `RetrieveOriginalData.py`
- * Income Correlation - `DiagonalCorrelationMatrix.ipynb`
+ * Correlation Matrix - `DiagonalCorrelationMatrix.ipynb`
  * Analysis - `ExploreRelation.py` and `1Project_ashish_work.ipynb`
