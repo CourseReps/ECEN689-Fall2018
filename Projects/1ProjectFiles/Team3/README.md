@@ -9,8 +9,8 @@ by Ki Yeob Lee, Ali Shafi, Michael Bass, Shirish Pandagare
  * IRS Income Data
 
 ## Python Code
- * 
- * 
+ * Project1.py
+ 
 ## Tableau File
 * Project1_Ver9
 
