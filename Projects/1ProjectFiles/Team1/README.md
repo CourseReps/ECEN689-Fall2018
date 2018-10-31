@@ -18,7 +18,9 @@ by Anirudh Shaktawat, Rishi Laddha, Aditya Lahiri, Harinath
  * Insecurityanalysis.ipynb	
  * SocioAnalysis.ipynb	
  * SocioEconomicdataPreprocessing.ipynb
- * DataMerging.ipynb	
+ * DataMerging.ipynb
+ * access_and_restaurant_analysis.ipynb
+ * life_expectancy and mortality_rate.ipynb
 
 
 
