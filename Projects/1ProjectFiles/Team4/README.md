@@ -1,8 +1,9 @@
 # Project 1, Team 4
-by Harish Chigurupati
-Drupad Khublani 
-Sambandh Bhusan Dhal 
-Kishan Shah
+by 
+* Harish Chigurupati
+* Drupad Khublani 
+* Sambandh Bhusan Dhal 
+* Kishan Shah
 
 ## Final Report FileName
  * `project1_report.pdf`
@@ -14,3 +15,17 @@ Kishan Shah
 
 ## Python Code
  * Complete Python Code - `Project_1_code.py`
+ 
+## Packages Used
+* numpy
+* pandas
+* matplotlib
+* plotly
+* sklearn
+* scipy
+* seaborn 
+
+## Final Report Name
+* 'project1_report.pdf'
+
+
