@@ -1,10 +1,10 @@
 
 # Project 1, Team 9
 by 
-* Brandon
-* Harish
-* Jatin
-* Swati
+* Brandon Thayer
+* Harish Kumar
+* Jatin Kamnani
+* Swati Ramachandran
 
 ## Setup
 1. Download the zip file in the "ZIP Code Data" section on the [IRS website](https://www.irs.gov/statistics/soi-tax-stats-individual-income-tax-statistics-2013-zip-code-data-soi)
@@ -32,12 +32,13 @@ by
 .gitignore file to avoid filling up the repository with junk.
 
 ## Final Report FileName
- * 
+ * ECEN_689_Project_1.pdf
 
 ## Data Sources
  * CDC
  * IRS
  * ATLAS
+ * FIPS
 
 ## Python Code
  * fipsZipHandler.py                                  ---- Module to convert fips to zips and Vice Vers
@@ -50,5 +51,5 @@ by
  * Correaltion_heatmap_generate                       ---- generates correlation heatmap on the final data
  * visualisation_cdc                                  ---- analyses data from cdc
 
-## Note : We maintained a separate Repository for our project work : https://github.com/jatinKamnani/project1
+## Note : We maintained a separate Repository for our project work and used this during development: https://github.com/jatinKamnani/project1
 
