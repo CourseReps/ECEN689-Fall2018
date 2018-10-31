@@ -6,7 +6,7 @@ by
 * Harish
 * Swati
 
-## Note : We maintained a seaprate Repository for our project work : https://github.com/jatinKamnani/project1
+## Note : We maintained a separate Repository for our project work : https://github.com/jatinKamnani/project1
 
 ## Setup
 1. Download the zip file in the "ZIP Code Data" section on the [IRS website](https://www.irs.gov/statistics/soi-tax-stats-individual-income-tax-statistics-2013-zip-code-data-soi)
