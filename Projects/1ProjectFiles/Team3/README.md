@@ -12,5 +12,5 @@ by Ki Yeob Lee, Ali Shafi, Michael Bass, Shirish Pandagare
  * Project1.py
  
 ## Tableau File
-* Project1_Ver9
+* Project1_Ver9.twbx
 
