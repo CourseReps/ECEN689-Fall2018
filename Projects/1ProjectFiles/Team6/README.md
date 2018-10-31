@@ -8,6 +8,7 @@ by Prabhneet Arora, Mahalakshmi Sridharan, Vedant Mehta, Samyuktha Sankaran
  * foodAtlas.xls - Food environment atlas from US Agriculture dept.
  * income-13.csv - County wise individual income statistics for the year 2013
  * zipcode_fipscode.csv - Mapping of zipcode with its corresponding FIPS code.
+ * Income for 2016 has also been used for the analysis
 
 ## Python Code
  * dataset.ipynb - Selecting the required data from the above mentioned datasets.
