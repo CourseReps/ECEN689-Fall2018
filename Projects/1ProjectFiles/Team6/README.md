@@ -1,8 +1,8 @@
 # Project 1, Team 6
-by 
+by Prabhneet Arora, Mahalakshmi Sridharan, Vedant Mehta, Samyuktha Sankaran
 
 ## Final Report FileName
- * 
+ * Report_Project1.pdf
 
 ## Data Sources
  * foodAtlas.xls - Food environment atlas from US Agriculture dept.
