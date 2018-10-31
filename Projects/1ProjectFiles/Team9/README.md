@@ -2,8 +2,8 @@
 # Project 1, Team 9
 by 
 * Brandon
-* Jatin
 * Harish
+* Jatin
 * Swati
 
 ## Note : We maintained a separate Repository for our project work : https://github.com/jatinKamnani/project1
