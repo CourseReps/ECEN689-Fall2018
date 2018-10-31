@@ -6,8 +6,6 @@ by
 * Jatin
 * Swati
 
-## Note : We maintained a separate Repository for our project work : https://github.com/jatinKamnani/project1
-
 ## Setup
 1. Download the zip file in the "ZIP Code Data" section on the [IRS website](https://www.irs.gov/statistics/soi-tax-stats-individual-income-tax-statistics-2013-zip-code-data-soi)
 2. Copy the zip archive `zipcode2013.zip` to this directory.
@@ -52,4 +50,5 @@ by
  * Correaltion_heatmap_generate                       ---- generates correlation heatmap on the final data
  * visualisation_cdc                                  ---- analyses data from cdc
 
+## Note : We maintained a separate Repository for our project work : https://github.com/jatinKamnani/project1
 
