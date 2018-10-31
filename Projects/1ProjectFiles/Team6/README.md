@@ -12,4 +12,5 @@ by Prabhneet Arora, Mahalakshmi Sridharan, Vedant Mehta, Samyuktha Sankaran
 ## Python Code
  * dataset.ipynb - Selecting the required data from the above mentioned datasets.
  * randomForest.ipynb - Running the dataset through a random forest model to check the variable importance.
+ * Linear_Regression.ipynb - Running the dataset through a linear regression model and compute the p values to determine the variable importance.
 
