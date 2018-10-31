@@ -25,15 +25,19 @@ C.	High-level functions — a function that uses one or more of medium-level
 Step 2.  Group these functions into modules (Jupyter notebooks/python files) based on its usability. 
 
 Once the functions have been developed for all the tasks it is time to group all the low-level and medium-level functions that will be useful for more than one ML algorithm into a python file (a module to be imported) and all other low-level and medium-level functions that will be useful only for the algorithm in consideration into another module( python file). All the high-level functions should reside in a separate python file. The file with all the high level functions decides the algorithm development: right from combining data from different sources to final machine learning models. 
+
 2. Logging and Instrumentation
 Logging and Instrumentation [LI] record all the useful information happening in the code during its execution. LI helps the programmer to debug if anything does not work as expected  and to improve the performance of the code in terms of time and space complexity.
+
 Logging vs Instrumentation
+
 Logging : Records information such as critical failures during run time and intermediate results that will be used by the code itself. There are multiple log levels: notset, debug, info, warning, error, critical. Depending upon the severity of information we need, we can set the logging level. Although very helpful to a developer logging should be avoided as much possible during production stage and should contain only information that requires immediate human intervention.
 
 Instrumentation : Records information that is not included in logging. Instrumentations helps us to validate the code execution steps and work on improvements if necessary. 
 
 01.	 To validate code execution steps — Information such as task name, intermediate results etc should be recorded. Incorrect results or vague algorithm may not raise a critical error that would be caught in logging. Hence it is necessary to get this information.
 02.	 To improve performance —  It is imperative to record time taken for each execution and memory occupied by each variable. We have a limited time and computing power. Instrumentation thus helps us in identifying the bottlenecks in our code and helps to optimize the code in terms of time and space complexity.
+
 3. Code Optimization
 As mentioned above, code optimization includes reducing time complexity as well as space complexity. Lower the time and space complexity more efficient is the algorithm.
 
@@ -42,10 +46,12 @@ Time taken ~ 2n²+3n = O(n²+n) = O(n²)
 The for loops should be replaced with python modules or functions. These functions can be optimized using software written in any procedural language (C) instead of Object oriented (python) which would reduce the run time.
 
 Eliminating nested loops is the most basic way towards optimizing codes. For better programming practices one should include important data structure practices in the code like: Stacks, queues, lists, binary trees, Graphs, etc. 
+
 4. Unit Testing
 Unit testing is used to automate code testing in terms of functionality. The code should be tested against different corner cases, different data sets and different situations. In a massive code, whenever we make any change it is inefficient to leave out the quality test for QA team and thus every data scientist should practice creating a Unit testing module containing set of test cases which can be executed whenever we want to test the code.
 Unit testing module contains test cases with expected results to test the code. It goes through every test case, compares actual output with every expected output and fails if any discrepancy.  
 Python has a module called unittest to implement unit testing.
+
 5. Readability
 The most important of all, any piece of software code should be written in such a way that it can easily read and understood not only by the data scientist but by anyone who has a limited understanding of programming language. Some practices that increase the readability of code are:
 
