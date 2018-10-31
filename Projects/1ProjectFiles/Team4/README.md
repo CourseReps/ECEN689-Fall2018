@@ -25,7 +25,29 @@ by
 * scipy
 * seaborn 
 
-## Final Report Name
-* 'project1_report.pdf'
+## Python File Name ( Jupyter Notebook)
+* Project_1_code.py
 
+## Plots Uploaded ( Included in Report) 
+* AGI vs _ diabetes (with log).png
+* AGI vs _ obesity 2008 (without log).png
+* AGI vs _diabetes (without log).png
+* AGI vs _diabetes 2013(with log).png
+* AGI vs _diabetes 2013(without log).png
+* AGI vs _obesity 2008 (with log).png
+* AGI vs _obesity 2013 (with log).png
+* AGI vs _obesity 2013 (without log).png
+* Copy of _ diabetes vs _ obesity.png
+* Recreation Counts in 2009 vs diabetes in 2008.png
+* Recreation Counts in 2014 vs diabetes in 2013.png
+* Recreation Counts in 2014 vs obesity in 2013.png
+* _ diabetes vs _ obesity.png
+* correlation_matrix.png
+* correlation_matrix_lm_color.png
+* diabetes_2008.png	
+* diabetes_2013.png	
+* obesity_2008.png	
+* obesity_2013.png	
+* recreation facilities count_2009.png	
+* recreation facilities count_2014.png	
 
