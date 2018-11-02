@@ -11,7 +11,6 @@ Implementation of Neural Networks
 2) Backward Pass: Refers to process of counting changes in weights (de facto learning), using gradiend descent algorithm or similar. Computation is made from last layer, backward to the first layer. Based on minimization of gradient descent the new weightage is calculated for connector and this both forward and backward is continued until the cost function reches minimum value.
 
 Advantages:
-
 Ability to implicitly detect complex nonlinear relationships between dependent and independent variables
 
 Ability to detect all possible interactions between predictor variables
