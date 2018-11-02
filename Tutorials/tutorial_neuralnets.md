@@ -13,12 +13,16 @@ Implementation of Neural Networks
 Advantages:
 
 Ability to implicitly detect complex nonlinear relationships between dependent and independent variables
+
 Ability to detect all possible interactions between predictor variables
+
 Availability of multiple training algorithms
 
 Disadvantages:
 
 Black box nature
+
 Greater computational burden
+
 Proneness to overfitting
 
