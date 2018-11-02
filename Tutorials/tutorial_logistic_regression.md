@@ -6,16 +6,14 @@ The problem in the tutorial we dealt with is to decide whether a student gets an
 
 Understanding the differences between Supervised Learning and Unsupervised Learning
 
-Supervised Learning 
-It is the task of learning a function that maps an input to an output based on example input-output pairs.Regression and Classification problems are examples of Supervised Learning.
+Supervised Learning :- It is the task of learning a function that maps an input to an output based on example input-output pairs.Regression and Classification problems are examples of Supervised Learning.
 
-Unsupervised Learning
-It is the task of finding structure within data without having knowledge of input-output pairs. Clustering & problem is the well known example for unsupervised learning.
+Unsupervised Learning :- It is the task of finding structure within data without having knowledge of input-output pairs. Clustering & problem is the well known example for unsupervised learning.
 
-Classification Problem
-It deals with identifying the class to which a given data belongs. A prior knowledge of examples of data belonging to each class has to be known. Classification problem can be either a binary classification or a multi-class classification problem.
+Classification Problem :- It deals with identifying the class to which a given data belongs. A prior knowledge of examples of data belonging to each class has to be known. Classification problem can be either a binary classification or a multi-class classification problem.
 
 What is Logistic Regression?
+
 Logistic regression is a statistical method for analyzing a dataset in which there are one or more independent variables that determine an outcome.
 
 Features of Logistic Regression
@@ -46,5 +44,3 @@ Implementation Procedure :-
 4. The training dataset to model the logistic regression
 5. The accuracy of model on training dataset is calculated.
 6. Similarly, the test dataset accuracy is computed.
-
-Results:-
