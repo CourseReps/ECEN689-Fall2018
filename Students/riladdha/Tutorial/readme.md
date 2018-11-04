@@ -61,4 +61,4 @@ Python has a module called unittest to implement unit testing.
 
 The most important of all, any piece of software code should be written in such a way that it can easily read and understood not only by the data scientist but by anyone who has a limited understanding of programming language. 
  
-![Ecosystem](https://github.com/CourseReps/ECEN689-Fall2018/edit/master/Students/riladdha/Tutorial/Module.png?raw=true)
+![Ecosystem](https://raw.githubusercontent.com/CourseReps/ECEN689-Fall2018/master/Students/riladdha/Tutorial/Module.png?raw=true)
