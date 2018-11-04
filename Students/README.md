@@ -37,7 +37,7 @@
 * Mahalakshmi Sridharan, [mahalakshmisridharan7](https://github.com/mahalakshmisridharan7)
 * Ranjith Tamil Selvan, [ranjithtam](https://github.com/ranjithtam)
 * Brandon Thayer, [blthayer](https://github.com/blthayer)
-* Amrita Sundari Veerabagu
+* Amrita Sundari Veerabagu [amrita95](https://github.com/amrita95)
 * Neehar Yalamarti, [yneehar](https://github.com/yneehar)
 
 ## Teaching Team
