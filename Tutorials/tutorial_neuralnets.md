@@ -8,29 +8,29 @@ Neural Network is one the most important deep learning algorithm and its working
 •	b= Bias
 •	f= activation function (many different types like- Sigmoid, Tanh, ReLU function)
 
-Implementation of Neural Networks
+## 1. Implementation of Neural Networks
 
 1) Forward Pass: Refers to calculation process, values of the output layers from the inputs data. Its traversing through all neurons from first to last layer. In this the input is taken in input layer and then based on weightage of connector and bias value of neuron in hidden layer and activation function the value is output is found.
 2) Backward Pass: Refers to process of counting changes in weights (de facto learning), using gradiend descent algorithm or similar. Computation is made from last layer, backward to the first layer. Based on minimization of gradient descent the new weightage is calculated for connector and this both forward and backward is continued until the cost function reches minimum value.
 
-Advantages:
+### 1.a Advantages:
 
 - Ability to implicitly detect complex nonlinear relationships between dependent and independent variables
 - Ability to detect all possible interactions between predictor variables
 - Availability of multiple training algorithms
 
-Disadvantages:
+### 1.b Disadvantages:
 - Black box nature
 - Greater computational burden
 - Proneness to overfitting
 
-Variations of Neural Network:
+## 2. Variations of Neural Network:
 
 - Fully Connected Neural Network
 - Convolution Neural Network
 - Recurrent Neural Network
 
-Convolutional Neural Network(CNN):
+### 2.a Convolutional Neural Network(CNN):
 
 CNNs are special type of neural networks used mainly when we have spatial data in our hand. It is mostly used in Computer vision tasks like Object detection, Object recognition. Image classification etc. 
 
@@ -38,7 +38,7 @@ When a computer sees an image (takes an image as input), it will see an array of
 
 Therefore, the convolutional layers acts as a feature extraction module and the extracted features from the image will be sent to a fuly-connected neural network as predictors to perform the appropriate task.
 
-Recurrent Neural Network(RNN):
+### 2.b Recurrent Neural Network(RNN):
 
 The idea behind RNNs is to make use of sequential information. In a traditional neural network we assume that all inputs (and outputs) are independent of each other. But for many tasks that’s a very bad idea. If you want to predict the next word in a sentence you better know which words came before it. RNNs are called recurrent because they perform the same task for every element of a sequence, with the output being depended on the previous computations. Another way to think about RNNs is that they have a “memory” which captures information about what has been calculated so far. In theory RNNs can make use of information in arbitrarily long sequences, but in practice they are limited to looking back only a few steps.
 
