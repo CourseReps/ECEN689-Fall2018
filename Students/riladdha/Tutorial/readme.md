@@ -3,6 +3,7 @@
 
 
 Programming is a very important facet for a data scientist. It runs parallel to all the other processes in any data science project; right from data acquisition, data cleaning, visualization, data modelling in development stage before going into deployment. Thus, being able to write a production-level code is a must for every data scientist. It not only helps in easy deployment but also makes maintenance and reusability much simpler. This tutorial aims to highlight some basic code practices and etiquettes who intends to be an awesome programmer and data scientist!
+
 **1.	Modularity**
 Breaking your code into modules makes it very easy to identify the functionality of any software. Also, modular approach helps in making the code extremely reusable and easy to maintain. 
 
