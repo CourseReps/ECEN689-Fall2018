@@ -8,7 +8,7 @@
 * [Principal Component Analysis](tutorial_pca.md): Aditya Lahiri and Shirish Pandagare; Sep 25, 2018
 * [Feature Engineering](tutorial_features.md): Anirudh Shaktawat and Kanchan Satpute; Sep 27, 2018
 * [Educational Data Mining](tutorial_educational_data.md): Mahalakshmi Sridharan and Fazia Batool; Sep 27, 2018
-* [L1 and L2 Regularization](tutorial_regularization.md) Sayeed Alvi and Samarth Mistry; Oct 2, 2018
+* [L1 and L2 Regularization](tutorial_regularization.ipynb) Sayeed Alvi and Samarth Mistry; Oct 2, 2018
 * [Stochastic Gradient Descent and Backpropagation](tutorial_sgd.md): Kiyeob Lee and Devarsh Jhaveri; Oct 4, 2018
 * [Binary Decision Tree](binary_decision_tree.md): Vedant Mehta and Neehar Yalamarti, Oct 9, 2018
 * [Thompson Sampling](tutorial_thompson_sampling.md): Mason Rumuly and Siddharth Ajit, Oct 9, 2018
