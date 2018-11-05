@@ -10,7 +10,7 @@
 * Michael Bass, [SuperMB](https://github.com/SuperMB)
 * Fazia Batool
 * Harish Chigurupati
-* Sambandh Bhusan Dhal
+* Sambandh Bhusan Dhal, [Sambandh] (https://github.com/Sambandh)
 * Divyank Garg
 * Devarsh Jhaveri, [devarshjhaveri](https://github.com/devarshjhaveri)
 * Jatin Kamnani, [jatinKamnani](https://github.com/jatinKamnani)
