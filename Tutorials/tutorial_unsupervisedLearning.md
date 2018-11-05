@@ -38,7 +38,7 @@ on to decide how similar the points are.
 Operating Principle:
 We need to start with each point as a separate cluster ( n clusters)
 We calculate the "measure of dissimality" between the points and fuse the similar points and continue intil we get one cluster.
-The "measure of dissimality" can be broadly classified into 2 types:
+The "measure of dissimality" can be broadly classified into 2 types:-
      (a). On the basis of Eucledian distance:
          (i). Complete Linkage : Largest distance between observations
          (ii). Single Linkage : Smallest distance between observations
