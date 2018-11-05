@@ -1,16 +1,13 @@
-#Unsupervised Learning
-By
-#Prabhneet Arora
-and 
-#Sambandh Bhusan Dhal
+# Unsupervised Learning
+By Prabhneet Arora and Sambandh Bhusan Dhal
 
-#Contents
+## Contents
 1. Need for Unsupervised Learning
 2. Types of Unsupervised Learning
 3. Demonstration with example
 4. Challenges 
 
-1. Need For Unsupervised Learning ( Explained with Real life examples)
+1. Need For Unsupervised Learning (Explained with Real life examples)
 * Cancer Research: To find Gene Expression Levels in 100 patients with breast cancer by looking for sub-groups among the breast cancer 
 samples to obtain a better understanding of the disease
 * Online Shopping: To identify shopping behaviors and preference of shopping items by looking at the purchase history of customers
@@ -26,8 +23,8 @@ Operating principle:
 For each of the K clusters, we need to compute the cluster centroid.
 We assign the point to the cluster whose centroid is the closest defined by the least Eucledian distance.
 
-Demontration:
 
+## Demonstration:
 
 (b). Hierarchial Clustering:
 Here, we do not prescribe the number of clusters we group the data into.
