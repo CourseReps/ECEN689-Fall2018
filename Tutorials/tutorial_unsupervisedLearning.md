@@ -50,7 +50,8 @@ The "measure of dissimality" can be broadly classified into 2 types:-
 The different methods of calculating "measure of dissimalirity" would yield different results.
 
 ### Demonstration:
-
+![hc2](https://user-images.githubusercontent.com/31993201/48086703-1b700a80-e1c3-11e8-8521-43233be98b95.png)
+![hc1](https://user-images.githubusercontent.com/31993201/48086704-1b700a80-e1c3-11e8-9b9e-f0fa7c698b5f.png)
 # * Association:
 Association rules analysis is a technique to uncover how items are associated to each other.
 There are 3 common ways to measure association:
