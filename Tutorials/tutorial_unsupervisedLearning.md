@@ -12,7 +12,7 @@ By Prabhneet Arora and Sambandh Bhusan Dhal
 samples to obtain a better understanding of the disease
 * Online Shopping: To identify shopping behaviors and preference of shopping items by looking at the purchase history of customers
 
-2. Types of Unsupervised Learning
+# 2. Types of Unsupervised Learning
 # * Clustering
 ## (a). K- Means Clustering:
 We need to prescribe the number of clusters we want to group the data into.
@@ -25,8 +25,7 @@ We assign the point to the cluster whose centroid is the closest defined by the 
 
 
 ### Demonstration:
-![untitled](https://user-images.githubusercontent.com/31993201/48085702-a4397700-e1c0-11e8-865d-350cff5dd64b.png)
-![11](https://user-images.githubusercontent.com/31993201/48086022-6b4dd200-e1c1-11e8-88ac-340d7c125a0a.png)
+
 
 ## (b). Hierarchial Clustering:
 Here, we do not prescribe the number of clusters we group the data into.
@@ -85,7 +84,8 @@ The individual columns in X matrix are standardized ( mean zero and Standard Dev
 The original variables in the X matrix are transformed so that the sum of squares of individual terms is maximized
 
 ### Demonstration:
-
+![untitled](https://user-images.githubusercontent.com/31993201/48085702-a4397700-e1c0-11e8-865d-350cff5dd64b.png)
+![11](https://user-images.githubusercontent.com/31993201/48086022-6b4dd200-e1c1-11e8-88ac-340d7c125a0a.png)
 
 
 
