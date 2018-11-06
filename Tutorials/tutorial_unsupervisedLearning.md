@@ -32,8 +32,7 @@ We assign the point to the cluster whose centroid is the closest defined by the 
 ## (b). Hierarchial Clustering:
 Here, we do not prescribe the number of clusters we group the data into.
 It goes on to formulate a "tree-based" representation of the points called a "dendrogram" 
-At the bottom, each point is a distinct leaf and as and when we move up the tree, similar points begin to fuse. The height of fusing/merging goes 
-on to decide how similar the points are.
+At the bottom, each point is a distinct leaf and as and when we move up the tree, similar points begin to fuse. The height of fusing/merging goes on to decide how similar the points are.
 
 ### Operating Principle:
 We need to start with each point as a separate cluster ( n clusters)
@@ -52,6 +51,8 @@ The different methods of calculating "measure of dissimalirity" would yield diff
 ### Demonstration:
 ![hc2](https://user-images.githubusercontent.com/31993201/48086703-1b700a80-e1c3-11e8-8521-43233be98b95.png)
 ![hc1](https://user-images.githubusercontent.com/31993201/48086704-1b700a80-e1c3-11e8-9b9e-f0fa7c698b5f.png)
+
+
 # * Association:
 Association rules analysis is a technique to uncover how items are associated to each other.
 There are 3 common ways to measure association:
@@ -68,11 +69,7 @@ Next, the dataset is analyzed by looking for triplets. The triplets how even gre
 throughout the body of data until the algorithm has exhausted all of the possible.
 
 ### Demonstration:
-
-
-
-
-
+![pela](https://user-images.githubusercontent.com/31993201/48087214-62123480-e1c4-11e8-8749-39e886a0f6f8.png)
 
 # * Dimensionality Reduction:
 It is used to find a low-dimensional representation of the observations that explain a good proportion of the variance.
