@@ -13,26 +13,26 @@ samples to obtain a better understanding of the disease
 * Online Shopping: To identify shopping behaviors and preference of shopping items by looking at the purchase history of customers
 
 2. Types of Unsupervised Learning
-#### * Clustering
-### (a). K- Means Clustering:
+# * Clustering
+## (a). K- Means Clustering:
 We need to prescribe the number of clusters we want to group the data into.
 The clusters are non-overlapping i.e. no observation belongs to more than one cluster.
 The main objective is to minimize "within-cluster" variation as much as possible.
 
-## Operating principle:
+### Operating principle:
 For each of the K clusters, we need to compute the cluster centroid.
 We assign the point to the cluster whose centroid is the closest defined by the least Eucledian distance.
 
 
-## Demonstration:
+### Demonstration:
 
-### (b). Hierarchial Clustering:
+## (b). Hierarchial Clustering:
 Here, we do not prescribe the number of clusters we group the data into.
 It goes on to formulate a "tree-based" representation of the points called a "dendrogram" 
 At the bottom, each point is a distinct leaf and as and when we move up the tree, similar points begin to fuse. The height of fusing/merging goes 
 on to decide how similar the points are.
 
-## Operating Principle:
+### Operating Principle:
 We need to start with each point as a separate cluster ( n clusters)
 We calculate the "measure of dissimality" between the points and fuse the similar points and continue intil we get one cluster.
 The "measure of dissimality" can be broadly classified into 2 types:-
@@ -46,9 +46,9 @@ The "measure of dissimality" can be broadly classified into 2 types:-
 
 The different methods of calculating "measure of dissimalirity" would yield different results.
 
-## Demonstration:
+### Demonstration:
 
-#### * Association:
+# * Association:
 Association rules analysis is a technique to uncover how items are associated to each other.
 There are 3 common ways to measure association:
 1. Support
@@ -63,14 +63,14 @@ Pruning helps to further differentiate between the categories that do and do not
 Next, the dataset is analyzed by looking for triplets. The triplets how even greater frequency. Analysis can detect more and more relations
 throughout the body of data until the algorithm has exhausted all of the possible.
 
-## Demonstration:
+### Demonstration:
 
 
 
 
 
 
-#### * Dimensionality Reduction:
+# * Dimensionality Reduction:
 It is used to find a low-dimensional representation of the observations that explain a good proportion of the variance.
 The principal components are orthogonal ( uncorrelated).
 They are ordered in decreasing order of the variance they capture: Z1 captures the highest variance, Z2 captures the second highest
@@ -82,7 +82,7 @@ e.g. Principal Component Analysis ( PCA).
 The individual columns in X matrix are standardized ( mean zero and Standard Deviation one) before PCA is performed
 The original variables in the X matrix are transformed so that the sum of squares of individual terms is maximized
 
-## Demonstration:
+### Demonstration:
 
 
 
@@ -90,11 +90,11 @@ The original variables in the X matrix are transformed so that the sum of square
 
 
 
-#### Challenges of Unsupervised Learning:
+# Challenges of Unsupervised Learning:
 * Tends to be more subjective
 * No simple goal like prediction of a response
 * Hard to access the results obtained and no way to check our work since we do not know the real "answer"
 
-#### References:
+# References:
 1.
 
