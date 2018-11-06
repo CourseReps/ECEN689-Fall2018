@@ -43,7 +43,6 @@ The "measure of dissimality" can be broadly classified into 2 types:-
          (ii). Single Linkage : Smallest distance between observations
         (iii). Average Linkage : Average distance between observations
          (iv). Centroid Linkage : Distance between centroids of obseervations
-
      (b). On the basis of correlation
 
 The different methods of calculating "measure of dissimalirity" would yield different results.
@@ -65,8 +64,7 @@ e.g. Apriori Algorithm
 We identify a particular characteristic of a dataset and attempt to note how frequently that characteristic pops up throughout the dataset.
 A "frequent" dataset can  be characteristic is one that occurs above the pre-arranged amount, known as support.
 Pruning helps to further differentiate between the categories that do and do not reach the overall support amount.
-Next, the dataset is analyzed by looking for triplets. The triplets how even greater frequency. Analysis can detect more and more relations
-throughout the body of data until the algorithm has exhausted all of the possible.
+Next, the dataset is analyzed by looking for triplets. The triplets how even greater frequency. Analysis can detect more and more relations throughout the body of data until the algorithm has exhausted all of the possible.
 
 ### Demonstration:
 ![pela](https://user-images.githubusercontent.com/31993201/48087214-62123480-e1c4-11e8-8749-39e886a0f6f8.png)
@@ -87,16 +85,14 @@ The original variables in the X matrix are transformed so that the sum of square
 ![untitled](https://user-images.githubusercontent.com/31993201/48085702-a4397700-e1c0-11e8-865d-350cff5dd64b.png)
 ![11](https://user-images.githubusercontent.com/31993201/48086022-6b4dd200-e1c1-11e8-88ac-340d7c125a0a.png)
 
-
-
-
-
-
 # Challenges of Unsupervised Learning:
 * Tends to be more subjective
 * No simple goal like prediction of a response
 * Hard to access the results obtained and no way to check our work since we do not know the real "answer"
 
 # References:
-1.
+1. "An introduction to Statistical Learning with applications in R" by Gareth James, Daniela Witten, Trevor Hastie and Robert Tibshirani
+2.  https://www.youtube.com/watch?v=WGlMlS_Yydk
+3.  https://www3.cs.stonybrook.edu/~cse634/lecture_notes/07apriori.pdf
+4.  https://www.youtube.com/watch?v=T1ObCUpjq3o
 
