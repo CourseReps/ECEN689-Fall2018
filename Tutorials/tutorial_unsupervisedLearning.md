@@ -25,7 +25,7 @@ We assign the point to the cluster whose centroid is the closest defined by the 
 
 
 ### Demonstration:
-![aaa](ECEN689-Fall2018/Students/Sambandh/screenshots for tutorial/Untitled.png)
+![untitled](https://user-images.githubusercontent.com/31993201/48085702-a4397700-e1c0-11e8-865d-350cff5dd64b.png)
 
 ## (b). Hierarchial Clustering:
 Here, we do not prescribe the number of clusters we group the data into.
