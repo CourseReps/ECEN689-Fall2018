@@ -1,5 +1,7 @@
 # Educational Data Mining
 
+### By Fazia Batool and Mahalakshmi Sridharan
+
 
 ## WHAT IS EDM?
 
