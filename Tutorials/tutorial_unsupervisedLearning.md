@@ -61,7 +61,7 @@ There are 3 common ways to measure association:
 3. Lift
 e.g. Apriori Algorithm
 
-### Operating Principle of Apriori Algorithm:
+#### Operating Principle of Apriori Algorithm:
 We identify a particular characteristic of a dataset and attempt to note how frequently that characteristic pops up throughout the dataset.
 A "frequent" dataset can  be characteristic is one that occurs above the pre-arranged amount, known as support.
 Pruning helps to further differentiate between the categories that do and do not reach the overall support amount.
@@ -78,7 +78,7 @@ variance and so on.
 The principal components Z1,Z2.....Zq can be used in further supervised learning ( predictors in regression analysis).
 e.g. Principal Component Analysis ( PCA).
 
-### Operating Principle of PCA:
+#### Operating Principle of PCA:
 The individual columns in X matrix are standardized ( mean zero and Standard Deviation one) before PCA is performed
 The original variables in the X matrix are transformed so that the sum of squares of individual terms is maximized
 
@@ -91,7 +91,8 @@ The original variables in the X matrix are transformed so that the sum of square
 * No simple goal like prediction of a response
 * Hard to access the results obtained and no way to check our work since we do not know the real "answer"
 
-### References:
+## References:
+
 1. "An introduction to Statistical Learning with applications in R" by Gareth James, Daniela Witten, Trevor Hastie and Robert Tibshirani
 2.  https://www.youtube.com/watch?v=WGlMlS_Yydk
 3.  https://www3.cs.stonybrook.edu/~cse634/lecture_notes/07apriori.pdf
