@@ -8,7 +8,7 @@ By Prabhneet Arora and Sambandh Bhusan Dhal
 
 ## 1. Need For Unsupervised Learning (Explained with Real life examples)
 a) Cancer Research: To find Gene Expression Levels in 100 patients with breast cancer by looking for sub-groups among the breast cancer 
-samples to obtain a better understanding of the disease
+samples to obtain a better understanding of the disease \n
 b) Online Shopping: To identify shopping behaviors and preference of shopping items by looking at the purchase history of customers
 
 ## 2. Types of Unsupervised Learning
