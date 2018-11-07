@@ -29,10 +29,9 @@ We assign the point to the cluster whose centroid is the closest defined by the 
 
 
 #### Demonstration:
-```
+
 ![km1](https://user-images.githubusercontent.com/31993201/48086706-1c08a100-e1c3-11e8-9c1b-dc7cbe1153ce.png)
 ![km2](https://user-images.githubusercontent.com/31993201/48086705-1b700a80-e1c3-11e8-85b7-21a0b9776a03.png)
-```
 
 ### (II) Hierarchial Clustering:
 Here, we do not prescribe the number of clusters we group the data into.
@@ -53,6 +52,7 @@ The "measure of dissimality" can be broadly classified into 2 types:-
 The different methods of calculating "measure of dissimalirity" would yield different results.
 
 #### Demonstration:
+
 ![hc2](https://user-images.githubusercontent.com/31993201/48086703-1b700a80-e1c3-11e8-8521-43233be98b95.png)
 ![hc1](https://user-images.githubusercontent.com/31993201/48086704-1b700a80-e1c3-11e8-9b9e-f0fa7c698b5f.png)
 
@@ -72,6 +72,7 @@ Pruning helps to further differentiate between the categories that do and do not
 Next, the dataset is analyzed by looking for triplets. The triplets how even greater frequency. Analysis can detect more and more relations throughout the body of data until the algorithm has exhausted all of the possible.
 
 #### Demonstration:
+
 ![pela](https://user-images.githubusercontent.com/31993201/48087214-62123480-e1c4-11e8-8749-39e886a0f6f8.png)
 
 ## c) Dimensionality Reduction:
@@ -87,6 +88,7 @@ The individual columns in X matrix are standardized ( mean zero and Standard Dev
 The original variables in the X matrix are transformed so that the sum of squares of individual terms is maximized
 
 #### Demonstration:
+
 ![untitled](https://user-images.githubusercontent.com/31993201/48085702-a4397700-e1c0-11e8-865d-350cff5dd64b.png)
 ![11](https://user-images.githubusercontent.com/31993201/48086022-6b4dd200-e1c1-11e8-88ac-340d7c125a0a.png)
 
