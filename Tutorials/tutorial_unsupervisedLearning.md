@@ -1,5 +1,8 @@
 # Unsupervised Learning
-By Prabhneet Arora and Sambandh Bhusan Dhal
+### By Prabhneet Arora and Sambandh Bhusan Dhal
+### Course instructor: Prof. Jean-Francois Chamberland
+
+---
 
 ## Contents
 1. Need for Unsupervised Learning
