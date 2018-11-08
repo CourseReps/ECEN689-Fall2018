@@ -33,7 +33,7 @@
 * Kanchan Satpute, [KanchanSatpute](https://github.com/KanchanSatpute)
 * AliAkbar Shafi, [albros123](https://github.com/albros123)
 * Kishan Shah, [kishan3111](https://github.com/kishan3111)
-* Anirudh Singh Shaktawat
+* Anirudh Singh Shaktawat [anirudh2312](https://github.com/anirudh2312)
 * Mahalakshmi Sridharan, [mahalakshmisridharan7](https://github.com/mahalakshmisridharan7)
 * Ranjith Tamil Selvan, [ranjithtam](https://github.com/ranjithtam)
 * Brandon Thayer, [blthayer](https://github.com/blthayer)
