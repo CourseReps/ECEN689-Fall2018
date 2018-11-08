@@ -53,5 +53,5 @@ Unit testing module contains test cases with expected results to test the code. 
 Python has a module called unittest to implement unit testing.
 
 5. Readability
-The most important of all, any piece of software code should be written in such a way that it can easily read and understood not only by the data scientist but by anyone who has a limited understanding of programming language. Some practices that increase the readability of code are:
-
+The most important of all, any piece of software code should be written in such a way that it can easily read and understood not only by the data scientist but by anyone who has a limited understanding of programming language. 
+ 
