@@ -26,14 +26,14 @@
 * P R S Harinath
 * Shirish Pandagare, [shirishpandagare](https://github.com/shirishpandagare)
 * Venkata Koustubha Krishna Pydimarri, [koustubha26](https://github.com/koustubha26)
-* Shabarish Kumar Rajendra Prasad
+* Shabarish Kumar Rajendra Prasad, [Shabarish Kumar](https://github.com/saby95)
 * Swati Ramachandran, [swatirama](https://github.com/swatirama)
 * Mason Rumuly, [mason-rumuly](https://github.com/mason-rumuly)
 * Samyuktha Sankaran
 * Kanchan Satpute, [KanchanSatpute](https://github.com/KanchanSatpute)
 * AliAkbar Shafi, [albros123](https://github.com/albros123)
 * Kishan Shah, [kishan3111](https://github.com/kishan3111)
-* Anirudh Singh Shaktawat
+* Anirudh Singh Shaktawat [anirudh2312](https://github.com/anirudh2312)
 * Mahalakshmi Sridharan, [mahalakshmisridharan7](https://github.com/mahalakshmisridharan7)
 * Ranjith Tamil Selvan, [ranjithtam](https://github.com/ranjithtam)
 * Brandon Thayer, [blthayer](https://github.com/blthayer)

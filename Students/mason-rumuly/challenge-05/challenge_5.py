@@ -17,6 +17,8 @@ kernels = {
     'Polynomial_3':('poly', 3),
     'Polynomial_4':('poly', 4),
     'Polynomial_5':('poly', 5),
+    # 'Polynomial_6':('poly', 6),
+    # 'Polynomial_7':('poly', 7),
     'Radial Basis':('rbf', 1),
     'Sigmoid':('sigmoid', 1)
 }
@@ -43,11 +45,12 @@ if __name__=='__main__':
             SVC(
                 kernel=kernels[k][0],
                 gamma='scale',
-                degree=kernels[k][1]
+                degree=kernels[k][1],
+                random_state=12
             ), 
             training[['Feature 0', 'Feature 1']], 
             training['Class'],
-            cv=LeaveOneOut(),  # cv_bins,
+            cv=LeaveOneOut(),
             n_jobs=-1,
             verbose=0
         )
@@ -63,7 +66,8 @@ if __name__=='__main__':
     svc = SVC(
         kernel=kernels[best[0]][0],
         degree=kernels[best[0]][1],
-        gamma='scale'
+        gamma='scale',
+        random_state=12
     )
     svc.fit(training[['Feature 0','Feature 1']], training['Class'])
 
@@ -86,12 +90,12 @@ if __name__=='__main__':
     # points
     plt.scatter(training.loc[training['Class'] == 0]['Feature 0'], training[training['Class'] == 0]['Feature 1'], label='Class 0', c='blue')
     plt.scatter(training.loc[training['Class'] == 1]['Feature 0'], training[training['Class'] == 1]['Feature 1'], label='Class 1', c='red')
-    plt.savefig(targetDir + 'Regions.png')
     # labels
     plt.xlabel('Feature 0')
     plt.ylabel('Feature 1')
     plt.title('Training Set and Decision Regions')
     plt.legend()
+    plt.savefig(targetDir + 'Regions.png')
     plt.show()
 
     # enter predictions
