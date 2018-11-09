@@ -1,5 +1,6 @@
 # Ignore .pdf
 *.pdf
+*.eps
 
 # Ignore .gv (graphviz)
 *.gv
