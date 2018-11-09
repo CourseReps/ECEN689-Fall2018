@@ -1,0 +1,191 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Nov  1 18:33:54 2018
+
+@author: harinath
+"""
+
+import pandas as pd
+#from google.colab import files 
+import numpy as np
+from sklearn import preprocessing
+import seaborn as sns
+import matplotlib.pyplot as plt
+from scipy.stats import linregress
+import warnings 
+warnings.filterwarnings('ignore')
+from sklearn import datasets
+from sklearn.model_selection import train_test_split
+from sklearn.model_selection import GridSearchCV
+from sklearn.metrics import classification_report
+from sklearn.svm import SVC
+from sklearn import svm, datasets
+
+trainData = '/Users/harinath/Desktop/ECEN689/5challenge_training_vharinath1105.csv'
+train_df = pd.read_csv(trainData)
+
+#hud_df = pd.read_csv(io.StringIO(uploaded_hud['COUNTY_ZIP_122016.csv'].decode('cp1252')))
+train_df.head(10)
+
+testDataSource = '/Users/harinath/Desktop/ECEN689/5challenge_testing_vharinath1105.csv'
+test_df = pd.read_csv(testDataSource)
+test_df.head(10)
+
+X1 = train_df[['Feature 0', 'Feature 1']].values
+Y1 = train_df[['Class']].values
+plt.scatter(X1[:, 0], X1[:, 1], marker='o',c=Y1[:,0],s=25, edgecolor='k')
+plt.show()
+X_T= test_df[['Feature 0', 'Feature 1']].values
+
+def plotSVC(X,Y,title):
+  # create a mesh to plot in
+    x_min,x_max=X[:,0].min(),X[:,0].max()
+    y_min,y_max=X[:,1].min(),X[:,1].max()
+    #x_min,x_max=x_min-1,x_max-1
+    #y_min,y_max=y_min-1,y_max-1
+    h = (x_max / x_min)/100
+    xx, yy = np.meshgrid(np.arange(x_min, x_max, h),
+    np.arange(y_min, y_max, h))
+    plt.subplot(1,1,1)
+    svc = SVC(kernel='linear',C=4).fit(X,Y)
+    #Z = svc.predict(np.c_[xx.ravel(), yy.ravel()])
+    Z = svc.predict(X_test)
+    #Z = Z.reshape(xx.shape)
+    plt.contourf(xx, yy, Z, cmap=plt.cm.Paired, alpha=0.8)
+    plt.scatter(X[:, 0], X[:, 1], c=Y[:,0], cmap=plt.cm.Paired)
+    plt.xlim(xx.min(), xx.max())
+    plt.title(title)
+    plt.show()
+
+def make_meshgrid(x, y, h=.02):
+    """Create a mesh of points to plot in
+
+    Parameters
+    ----------
+    x: data to base x-axis meshgrid on
+    y: data to base y-axis meshgrid on
+    h: stepsize for meshgrid, optional
+
+    Returns
+    -------
+    xx, yy : ndarray
+    """
+    x_min, x_max = x.min() - 1, x.max() + 1
+    y_min, y_max = y.min() - 1, y.max() + 1
+    xx, yy = np.meshgrid(np.arange(x_min, x_max, h),
+                         np.arange(y_min, y_max, h))
+    return xx, yy
+
+def plot_contours(ax, clf, xx, yy, **params):
+    """Plot the decision boundaries for a classifier.
+
+    Parameters
+    ----------
+    ax: matplotlib axes object
+    clf: a classifier
+    xx: meshgrid ndarray
+    yy: meshgrid ndarray
+    params: dictionary of params to pass to contourf, optional
+    """
+    Z = clf.predict(np.c_[xx.ravel(), yy.ravel()])
+    Z = Z.reshape(xx.shape)
+    out = ax.contourf(xx, yy, Z, **params)
+    return out
+
+
+# Split the dataset in two equal parts
+X_train, X_test, y_train, y_test = train_test_split(
+    X1, Y1[:,0], test_size=0.15, random_state=0, stratify = Y1[:,0])
+
+# svm is scale variant, scaling
+
+scaler = preprocessing.StandardScaler().fit(X_train)
+scaler.transform(X_train)
+scaler.transform(X_test)
+
+# Set the parameters by cross-validation
+tuned_parameters = [{'kernel': ['rbf'], 'gamma': [1e-3, 1e-4, 1e-2, 1e-1],
+                     'C': [1,2,3,4,5,6,7,8,9,10]},
+                    {'kernel': ['linear'], 'C': [1,2,3,4,5,6,7,8,9,10,15,20,24,30,35,40,45,50]},
+                    {'kernel': ['poly'], 'degree': [0,1,2,3,4,5],
+                     'C': [1,2,3,4,5,6,7,8,9,10,15,20,24,30,35,40,45,50]},
+                     {'kernel': ['sigmoid'],
+                     'C': [1,2,3,4,5,6,7,8,9,10,15,20,24,30,35,40,45,50]}]
+
+scores = ['precision', 'recall']
+
+X2 = train_df[['Feature 0', 'Feature 1']].values
+Y2 = train_df[['Class']].values
+
+for score in scores:
+    print("# Tuning hyper-parameters for %s" % score)
+    print()
+
+    clf = GridSearchCV(SVC(), tuned_parameters, cv=5,
+                       scoring='%s_macro' % score)
+    clf.fit(X2, Y2)
+
+    print("Best parameters set found on development set:")
+    print()
+    print(clf.best_params_)
+    print()
+    print("Grid scores on development set:")
+    print()
+    means = clf.cv_results_['mean_test_score']
+    stds = clf.cv_results_['std_test_score']
+    for mean, std, params in zip(means, stds, clf.cv_results_['params']):
+        print("%0.3f (+/-%0.03f) for %r"
+              % (mean, std * 2, params))
+    print()
+    #svc = SVC(kernel='linear',C=4).fit(X_train, y_train)
+    #plotSVC(X_train, y_train,'best')
+    print("Detailed classification report:")
+    print()
+    print("The model is trained on the full development set.")
+    print("The scores are computed on the full evaluation set.")
+    print()
+    #y_true, y_pred = y_test, clf.predict(X_test)
+    #print(classification_report(y_true, y_pred))
+    #print()
+    C = 1.0  # SVM regularization parameter
+    models = (svm.SVC(kernel='linear', C=8),
+              svm.SVC(kernel='rbf', gamma=0.1, C=6),
+              svm.SVC(kernel='rbf', gamma=0.1, C=10),
+              svm.SVC(kernel='rbf', gamma=0.1, C=2))
+    models = (clf.fit(X2, Y2) for clf in models)
+    
+    titles = ('SVC with linear kernel C=8',
+          'SVC with RBF kernel C=6, g=0.1',
+          'SVC with RBF kernel C=10, g=0.1',
+          'SVC with RBF kernel C=2,g=0.1')
+
+    # Set-up 2x2 grid for plotting.
+    fig, sub = plt.subplots(2, 2)
+    plt.subplots_adjust(wspace=0.4, hspace=0.4)
+    
+    X0, X1 = X2[:, 0], X2[:, 1]
+    xx, yy = make_meshgrid(X0, X1)
+    
+    for clf, title, ax in zip(models, titles, sub.flatten()):
+        plot_contours(ax, clf, xx, yy,
+                      cmap=plt.cm.coolwarm, alpha=0.8)
+        ax.scatter(X0, X1, c=Y2[:,0], cmap=plt.cm.coolwarm, s=20, edgecolors='k')
+        ax.set_xlim(xx.min(), xx.max())
+        ax.set_ylim(yy.min(), yy.max())
+        ax.set_xlabel('Feature 0')
+        ax.set_ylabel('Feature 1')
+        ax.set_xticks(())
+        ax.set_yticks(())
+        ax.set_title(title)
+        fig = plt.gcf()
+        fig.set_size_inches(8, 8)
+        fig.savefig('test2radialpng.png', dpi=100)
+    
+    plt.show()
+
+clf= svm.SVC(kernel='rbf', gamma=0.1, C=2)
+clf.fit (X2,Y2)
+output=clf.predict(X_T)
+output.to_csv('SVM_CH5.csv')
+
