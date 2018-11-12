@@ -15,11 +15,11 @@ Decompose a large code into simple functions with inputs and outputs in correct 
  
 The granularity of function decomposition can be divided in three parts. 
  
-A.	*Low-level functions* — the most basic functions that cannot be further decomposed. These are the functions which would find place in any data science task, example: computing MSE or Z score of data.
+(i)	*Low-level functions* — the most basic functions that cannot be further decomposed. These are the functions which would find place in any data science task, example: computing MSE or Z score of data.
  
-B.	*Medium-level functions* — a function that uses one or more low-level functions and/or other medium-level functions to perform the task. For example, remove outliers function would use compute Z-score function to remove the outliers by only retaining data within certain bounds or an error function that uses RMSE function.
+(ii) *Medium-level functions* — a function that uses one or more low-level functions and/or other medium-level functions to perform the task. For example, remove outliers function would use compute Z-score function to remove the outliers by only retaining data within certain bounds or an error function that uses RMSE function.
  
-C.	*High-level functions* — a function that uses one or more of medium-level functions and/or low-level functions to perform its task. For example, model training function can use several functions such as function to get randomly sampled data, a model scoring function, a metric function, etc.
+(iii) *High-level functions* — a function that uses one or more of medium-level functions and/or low-level functions to perform its task. For example, model training function can use several functions such as function to get randomly sampled data, a model scoring function, a metric function, etc.
  
  
 Step 2.  Group these functions into modules (Jupyter notebooks/python files) based on its usability. 
