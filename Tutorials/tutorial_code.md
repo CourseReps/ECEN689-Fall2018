@@ -4,7 +4,7 @@ by Aliakbar Shafi and Rishi Laddha
  
 Programming is a very important facet for a data scientist. It runs parallel to all the other processes in any data science project; right from data acquisition, data cleaning, visualization, data modelling in development stage before going into deployment. Thus, being able to write a production-level code is a must for every data scientist. It not only helps in easy deployment but also makes maintenance and reusability much simpler. This tutorial aims to highlight some basic code practices and etiquettes who intends to be an awesome programmer and data scientist!
  
-**1.	Modularity**
+##1.	Modularity
 Breaking your code into modules makes it very easy to identify the functionality of any software. Also, modular approach helps in making the code extremely reusable and easy to maintain. 
  
 *How can we do it?*
@@ -26,18 +26,18 @@ The granularity of function decomposition can be divided in three parts.
  
 Once the functions have been developed for all the tasks it is time to group all the low-level and medium-level functions that will be useful for more than one ML algorithm into a python file (a module to be imported) and all other low-level and medium-level functions that will be useful only for the algorithm in consideration into another module( python file). All the high-level functions should reside in a separate python file. The file with all the high level functions decides the algorithm development: right from combining data from different sources to final machine learning models. 
  
-**2. Logging and Instrumentation**
+##2. Logging and Instrumentation
 Logging and Instrumentation [LI] record all the useful information happening in the code during its execution. LI helps the programmer to debug if anything does not work as expected  and to improve the performance of the code in terms of time and space complexity.
   
 *Logging* : Records information such as critical failures during run time and intermediate results that will be used by the code itself. There are multiple log levels: notset, debug, info, warning, error, critical. Depending upon the severity of information we need, we can set the logging level. Although very helpful to a developer logging should be avoided as much possible during production stage and should contain only information that requires immediate human intervention.
  
-*Instrumentation* : Records information that is not included in logging. Instrumentations helps us to validate the code execution steps and work on improvements if necessary. 
+- *Instrumentation* : Records information that is not included in logging. Instrumentations helps us to validate the code execution steps and work on improvements if necessary. 
  
-*To validate code execution steps* : Information such as task name, intermediate results etc should be recorded. Incorrect results or vague algorithm may not raise a critical error that would be caught in logging. Hence it is necessary to get this information.
+- *To validate code execution steps* : Information such as task name, intermediate results etc should be recorded. Incorrect results or vague algorithm may not raise a critical error that would be caught in logging. Hence it is necessary to get this information.
 
 *To improve performance*: It is imperative to record time taken for each execution and memory occupied by each variable. We have a limited time and computing power. Instrumentation thus helps us in identifying the bottlenecks in our code and helps to optimize the code in terms of time and space complexity.
  
-**3. Code Optimization**
+##3. Code Optimization
 As mentioned above, code optimization includes reducing time complexity as well as space complexity. Lower the time and space complexity more efficient is the algorithm.
  
 Let’s say we have a nested for loop of size n each and takes about 2 seconds each run followed by a simple for loop that takes 3 seconds for each run. Then the equation for time consumption can be written as
@@ -46,13 +46,13 @@ The for loops should be replaced with python modules or functions. These functio
  
 Eliminating nested loops is the most basic way towards optimizing codes. For better programming practices one should include important data structure practices in the code like: Stacks, queues, lists, binary trees, Graphs, etc. 
  
-**4. Unit Testing**
+##4. Unit Testing
 Unit testing is used to automate code testing in terms of functionality. The code should be tested against different corner cases, different data sets and different situations. In a massive code, whenever we make any change it is inefficient to leave out the quality test for QA team and thus every data scientist should practice creating a Unit testing module containing set of test cases which can be executed whenever we want to test the code.
 Unit testing module contains test cases with expected results to test the code. It goes through every test case, compares actual output with every expected output and fails if any discrepancy.  
 
 *Python has a module called unittest to implement unit testing.*
  
-**5. Readability**
+##5. Readability
 The most important of all, any piece of software code should be written in such a way that it can easily read and understood not only by the data scientist but by anyone who has a limited understanding of programming language.Some practices that increase the readability of code are:
  
 (i) *Appropriate variable and function names*
@@ -71,7 +71,7 @@ return <output>
 *Comments* —texts placed in the code to explain the reader about the a particular section/line. 
  
  
-**6. Compatibility with ecosystem**
+##6. Compatibility with ecosystem
 The code of a data scientist is not going to be a standalone piece of software. It will be integrated into organization’s existing framework/code system and the code has to run synchronously with other parts of the ecosystem without any disruptions across the program flow.
  
  
@@ -79,7 +79,7 @@ For example, let’s say as a Data Scientist you have been given a job to design
  
 Every step will have a expected input and output, response time, etc. Whenever any module requests for recommendations the application/website should return the expected values in a desired format in an acceptable time. If the results are unexpected values, undesired format or delayed time, the code is unsynchronized with system.
  
-**7. Version Control**
+##7. Version Control
 Every time we alter the code, instead of saving the file with a different name, we commit the changes by overwriting the old file with new changes having a unique key associated with each version. If the new changes disrupt the process flow or do not meet the functional/ technical requirements, we can restore the old file by using the commit reference key of desired version. 
  
 Even in a team with handful of programmers, it can become really difficult to manage development or testing. With Version control, it becomes extremely easy to keep the whole team on a same page.
