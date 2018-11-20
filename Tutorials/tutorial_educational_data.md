@@ -5,7 +5,7 @@
 
 ## WHAT IS EDM?
 
-
+!(https://github.com/CourseReps/ECEN689-Fall2018/blob/master/Students/mahalakshmisridharan7/Images/EDM%20Process.PNG)
 
 
 ## WHY DO WE NEED EDM?
@@ -17,7 +17,7 @@
 5. Students benefit from detailed learning data
 6. Education community benefits from an interconnected feedback system.
 
-
+!(https://github.com/CourseReps/ECEN689-Fall2018/blob/master/Students/mahalakshmisridharan7/Images/Why%20EDM.PNG)
 
 
 ## DATA MINING METHODS - SUPERMARKET SCENARIO:
@@ -36,25 +36,23 @@
 3. Cluster Analysis - Group into clusters which describe the shared characteristics of the students in the cluster
 4. Sequential Association Analysis - Tracking and analyzing the course; determine if path predicts learner outcome.
 
+!(https://github.com/CourseReps/ECEN689-Fall2018/blob/master/Students/mahalakshmisridharan7/Images/EDM%20Implementation.PNG)
+
+
 ## APPLICATIONS:
 
+!(https://github.com/CourseReps/ECEN689-Fall2018/blob/master/Students/mahalakshmisridharan7/Images/Applications.PNG)
 
 ## STUDENT MODELING:
 
+!(https://github.com/CourseReps/ECEN689-Fall2018/blob/master/Students/mahalakshmisridharan7/Images/Student%20Modelling.PNG)
 
 
 ## DECISION SUPPORT SYSTEM:
 
 It enhances the process of learning by helping stakeholders make decisions. The target is mostly instructor, sometimes students, administrators or researchers.
 
-Provide reports - Feedback on student performance, Describe connections & collaborations, Create reports from profile info
-Create Alert - Detect unwanted behavior. Eg: Low motivation, misuse, cheating
-Planning, Scheduling - Plan future course, Resource allocation, Course enrollment planning
-Creating Courseware - Automatic course material prep using student info
-Developing concept maps - Map different concepts to each other. Eg: Hierarchy of topics, relation between test item & skill/knowledge
-Generating recommendation - Course rec to student/test rec to instructor
-
-
+!(https://github.com/CourseReps/ECEN689-Fall2018/blob/master/Students/mahalakshmisridharan7/Images/Decision%20Support%20System.PNG)
 
 
 ## CURRENT ISSUE IN EDUCATIONAL DATA MINING:
