@@ -21,6 +21,7 @@ Runs seamlessly on CPU and GPU.
 2. Why use KERAS?
 3. Getting Started with KERAS
 4. Shortcomings
+5. References
 ---
 
 ### 1. Basics of Neural Network
@@ -53,17 +54,17 @@ It is the final layer in the network. It is used to trace back the path to input
 * Keras has strong GPU support 
 ---
 
-### 4. Getting Started with KERAS
+### 3. Getting Started with KERAS
 [**Getting started: 30 seconds to Keras**](https://keras.io/)
 
 ---
 
-### 5. Shortcomings
+### 4. Shortcomings
 * Understanding of Backend Support
 * In built Data Processing tools are not helpful
 
 
-### 6. References
+### 5. References
 
 Here is a list of all the sources we used to learn about *KERAS* and for the presentation.
 We recommend you start with the KERAS documentation:
