@@ -4,23 +4,14 @@ from os import listdir
 from os.path import isfile, join
 from scipy import misc
 
-import io
 import numpy as np
-from sklearn.svm import SVC
-import matplotlib.pyplot as plt
-import csv
 import keras
 import torch
-from keras.datasets import mnist
-from keras.layers import Dense # Dense layers are "fully connected" layers
-from keras.models import Sequential # Documentation: https://keras.io/models/sequential/
+from keras.layers import Dense
+from keras.models import Sequential
 from keras.layers import Conv2D, MaxPooling2D
 from keras.layers import Activation, Dropout, Flatten, Dense
-from sklearn.model_selection import train_test_split
-from keras.preprocessing.image import ImageDataGenerator
-from keras.preprocessing.image import img_to_array, load_img
-import math
-from keras.models import clone_model
+
 
 pathForReading1 = "C:/Users/Droider11-PC/Documents/Kiyeob/Challenge/challenge7/all/Archive/"
 fileToRead1 = "C:/Users/Droider11-PC/Documents/Kiyeob/Challenge/challenge7/all/train.csv"
@@ -143,7 +134,7 @@ model.add(Conv2D(512, (2, 2),
 model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Dropout(0.5))
 
-model.add(Flatten())  # this converts our 3D feature maps to 1D feature vectors
+model.add(Flatten())
 
 model.add(Dense(512,
         activation=activation,
@@ -177,11 +168,6 @@ model.add(Dropout(0.5))
 model.add(Dense(1))
 model.add(Activation('linear'))
 
-# model.compile(loss='binary_crossentropy',
-#               optimizer='rmsprop',
-#               metrics=['accuracy'])
-
-# model.compile(optimizer="sgd", loss='mean_squared_error')
 model.compile(
     loss='mean_squared_error',
     optimizer='adam'
@@ -189,7 +175,7 @@ model.compile(
 model.summary()
 
 batchSize = 32
-epochs = 200
+epochs = 300
 
 history = model.fit(X, Y_data, batch_size=batchSize, epochs=epochs, verbose=True, validation_split=.1)
 
