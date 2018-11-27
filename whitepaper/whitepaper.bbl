@@ -1,0 +1,187 @@
+\begin{thebibliography}{10}
+
+\bibitem{Berry2009}
+Karl Berry and David Walden.
+\newblock {\em {\TeX} People: Interviews from the world of {\TeX}}.
+\newblock {\TeX} Users Group, Portland, {OR}, 2009.
+
+\bibitem{Bindner2011}
+Donald Bindner and Martin Erickson.
+\newblock {\em A Student's Guide to the Study, Practice, and Tools of Modern
+  Mathematics}.
+\newblock Discrete Mathematics and Its Applications. {CRC} Press, Boca Raton,
+  {FL}, 2011.
+
+\bibitem{Cormen2010}
+Thomas~H. Cormen.
+\newblock Using the {\tt clrscode3e} package in {\LaTeXe}.
+\newblock Avaliable on Dartmouth College: Department of Computer Science: Prof.
+  Thomas H. Cormen's web page: The {\tt clrscode} and {\tt clrscode3e} packages
+  for \LaTeXe\ at: \url{http://www.cs.dartmouth.edu/~thc/clrscode/}; September
+  18, 2010 was the last accessed date, January 27 2010.
+
+\bibitem{Diller1999}
+Antoni Diller.
+\newblock {\em {\LaTeX} Line by Line: Tips and Techniques for Document
+  Processing}.
+\newblock John Wiley {\rm \&} Sons, Chichester, West Sussex, England, {U.K.},
+  second edition, 1999.
+
+\bibitem{Goossens2007}
+Michel Goossens, Frank Mittelbach, Sebastian Rahtz, Denis Roegel, and Herbert
+  Vo$\beta$.
+\newblock {\em The {\LaTeX}\ Graphics Companion}.
+\newblock Addison-Wesley Series on Tools and Techniques for Computer
+  Typesetting. Addison-Wesley, Reading, {MA}, second edition, 2007.
+
+\bibitem{Goossens1999}
+Michel Goossens, Sebastian Rahtz, Eitan~M. Gurari, Ross Moore, and Robert~S.
+  Sutor.
+\newblock {\em The {\LaTeX}\ Web Companion: Integrating {\TeX}, {HTML}, and
+  {XML}}.
+\newblock Addison-Wesley Series on Tools and Techniques for Computer
+  Typesetting. Addison Wesley Longman Limited, Reading, {MA}, 1999.
+
+\bibitem{Goossens1997}
+Michel Goossens, Sebastian Rahtz, and Frank Mittelbach.
+\newblock {\em The {\LaTeX}\ Graphics Companion: Illustrating documents with
+  {\TeX} and {PostScript}}.
+\newblock Addison-Wesley Series on Tools and Techniques for Computer
+  Typesetting. Addison-Wesley, Reading, {MA}, 1997.
+
+\bibitem{Gratzer2007}
+George Gr{\"{a}}tzer.
+\newblock {\em More Math Into {\LaTeX}}.
+\newblock Springer Science+Business Media, {LCC}, New York, {NY}, fourth
+  edition, 2007.
+
+\bibitem{Griffiths1997}
+David~F. Griffiths and Desmond~J. Higham.
+\newblock {\em Learning {\LaTeX}}.
+\newblock Society for Industrial and Applied Mathematics, Philadelphia, {PA},
+  1997.
+
+\bibitem{Hamalainen2006}
+Wilhelmiina H{\"{a}}m{\"{a}}l{\"{a}}inen.
+\newblock Scientific writing for computer science students.
+\newblock Technical report, University of Joensuu, Joensuu, Finland, September
+  20 2006.
+
+\bibitem{Haralambous2007}
+Yannis Haralambous.
+\newblock {\em Fonts {\rm \&} Encodings: From Unicode to Advanced Typography
+  and Everything in Between}.
+\newblock O'Reilly Media, Sebastopol, {CA}, 2007.
+
+\bibitem{Higham1998}
+Nicholas~J. Higham.
+\newblock {\em Handbook of Writing for the Mathematical Sciences}.
+\newblock Society for Industrial and Applied Mathematics, Philadelphia, {PA},
+  second edition, 1998.
+
+\bibitem{Hoenig1998}
+Alan Hoenig.
+\newblock {\em {\TeX}\ Unbound: {\LaTeX}\ {\rm \&} {\TeX}\ Strategies for
+  Fonts, Graphics, {\rm \&} More}.
+\newblock Oxford University Press, New York, {NY}, 1998.
+
+\bibitem{Knuth1999}
+Donald~E. Knuth.
+\newblock {\em Digital Typography}.
+\newblock Center for the Study of Language and Information -- Lecture Notes.
+  University of Chicago Press, Chicago, {IL}, 1999.
+
+\bibitem{Kopka2004}
+Helmut Kopka and Patrick~W. Daly.
+\newblock {\em Guide to {\LaTeX}}.
+\newblock Addison-Wesley Series on Tools and Techniques for Computer
+  Typesetting. Addison-Wesley, Boston, {MA}, fourth edition, 2004.
+
+\bibitem{Koranne2011}
+Sandeep Koranne.
+\newblock {\em Handbook of Open Source Tools}.
+\newblock Springer Science+Business Media, {LCC}, New York, {NY}, 2011.
+
+\bibitem{Kottwitz2011}
+Stefan Kottwitz.
+\newblock {\em {\LaTeX}\ Beginner's Guide: Create high-quality and
+  professional-looking texts, articles, and books for business and science
+  using {\LaTeX}}.
+\newblock Packt Publishing, Birmingham, {U.K.}, 2011.
+
+\bibitem{Krantz2001}
+Steven~G. Krantz.
+\newblock {\em Handbook of Typography for the Mathematical Sciences}.
+\newblock Chapman {\rm \&} Hall/{CRC}, Boca Raton, {FL}, 2001.
+
+\bibitem{Krishnan2003}
+E.~Krishnan.
+\newblock {\em {\LaTeX}\ Tutorials: A Primer}.
+\newblock Indian {TeX} Users Group, Trivandrum, India, September 2003.
+
+\bibitem{Lamport1994}
+Leslie Lamport.
+\newblock {\em {\LaTeX}: A Document Preparation System}.
+\newblock Addison-Wesley, Reading, {MA}, second edition, 1994.
+
+\bibitem{Mittelbach2004}
+Frank Mittelbach, Michel Goossens, Johannes Braams, David Carlisle, and Chris
+  Rowley.
+\newblock {\em The {\LaTeX}\ Companion}.
+\newblock Addison-Wesley Series on Tools and Techniques for Computer
+  Typesetting. Addison-Wesley, Boston, {MA}, second edition, 2004.
+
+\bibitem{Pakin2008}
+Scott Pakin.
+\newblock The comprehensive {\LaTeX}\ symbol list.
+\newblock Available online at:
+  \url{http://mirror.ctan.org/info/symbols/comprehensive/symbols-a4.pdf}; July
+  1, 2011 was the last accessed date, January 3 2008.
+
+\bibitem{Raymond2004}
+Eric~S. Raymond.
+\newblock {\em The Art of {UNIX} Programming}.
+\newblock Addison-Wesley Professional Computing Series. Pearson Education,
+  Boston, {MA}, 2004.
+
+\bibitem{Scharrer2011}
+Martin Scharrer.
+\newblock The tikz-timing package: A {\LaTeX}\ package for timing diagrams.
+\newblock Available online at:
+  \url{http://www-inst.eecs.berkeley.edu/~cs150/fa13/resources/tikz-timing.pdf}
+  and \url{http://latex.scharrer-online.de/tikz-timing}; February 8, 2014 was
+  the last accessed date, January 9 2011.
+
+\bibitem{Syropoulos2003}
+Apostolos Syropoulos, Antonis Tsolomitis, and Nick Sofroniou.
+\newblock {\em Digital Typography Using {\LaTeX}}.
+\newblock Springer Professional Computing. Springer-Verlag New York, New York,
+  {NY}, 2003.
+
+\bibitem{Syropoulos2004}
+{TeX} Users Group.
+\newblock {\em Proceedings of the International Conference on {TeX}, {XML}, and
+  Digital Typography: Held Jointly with the $25^{th}$ Annual Meeting of the
+  {TeX} Users Group, {TUG 2004}}, volume 3130 of {\em Lecture Notes in Computer
+  Science}, Xanthi, Greece, August 30-September 3 2004. Springer-Verlag Berlin
+  Heidelberg.
+
+\bibitem{UITCambridge2011}
+{UIT Cambridge}.
+\newblock {LatexConditionals}.
+\newblock Available online at:
+  \url{http://www.uit.co.uk/ForAuth/LatexConditionals}; March 20, 2013 was the
+  last accessed date, January 17 2011.
+
+\bibitem{vanDongen2012}
+M.~R.~C. {van Dongen}.
+\newblock {\em {\LaTeX}\ and Friends}.
+\newblock X.media.publishing. Springer-Verlag Berlin Heidelberg, Heidelberg,
+  Germany, 2012.
+
+\bibitem{Voss2011}
+Herbert Voss.
+\newblock {\em {PSTricks}: Graphics and PostScript for {\TeX}\ and {\LaTeX}}.
+\newblock {UIT} Cambridge, Cambridge, {U.K.}, 2011.
+
+\end{thebibliography}
