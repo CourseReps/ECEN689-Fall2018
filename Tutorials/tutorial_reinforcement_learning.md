@@ -2,8 +2,7 @@
 by Harish Kumar and Michael Bass
 
 Power Point Presentation - https://github.com/CourseReps/ECEN689-Fall2018/blob/master/Students/SuperMB/ReinforcementLearning.Finished.pptx
-
-
+ 
 
 
 
