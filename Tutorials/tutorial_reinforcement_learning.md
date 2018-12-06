@@ -11,14 +11,13 @@ Power Point Presentation - https://github.com/CourseReps/ECEN689-Fall2018/blob/m
 
 ## ECEN 689 - Applied Information Science - Tutorial
 
-### Harish Kumar, Michael Bass
+### Abstract
 
-Abstract
 We summarize and describe the material discussed in our tutorial on Reinforcement Learning. We start with the distinction
 between reinforcement learning and other topics in reinforcement learning, describe the reinforcement learning problem, and then
 discuss how it can be solved.
 
-### I. REINFORCEMENTLEARNING
+### I. REINFORCEMENT LEARNING
 
 In a reinforcement learning problem, we train an agent to take optimal decisions in an environment to maximize a cumulative
 reward. The agent is oftentimes a software program that has control over resources, hardware or even other agents.
@@ -28,7 +27,7 @@ Reinforcement learning is a significantly different paradigm where the agent is 
 is. Instead, the agent observes the consequences of its behavior in the form of a reward that is often delayed with regards to
 the original action.
 
-### II. PROBLEMFORMULATION
+### II. PROBLEM FORMULATION
 
 In a reinforcement learning problem, an Actor or an Agent takes different decisions in an environment, with the goal of
 maximizing the total of the rewards it obtains from the environment in response to its decisions.
@@ -83,7 +82,7 @@ model is exploratory or greedy during the learning process.
 3) Use the obtained rewardrtto update the Q-Values forQ(st,at).
 4) Repeat 2 and 3 until the Q-Values converge, or for a fixed number of iterations.
 
-### V. FUNCTIONAPPROXIMATION
+### V. FUNCTION APPROXIMATION
 
 We note here that for complex reinforcement learning problems, the state-action space is too large to enumerate all possible
 elements of the setS×A. In fact, it is very probable that we only encounter a tiny fraction of all possible state-action
@@ -95,7 +94,7 @@ For instance, a neural network can take a statestas input and predict the Q-Valu
 often be able to transfer what it learned over already visited states to states that have not been visited.
 Neural networks can also learn to take the right action in a state, and this approach is knowns as policy gradient descent.
 
-### VI. DEEPREINFORCEMENTLEARNING
+### VI. DEEP REINFORCEMENT LEARNING
 
 In recent years, deep neural networks have helped make significant strides in reinforcement learning. Such networks have
 learned to perform relatively complex tasks such as playing Atari games, robot navigation, etc.
