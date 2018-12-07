@@ -17,6 +17,6 @@
 * [Neural Netowrks](tutorial_neuralnets.md): Amrita Veerabagu and Divyank Garg, Oct 23, 2018
 * [KERAS](tutorial_keras.md): Ranjith Tamil Selvan and Drupad Khublani, Oct 23, 2018
 * [TensorFlow](tutorial_tensorflow.md): Ashish Kumar and Shabarish Prasad, Oct 25, 2018
-* [Unsupervised Learning](tutorial_unsupervisedlearning.md): Prabhneet Arora and Sambandh Dhal, Oct 25, 2018
+* [Unsupervised Learning](tutorial_unsupervisedLearning.md): Prabhneet Arora and Sambandh Dhal, Oct 25, 2018
 * [Support vector machines](tutorial_svm.md):
 * [Convolutional Neural Networks](tutorial_cnn.md):
