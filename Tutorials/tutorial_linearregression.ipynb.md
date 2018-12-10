@@ -21,8 +21,7 @@ The error is squared, so that the positive and negative terms do not get cancell
 1. RSS The Residual Sum of squares gives information about how far the regression line is from the average of actual output.
 2. Sum of squared error tells how much the target values vary around the regression line. 
 3. Total Sum of squares is how much the data points are scattered about the mean.
-4. Sort the eigen values in descending order. 
-5. P-Value describes the relation between the null hypothesis and predicted value. A high P value would mean that changes in the predictor have no effect on the target variable. A low P value rejects the null hypothesis indicating that there is a relation between the target and the predictor variables.
+4. P-Value describes the relation between the null hypothesis and predicted value. A high P value would mean that changes in the predictor have no effect on the target variable. A low P value rejects the null hypothesis indicating that there is a relation between the target and the predictor variables.
 
 Multiple Linear regression attempts to model a relationship between two or more predictor variables and the target variable by fitting a linear equation to the observed data. Every value of the independent variables x are associated with the dependent variable y.
 \begin{equation}
