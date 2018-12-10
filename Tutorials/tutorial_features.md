@@ -25,3 +25,11 @@ From the above arguments, it is clear that Feature Engineering is indeed importa
 ### Feature Engineering:
 Feature Engineering is the process of transforming raw data into features that better represent the underlying problem to the predictive models, resulting in improved model accuracy on resulting data. 
 ![Pic2](https://github.com/anirudh2312/deep-learning/blob/master/images/Picture2.png)
+Feature engineering is a broad topic and there are many subproblems that come under feature engineering, like Feature Extraction, Feature Selection and Feature Creation.
+
+#### Feature Extraction: ‘automatic construction of new features from raw data’
+Some observations, in their raw state are far too voluminous to be modelled by predictive modelling algorithms directly. Common examples include: image, audio, video, textual data. 
+
+
+
+
