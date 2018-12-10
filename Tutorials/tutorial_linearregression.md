@@ -1,6 +1,4 @@
 
-
-```python
 # Linear Regression
 ### by Samyuktha Sankaran & Harinath PRS
 ### Instructor: Prof. Jean-Francois Chamberland
@@ -46,4 +44,4 @@ We demonstrated the working of a linear regression model through a small code sn
 3. Fit the training data to the model and print the coefficients of the respective predictor variable.The coefficients comments about the effect the predictor has on the target variable.
 4. Pass the test data set and obtain the accuracy and mean squared error.
 5. Plot the obtained results.
-```
+
