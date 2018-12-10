@@ -33,5 +33,20 @@ Some observations, in their raw state are far too voluminous to be modelled by p
 
 Hence, Feature Extraction is a process of automatically reducing the dimensionality of these types of observations into a much smaller set that can be modelled. Methods include: Principal Component Analysis (PCA), clustering, line or edge detection. 
 
+#### Feature Selection: ‘from many features to few that are useful’
+In any machine learning problem, some features are redundant (maybe because they are too noisy or they are correlated to other features), or sometimes some features are much more important than others and we need to discard less important features because of the overfitting problem. We always tend to remove the attributes that are irrelevant to the problem. For this we apply feature selection techniques.
+
+Feature selection can be done:
+##### Manual Feature Selection:
+By observing the feature importance scores given by various algorithms like decision trees, etc.
+
+##### Automated Feature Slection:
+Recursive Feature Elimination: Select features by recursively considering smaller and smaller sets of features,
+the importance of each feature is obtained either through a coef_ attribute or through a feature_importances_ attribute.
+The least important features are pruned from current set of features and this
+procedure is recursively repeated on the pruned set until the desired number of features to select is eventually reached.
+
+
+
 
 
