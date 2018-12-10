@@ -9,8 +9,12 @@ We had presented a tutorial on Linear regression. We explained the concept and t
 
 Linear Regression is a type of supervised model, used to find the relationship between the predictors and the target variables. There are two types of Linear regression: Simple and Multiple Linear regression. (SLR,MLR)
 Simple Linear Regression is where a relationship is established between two quantities - one is the independent variable, that is the predictor and the dependent variable, the output. The idea is to obtain a line that best fits the data such a way that the total error is minimal.
-Yp = β0 + β1X (1) 
-error = 􏰝∑n(actual value − predicted value)^2 (2)
+\begin{equation}
+    Y_p = \beta_0 + \beta_1X 
+\end{equation}
+\begin{equation}
+error = \sum_{i=1}^{n} (actual\ value - predicted\ value)^2
+\end{equation}
 The error is squared, so that the positive and negative terms do not get cancelled. If β1 > 0 implies that a positive relation exists between the predictor and the target. And if β1 < 0, there is a negative relationship between the predictor and target.
 
 ### Metrics for model evaluation 
@@ -21,20 +25,24 @@ The error is squared, so that the positive and negative terms do not get cancell
 5. P-Value describes the relation between the null hypothesis and predicted value. A high P value would mean that changes in the predictor have no effect on the target variable. A low P value rejects the null hypothesis indicating that there is a relation between the target and the predictor variables.
 
 Multiple Linear regression attempts to model a relationship between two or more predictor variables and the target variable by fitting a linear equation to the observed data. Every value of the independent variables x are associated with the dependent variable y.
-Yp =β0 +β1X1 +β2X2 +....+βnXn (3) 
+\begin{equation}
+    Y_p = \beta_0 + \beta_1X_1 + \beta_2X_2 + .... + \beta_nX_n
+    \end{equation}
 An extension to the linear regression model is the polynomial regression, where a non linear
 equation would be a best fit for the observed data set.
-Yp =β0 +β1X1 +β2X2 (4)
+\begin{equation}
+    Y_p = \beta_0 + \beta_1X_1 + \beta_2X_2^2
+    \end{equation}
 
 ### Demonstration
 We demonstrated the working of a linear regression model through a small code snippet. We have used the mpg datasets that estimates the miles per gallon for automobiles based on parameters like number of cylinders, displacement, horsepower, power, weight, acceleration and model manufactured year.
 
 ### Implementation
 
-• After loading the train and test datasets, process the datasets by dropping entries that have missing entries. One-hot encoding was applied to the origin of the automobile predictor variable.
-• Import the linear regression model from the SciKit learn package.
-• Fit the training data to the model and print the coefficients of the respective predictor variable.The coefficients comments about the effect the predictor has on the target variable.
-• Pass the test data set and obtain the accuracy and mean squared error.
-• Plot the obtained results.
+1. After loading the train and test datasets, process the datasets by dropping entries that have missing entries. One-hot encoding was applied to the origin of the automobile predictor variable.
+2. Import the linear regression model from the SciKit learn package.
+3. Fit the training data to the model and print the coefficients of the respective predictor variable.The coefficients comments about the effect the predictor has on the target variable.
+4. Pass the test data set and obtain the accuracy and mean squared error.
+5. Plot the obtained results.
 
 
