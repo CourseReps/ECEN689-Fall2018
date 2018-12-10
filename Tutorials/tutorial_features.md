@@ -30,6 +30,7 @@ Feature engineering is a broad topic and there are many subproblems that come un
 #### Feature Extraction: ‘automatic construction of new features from raw data’
 Some observations, in their raw state are far too voluminous to be modelled by predictive modelling algorithms directly. Common examples include: image, audio, video, textual data. 
 ![Pic3](https://github.com/anirudh2312/deep-learning/blob/master/images/Capture.PNG)
+
 Hence, Feature Extraction is a process of automatically reducing the dimensionality of these types of observations into a much smaller set that can be modelled. Methods include: Principal Component Analysis (PCA), clustering, line or edge detection. 
 
 
