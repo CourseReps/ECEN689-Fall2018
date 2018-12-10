@@ -55,6 +55,8 @@ They actively seek to remove or discount the contribution of features as part of
 3. This is the part of feature engineering that is often talked the most about as an artform, the part that is attributed the importance and signalled as the differentiation in competitive machine learning
 4. It is manual, it is slow, it requires lots of human brain power, and it makes a big difference!
 
+To sum it all up, we can take an analogy here:
 
+![Pic4](https://github.com/anirudh2312/deep-learning/blob/master/images/Picture3.png)
 
 
