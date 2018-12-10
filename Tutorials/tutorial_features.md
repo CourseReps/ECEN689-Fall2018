@@ -5,5 +5,10 @@ Nowadays, Everybody thinks that the better the features they will choose and pre
 
 ![Pic1](https://github.com/anirudh2312/deep-learning/blob/master/images/Picture1.png)
 
+Then the question is "Why Feature Engineering" !The importance of Feature Engineering is evident in the three statements which are:
+
+### Better feature means better flexibility
+Better features lead to less complex models, Faster to run, Easier to understand and Easier to maintain.
+
 
 
