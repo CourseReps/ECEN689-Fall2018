@@ -36,7 +36,7 @@ Hence, Feature Extraction is a process of automatically reducing the dimensional
 #### Feature Selection: ‘from many features to few that are useful’
 In any machine learning problem, some features are redundant (maybe because they are too noisy or they are correlated to other features), or sometimes some features are much more important than others and we need to discard less important features because of the overfitting problem. We always tend to remove the attributes that are irrelevant to the problem. For this we apply feature selection techniques.
 
-Feature selection can be done:
+Feature selection can be done in varous ways:
 ##### Manual Feature Selection:
 By observing the feature importance scores given by various algorithms like decision trees, etc.
 
@@ -46,6 +46,14 @@ the importance of each feature is obtained either through a coef_ attribute or
 The least important features are pruned from current set of features and this
 procedure is recursively repeated on the pruned set until the desired number of features to select is eventually reached.
 
+##### Regularization as Feature Selection (e.g. Lasso, Ridge):
+They actively seek to remove or discount the contribution of features as part of the model building process
+
+#### Feature Construction: ‘manual construction of new features from raw data’
+1. Construction of new features requires spending a lot of time with actual sample data and thinking about the underlying form of the problem, structures in data and how best to expose them to predictive modelling algorithms
+2. Feature creation requires great amount of domain knowledge
+3. This is the part of feature engineering that is often talked the most about as an artform, the part that is attributed the importance and signalled as the differentiation in competitive machine learning
+4. It is manual, it is slow, it requires lots of human brain power, and it makes a big difference!
 
 
 
