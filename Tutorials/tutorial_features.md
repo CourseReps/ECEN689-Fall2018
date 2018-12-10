@@ -50,6 +50,9 @@ procedure is recursively repeated on the pruned set until the desired number of 
 They actively seek to remove or discount the contribution of features as part of the model building process
 
 #### Feature Construction: ‘manual construction of new features from raw data’
+Example: There was a machine learning problem on Kaggle to predict whether a bank's client will repay its home loan back or not. The dataset of that problem had one variable, namely 'DAYS_CREDIT' which tells about how many days before the day of current application, did the client take previous loan. This was a continuous variable. The kernel density estimate of this variable is:
+![Pic4](https://github.com/anirudh2312/deep-learning/blob/master/images/Picture4.PNG)
+
 1. Construction of new features requires spending a lot of time with actual sample data and thinking about the underlying form of the problem, structures in data and how best to expose them to predictive modelling algorithms
 2. Feature creation requires great amount of domain knowledge
 3. This is the part of feature engineering that is often talked the most about as an artform, the part that is attributed the importance and signalled as the differentiation in competitive machine learning
