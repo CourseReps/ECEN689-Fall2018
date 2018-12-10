@@ -22,3 +22,6 @@ From the above arguments, it is clear that Feature Engineering is indeed importa
 3. Most of the people think that manually creating new features using the given raw data, is feature engineering
 
 
+### Feature Engineering:
+Feature Engineering is the process of transforming raw data into features that better represent the underlying problem to the predictive models, resulting in improved model accuracy on resulting data. 
+![Pic2](https://github.com/anirudh2312/deep-learning/blob/master/images/Picture2.png)
