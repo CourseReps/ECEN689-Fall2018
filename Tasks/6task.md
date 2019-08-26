@@ -18,7 +18,7 @@ It comes with strong support for machine learning and deep learning.
 
 ## Google Colaboratory
 
-[Colaboratory](https://colab.research.google.com) Colaboratory is a free Jupyter notebook environment that requires no setup and runs entirely in the cloud.
+[Colaboratory](https://colab.research.google.com) is a free Jupyter notebook environment that requires no setup and runs entirely in the cloud.
 
 
 ### Action Items
